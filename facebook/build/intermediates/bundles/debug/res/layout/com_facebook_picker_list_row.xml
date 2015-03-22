@@ -46,4 +46,8 @@
             android:layout_height="23dip"
             android:layout_marginRight="10dip"/>
 </LinearLayout>
+<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/layout/com_facebook_picker_list_row.xml -->
+=======
+<!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/layout/com_facebook_picker_list_row.xml -->
+>>>>>>> Stashed changes

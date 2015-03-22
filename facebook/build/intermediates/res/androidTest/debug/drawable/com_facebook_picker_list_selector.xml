@@ -25,4 +25,8 @@
     <item android:state_focused="true"                                                             android:drawable="@drawable/com_facebook_picker_list_focused" />
 
 </selector>
+<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/drawable/com_facebook_picker_list_selector.xml --><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/build/intermediates/bundles/debug/res/drawable/com_facebook_picker_list_selector.xml -->
+=======
+<!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/drawable/com_facebook_picker_list_selector.xml --><!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/build/intermediates/bundles/debug/res/drawable/com_facebook_picker_list_selector.xml -->
+>>>>>>> Stashed changes

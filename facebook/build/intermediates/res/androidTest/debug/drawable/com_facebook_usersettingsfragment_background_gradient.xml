@@ -21,4 +21,8 @@
       android:gradientRadius="495"
       android:type="radial"/>
 </shape>    
+<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/drawable/com_facebook_usersettingsfragment_background_gradient.xml --><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/build/intermediates/bundles/debug/res/drawable/com_facebook_usersettingsfragment_background_gradient.xml -->
+=======
+<!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/drawable/com_facebook_usersettingsfragment_background_gradient.xml --><!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/build/intermediates/bundles/debug/res/drawable/com_facebook_usersettingsfragment_background_gradient.xml -->
+>>>>>>> Stashed changes

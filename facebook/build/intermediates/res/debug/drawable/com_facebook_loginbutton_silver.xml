@@ -21,4 +21,8 @@
           android:drawable="@drawable/com_facebook_button_grey_focused" />
     <item android:drawable="@drawable/com_facebook_button_grey_normal" />
 </selector>
+<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/drawable/com_facebook_loginbutton_silver.xml -->
+=======
+<!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/drawable/com_facebook_loginbutton_silver.xml -->
+>>>>>>> Stashed changes
