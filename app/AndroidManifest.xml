@@ -65,6 +65,26 @@
             android:name="main.java.cz2006project.mojojo.AppointmentUI"
             android:label="@string/title_activity_appointment_ui" >
         </activity>
+        <activity
+            android:name="main.java.cz2006project.mojojo.Registration"
+            android:label="@string/title_activity_registration" >
+        </activity>
+        <activity
+            android:name="main.java.cz2006project.mojojo.Profile"
+            android:label="@string/title_activity_profile" >
+        </activity>
+        <activity
+            android:name="main.java.cz2006project.mojojo.Search_Doctor"
+            android:label="@string/title_activity_search__doctor" >
+        </activity>
+        <activity
+            android:name="main.java.cz2006project.mojojo.UpcommingAppointment"
+            android:label="@string/title_activity_upcomming_appointment" >
+        </activity>
+        <activity
+            android:name="main.java.cz2006project.mojojo.Edit_Profile"
+            android:label="@string/title_activity_edit__profile" >
+        </activity>
     </application>
 
 </manifest>
