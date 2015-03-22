@@ -154,6 +154,8 @@
                 android:layout_weight="1" />
         </TableRow>
 
+        </TableLayout>
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
