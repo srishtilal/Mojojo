@@ -23,6 +23,7 @@ package com.parse.ui;
 
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -34,8 +35,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Window;
 
+import com.parse.LogInCallback;
 import com.parse.Parse;
+import com.parse.ParseException;
 import com.parse.ParseFacebookUtils;
+import com.parse.ParseTwitterUtils;
+import com.parse.ParseUser;
+
 
 /**
  * Encapsulates the Parse login flow. The user can log in by username/password,
@@ -116,6 +122,18 @@ public class ParseLoginActivity extends FragmentActivity implements
 
     // Required for making Facebook login work
     ParseFacebookUtils.finishAuthentication(requestCode, resultCode, data);
+      ParseTwitterUtils.logIn(this, new LogInCallback() {
+          @Override
+          public void done(ParseUser user, ParseException err) {
+              if (user == null) {
+                  Log.d("MyApp", "Uh oh. The user cancelled the Twitter login.");
+              } else if (user.isNew()) {
+                  Log.d("MyApp", "User signed up and logged in through Twitter!");
+              } else {
+                  Log.d("MyApp", "User logged in through Twitter!");
+              }
+          }
+      });
   }
 
   /**

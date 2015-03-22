@@ -7,6 +7,7 @@ dependencies {
     compile 'com.facebook.android:facebook-android-sdk:3.21.1'
 
 
+
     // This assumes that your app's project has a compile dependency on the Parse SDK JAR files.
     // Your project's build.gradle should say:
     //

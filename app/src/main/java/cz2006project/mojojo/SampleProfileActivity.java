@@ -34,6 +34,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.facebook.AppEventsLogger;
 import com.parse.ParseUser;
 import com.parse.ui.ParseLoginBuilder;
 
@@ -90,6 +91,14 @@ public class SampleProfileActivity extends Activity {
         } else {
             showProfileLoggedOut();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
     }
 
     /**
