@@ -2,21 +2,72 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="#00000">
+    android:background="#00000"
+    android:id="@+id/qwiksearch"
+    android:orientation="vertical">
 
-    <Spinner
-        android:layout_width="72dp"
-        android:layout_height="63dp"
-        android:id="@+id/menu"
-        android:clickable="true"
-        android:contentDescription="menu"
-        android:spinnerMode="dropdown" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:id="@+id/">
 
-    <TextView
+        <Spinner
+            android:layout_width="99dp"
+            android:layout_height="66dp"
+            android:id="@+id/spinner" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="{QwikDoc}"
+            android:id="@+id/textView3"
+            android:textSize="40dp"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="{QwikSearch}"
-        android:id="@+id/textView3"
-        android:autoText="false" />
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner2"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner3"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner4"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:id="@+id/button2"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="80dp"
+            android:minWidth="80dp" />
+    </LinearLayout>
+
 </LinearLayout>
