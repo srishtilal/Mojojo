@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="#00000"
+    android:background="#0000"
     android:id="@+id/qwiksearch"
     android:orientation="vertical">
 
@@ -10,27 +10,25 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="84dp"
-        android:id="@+id/">
-
-        <Spinner
-            android:layout_width="99dp"
-            android:layout_height="66dp"
-            android:id="@+id/spinner" />
+        android:id="@+id/search">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="{QwikDoc}"
+            android:text="QwikSearch"
             android:id="@+id/textView3"
-            android:textSize="40dp"
-            android:layout_marginLeft="20dp" />
+            android:textSize="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="100dp"
+            android:textColor="#c0484a" />
     </LinearLayout>
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp">
 
         <Spinner
             android:layout_width="wrap_content"
