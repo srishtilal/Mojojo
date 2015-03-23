@@ -27,8 +27,4 @@
             android:background="@drawable/com_facebook_picker_default_separator_color"
             />
 </LinearLayout>
-<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/layout/com_facebook_picker_search_box.xml --><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/build/intermediates/bundles/debug/res/layout/com_facebook_picker_search_box.xml -->
-=======
-<!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/layout/com_facebook_picker_search_box.xml --><!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/build/intermediates/bundles/debug/res/layout/com_facebook_picker_search_box.xml -->
->>>>>>> Stashed changes

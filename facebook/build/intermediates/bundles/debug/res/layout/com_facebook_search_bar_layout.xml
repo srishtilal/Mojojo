@@ -28,8 +28,4 @@
             android:drawablePadding="5dp"
             android:imeOptions="actionDone"
             />
-<<<<<<< Updated upstream
 </LinearLayout><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/layout/com_facebook_search_bar_layout.xml -->
-=======
-</LinearLayout><!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/layout/com_facebook_search_bar_layout.xml -->
->>>>>>> Stashed changes

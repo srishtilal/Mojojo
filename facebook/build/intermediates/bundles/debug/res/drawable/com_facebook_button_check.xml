@@ -18,8 +18,4 @@
   <item android:state_checked="true" android:drawable="@drawable/com_facebook_button_check_on" />
   <item android:drawable="@drawable/com_facebook_button_check_off" />
 </selector>
-<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/drawable/com_facebook_button_check.xml -->
-=======
-<!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/drawable/com_facebook_button_check.xml -->
->>>>>>> Stashed changes

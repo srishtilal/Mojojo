@@ -12,7 +12,7 @@ public class Edit_Profile extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit__profil);
+        setContentView(R.layout.activity_edit_profile);
     }
 
 

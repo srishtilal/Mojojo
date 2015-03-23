@@ -1,96 +1,77 @@
 package main.java.cz2006project.mojojo.Entity;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import com.parse.ParseObject;
 
-import java.util.ArrayList;
 import java.util.Date;
 
-import main.java.cz2006project.mojojo.Entity.Appointment;
 
+public class Patient extends ParseObject{
 
-public class Patient {
-
-    private String patientName;
-    private String patientNRIC;
-    private String password;
-    private String email;
-    private String userName;
-    private Date dateOfBirth;
-    private boolean gender;
-    private ArrayList <MedicalRecords> medicalRecords = new ArrayList<MedicalRecords>();
-    private ArrayList <Appointment> appointments = new ArrayList<Appointment>();
-
-    public String getPatientName() {
-        return patientName;
+    public String getPatientName() { return getString("patientName");
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setPatientName(String patientName) {put("patientNRIC",patientName);
     }
 
-    public String getPatientNRIC() {
-        return patientNRIC;
+    public String getPatientNRIC() {return getString("patientNRIC");
     }
 
-    public void setPatientNRIC(String patientNRIC) {
-        this.patientNRIC = patientNRIC;
+    public void setPatientNRIC(String patientNRIC) { put("patientNRIC",patientNRIC);
     }
 
     public String getPassword() {
-        return password;
+        return getString("password");
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        put("password",password);
     }
 
     public String getEmail() {
-        return email;
+        return getString("email");
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        put("email",email);
     }
 
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        return getDate("dateOfBirth");
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        put("dateOfBirth",dateOfBirth);
     }
 
     public boolean isGender() {
-        return gender;
+        return getBoolean("gender");
     }
 
     public void setGender(boolean gender) {
-        this.gender = gender;
+        put("gender",gender);
     }
 
-    public ArrayList<MedicalRecords> getMedicalRecords() {
-        return medicalRecords;
+    public ParseObject getMedicalRecords() {
+        return getParseObject("medicalRecords");
     }
 
-    public void setMedicalRecords(ArrayList<MedicalRecords> medicalRecords) {
-        this.medicalRecords = medicalRecords;
+    public void setMedicalRecords(ParseObject medicalRecords) {
+        put("medicalRecords",medicalRecords);
     }
 
-    public ArrayList<Appointment> getAppointments() {
-        return appointments;
+    public ParseObject getAppointments() {
+        return getParseObject("appointments");
     }
 
-    public void setAppointments(ArrayList<Appointment> appointments) {
-        this.appointments = appointments;
+    public void setAppointments(ParseObject appointments) {
+        put("appointments",appointments);
     }
 
     public String getUserName() {
-        return userName;
+        return getString("userName");
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        put("userName",userName);
     }
 }

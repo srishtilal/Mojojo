@@ -25,8 +25,4 @@
     <item
             android:drawable="@drawable/com_facebook_top_background" />
 </selector>
-<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/facebook/res/drawable/com_facebook_top_button.xml -->
-=======
-<!-- From: file:/Users/srishti/Downloads/Mojojo/facebook/res/drawable/com_facebook_top_button.xml -->
->>>>>>> Stashed changes

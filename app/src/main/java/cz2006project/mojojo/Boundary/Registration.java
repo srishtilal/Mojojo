@@ -6,8 +6,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Entity.Patient;
 
 public class Registration extends Activity {
+
+    private Patient patient = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
