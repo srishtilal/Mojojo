@@ -1,4 +1,4 @@
-package main.java.cz2006project.mojojo;
+package main.java.cz2006project.mojojo.Boundary;
 
 import android.app.Activity;
 import android.os.Bundle;
