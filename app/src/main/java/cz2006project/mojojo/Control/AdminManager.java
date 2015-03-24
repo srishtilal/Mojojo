@@ -11,7 +11,6 @@ package main.java.cz2006project.mojojo.Control;
     private ArrayList<Doctor> DoctorList;
     //private ArrayList<Schedule> DoctorScheduleList;
     private ArrayList<Appointments> AppointmentList;
-
     public AdminManager(ArrayList<Patient> PatientList,ArrayList<Doctor> DoctorList,ArrayList<Schedule> DoctorScheduleList,ArrayList<Appointments> AppointmentList)
     {
         this.PatientList = PatientList;

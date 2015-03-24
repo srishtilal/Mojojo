@@ -73,5 +73,4 @@ public class Appointment extends ParseObject {
     {
         put("IsFollowUpAppointment",number);
     }
-
 }
