@@ -9,8 +9,7 @@ import com.parse.ParseQuery;
 
 public class AppointmentManager {
 
-    private ParseObject AppointmentList;
-
+    private ArrayList<Appointment> AppointmentList;
     public void AppointmentManager(){
 
 
@@ -18,6 +17,7 @@ public class AppointmentManager {
 
 
     public void CreateAppointment(){
+
 
 
     }

@@ -31,7 +31,7 @@ public class Appointment extends ParseObject {
     }
 
     public void setTime(Time time) {
-        put("time",time)
+        put("time",time);
     }
 
     public String getOtherSpecification() {
@@ -51,11 +51,11 @@ public class Appointment extends ParseObject {
     }
 
     public Clinic getCinicName() {
-        return cinicName;
+        return clinicName;
     }
 
     public void setCinicName(Clinic cinicName) {
-        this.cinicName = cinicName;
+        this.clinicName = cinicName;
     }
 
     public int getAppointmentNo() {
