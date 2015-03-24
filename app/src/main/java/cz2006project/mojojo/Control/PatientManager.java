@@ -8,7 +8,7 @@ import main.java.cz2006project.mojojo.Entity.Patient;
 /**
  * Created by Dhruv on 2/24/2015.
  */
-/**public class PatientManager {
+public class PatientManager {
 
 
     private ArrayList<Patient> patientList = new ArrayList<Patient>();

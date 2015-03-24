@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by Dhruv on 2/24/2015.
  */
-/**public class Appointment extends ParseObject {
+public class Appointment extends ParseObject {
 
     private Date appointmentDate;
     private Time time;
@@ -74,4 +74,4 @@ import java.util.Date;
         put("IsFollowUpAppointment",number);
     }
 
-}*/
+}
