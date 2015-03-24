@@ -1,11 +1,16 @@
 package main.java.cz2006project.mojojo.Entity;
 
+import com.parse.ParseObject;
+
+import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by Dhruv on 2/24/2015.
  */
-public class Admin {
+public class Admin extends ParseObject
+{
 
     private String name;
     private String NRIC;
@@ -14,51 +19,95 @@ public class Admin {
     private boolean gender;
     private Date dateOfBirth;
 
-    public String getName() {
-        return name;
+
+
+    public void setAppointmentDate(Date appointmentDate)
+    {
+        put("appointmentDate",appointmentDate);
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+    public String getName()
+    {
+        return getString ("name");
     }
 
-    public String getNRIC() {
-        return NRIC;
+
+
+    public void setName(String name)
+    {
+        put("name",name);
     }
 
-    public void setNRIC(String NRIC) {
-        this.NRIC = NRIC;
+
+
+    public String getNRIC()
+    {
+        return getString ("NRIC");
     }
 
-    public String getPassword() {
-        return password;
+
+
+    public void setNRIC(String NRIC)
+    {
+        put("NRIC",NRIC);
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+
+
+    public String getPassword()
+    {
+        return getString("password");
     }
 
-    public String getEmail() {
-        return email;
+
+
+    public void setPassword(String password)
+    {
+        put("password",password);
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+
+
+    public String getEmail()
+    {
+        return getString("email");
     }
 
-    public boolean isGender() {
-        return gender;
+
+
+    public void setEmail(String email)
+    {
+        put("email",email);
     }
 
-    public void setGender(boolean gender) {
-        this.gender = gender;
+
+
+    public boolean isGender()
+    {
+        return getBoolean("Gender");
     }
 
-    public Date getDateOfBirth() {
-        return dateOfBirth;
+
+
+    public void setGender(boolean gender)
+    {
+        put("gender",gender);
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+
+
+    public Date getDateOfBirth()
+    {
+        return getDate ("dateOfBirth");
     }
+
+
+
+    public void setDateOfBirth(Date dateOfBirth)
+    {
+        put("DateOfBirth", dateOfBirth);
+    }
+
+
 }

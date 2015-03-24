@@ -8,51 +8,75 @@ import java.util.Date;
  * Created by Dhruv on 2/24/2015.
  */
 
-public class MedicalRecords extends ParseObject{
+public class MedicalRecords extends ParseObject
+{
 
-    public String getNRIC() {
+    public String getNRIC()
+    {
         return getString("NRIC");
     }
 
+
     public void setNRIC(String NRIC)
+
     {
         put("NRIC",NRIC);
     }
 
-    public ParseObject getAllergy() {
+
+
+    public ParseObject getAllergy()
+    {
         return getParseObject("allergy");
     }
 
-    public void setAllergy(ParseObject allergy) {
+
+
+    public void setAllergy(ParseObject allergy)
+    {
         put("allergy",allergy);
     }
 
-    public ParseObject getHealthStatus() {
+
+
+    public ParseObject getHealthStatus()
+    {
         return getParseObject("healthStatus");
     }
 
-    public void setHealthStatus(ParseObject healthStatus) {
+
+
+    public void setHealthStatus(ParseObject healthStatus)
+    {
         put("healthStatus",healthStatus);
     }
 
-    public Date getLastCheckup() {
+
+
+    public Date getLastCheckup()
+    {
         return getDate("lastCheckup");
     }
 
-    public void setLastCheckup(Date lastCheckup) {
+
+
+    public void setLastCheckup(Date lastCheckup)
+    {
         put("lastCheckup",lastCheckup);
     }
 
-    public String getMedication() {
+
+
+    public String getMedication()
+    {
         return getString("medication");
     }
+
+
 
     public void setMedication(String medication) {
         put("medication",medication);
     }
-
-
-
 
 
 }

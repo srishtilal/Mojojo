@@ -3,14 +3,14 @@ package main.java.cz2006project.mojojo.Control;
 /**
  * Created by Mai and zx on 5/3/2015.
  */
-/*public class AdminManager
+/**public class AdminManager
 
 { AppointmentManager appointmentManager = null;
     private String Reminders;
     private ArrayList<Patient> PatientList;
     private ArrayList<Doctor> DoctorList;
     //private ArrayList<Schedule> DoctorScheduleList;
-    private ArrayList<Appointments> AppointmentList;
+    private ArrayList<Appointment> AppointmentList;
     public AdminManager(ArrayList<Patient> PatientList,ArrayList<Doctor> DoctorList,ArrayList<Schedule> DoctorScheduleList,ArrayList<Appointments> AppointmentList)
     {
         this.PatientList = PatientList;

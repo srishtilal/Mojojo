@@ -22,19 +22,28 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     }
 
 
-    public void CreateAppointment(){
+    public void CreateAppointment()
+    {
 
 
 
     }
 
-    public void  CancelAppointment(int AppointmentNo){
+
+
+    public void  CancelAppointment(int AppointmentNo)
+    {
 
     }
 
-    public void ModifyAppointment(int AppointmentNo){
+
+
+    public void ModifyAppointment(int AppointmentNo)
+    {
 
     }
+
+
 
     public Boolean VerifyFollowUpAppointment(int AppointmentNo)
     {
@@ -57,8 +66,11 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
         return false;
     }
 
-    public Boolean ValidateAppointment(){
 
+
+    public Boolean ValidateAppointment()
+    {
+        return true;
     }
 
 }
