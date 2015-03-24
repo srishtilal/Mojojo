@@ -1,5 +1,7 @@
 package main.java.cz2006project.mojojo.Entity;
 
+import com.parse.ParseObject;
+
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,38 +9,37 @@ import java.util.Date;
 /**
  * Created by Dhruv on 2/24/2015.
  */
-public class Appointment {
+public class Appointment extends ParseObject {
 
     private Date appointmentDate;
     private Time time;
     private String otherSpecification;
     private Doctor DoctorName;
-    private Clinic cinicName;
+    private Clinic clinicName;
     private int AppointmentNo;
-    private ArrayList<int[]> FollowUpAppointment = new ArrayList<int[]>();
-
+    private Boolean IsFollowUpAppointment;
     public Date getAppointmentDate() {
-        return appointmentDate;
+        return getDate("appointmentDate");
     }
 
     public void setAppointmentDate(Date appointmentDate) {
-        this.appointmentDate = appointmentDate;
+        put("appointmentDate",appointmentDate);
     }
 
     public Time getTime() {
-        return time;
+        return getTime();
     }
 
     public void setTime(Time time) {
-        this.time = time;
+        put("time",time)
     }
 
     public String getOtherSpecification() {
-        return otherSpecification;
+        return getString("otherSpecification");
     }
 
     public void setOtherSpecification(String otherSpecification) {
-        this.otherSpecification = otherSpecification;
+        put("otherSpecification",otherSpecification);
     }
 
     public Doctor getDoctorName() {
@@ -58,18 +59,18 @@ public class Appointment {
     }
 
     public int getAppointmentNo() {
-        return AppointmentNo;
+        return getInt("appointmentNo");
     }
 
     public void setAppointmentNo(int appointmentNo) {
-        AppointmentNo = appointmentNo;
+        getString("appointmentNo");
     }
-
-    public ArrayList<int[]> getFollowUpAppointment() {
-        return FollowUpAppointment;
+    public boolean IsFollowUpAppointment()
+    {
+        return getBoolean("IsFollowUpAppointment");
     }
-
-    public void setFollowUpAppointment(ArrayList<int[]> followUpAppointment) {
-        FollowUpAppointment = followUpAppointment;
+    public void setIsFollowUpAppointment(Boolean number)
+    {
+        put("IsFollowUpAppointment",number);
     }
 }

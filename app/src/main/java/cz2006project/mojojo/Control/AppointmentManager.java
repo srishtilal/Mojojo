@@ -1,16 +1,20 @@
 package main.java.cz2006project.mojojo.Control;
 
-import java.util.ArrayList;
-
-import main.java.cz2006project.mojojo.Entity.Appointment;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 /**
  * Created by Dhruv again on 2/24/2015.
  */
-/**
+
 public class AppointmentManager {
 
-    private ArrayList<Appointments> AppointmentList;
+    private ParseObject AppointmentList;
+
+    public void AppointmentManager(){
+
+
+    }
 
 
     public void CreateAppointment(){
@@ -26,24 +30,14 @@ public class AppointmentManager {
 
     }
 
-    public void ViewAppointment(){
+    public Boolean VerifyFollowUpAppointment(ParseObject appointment , String ){
 
-
-    }
-
-    public void AppointmentManager(){
-
-
-    }
-
-    public Boolean VerifyFollowUpAppointment(){
-
+        ParseQuery<ParseObject> query = ParseQuery.getQuery(appointment.getObjectId());
         return true;
     }
 
-    public void ValidateAppointment(){
+    public Boolean ValidateAppointment(){
 
     }
 
 }
-*/
