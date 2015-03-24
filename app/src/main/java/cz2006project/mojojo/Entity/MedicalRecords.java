@@ -1,65 +1,54 @@
 package main.java.cz2006project.mojojo.Entity;
 
-import java.util.ArrayList;
-import java.util.Date;
+import com.parse.ParseObject;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
  * Created by Dhruv on 2/24/2015.
  */
 
-public class MedicalRecords {
-
-
-    private String NRIC;
-    private ArrayList<String> allergy = new ArrayList<String>();
-    private ArrayList<String> healthStatus = new ArrayList<String>();
-    private Date lastCheckup;
-    private String medication;
-
-
+public class MedicalRecords extends ParseObject{
 
     public String getNRIC() {
-        return NRIC;
+        return getString("NRIC");
     }
 
     public void setNRIC(String NRIC)
     {
-        this.NRIC = NRIC;
+        put("NRIC",NRIC);
     }
 
-    public ArrayList<String> getAllergy() {
-        return allergy;
+    public ParseObject getAllergy() {
+        return getParseObject("allergy");
     }
 
-    public void setAllergy(ArrayList<String> allergy) {
-        this.allergy = allergy;
+    public void setAllergy(ParseObject allergy) {
+        put("allergy",allergy);
     }
 
-    public ArrayList<String> getHealthStatus() {
-        return healthStatus;
+    public ParseObject getHealthStatus() {
+        return getParseObject("healthStatus");
     }
 
-    public void setHealthStatus(ArrayList<String> healthStatus) {
-        this.healthStatus = healthStatus;
+    public void setHealthStatus(ParseObject healthStatus) {
+        put("healthStatus",healthStatus);
     }
 
     public Date getLastCheckup() {
-        return lastCheckup;
+        return getDate("lastCheckup");
     }
 
     public void setLastCheckup(Date lastCheckup) {
-        this.lastCheckup = lastCheckup;
+        put("lastCheckup",lastCheckup);
     }
 
     public String getMedication() {
-        return medication;
+        return getString("medication");
     }
 
     public void setMedication(String medication) {
-        this.medication = medication;
+        put("medication",medication);
     }
 
 

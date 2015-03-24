@@ -1,6 +1,7 @@
 package main.java.cz2006project.mojojo.Entity;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.util.Date;
 
@@ -13,7 +14,7 @@ public class Patient extends ParseObject{
     public void setPatientName(String patientName) {put("patientNRIC",patientName);
     }
 
-    public String getPatientNRIC() {return getString("patientNRIC");
+    public ParseUser getPatientNRIC() {return getParseUser("patientNRIC");
     }
 
     public void setPatientNRIC(String patientNRIC) { put("patientNRIC",patientNRIC);
@@ -56,7 +57,7 @@ public class Patient extends ParseObject{
     }
 
     public void setMedicalRecords(ParseObject medicalRecords) {
-        put("medicalRecords",medicalRecords);
+        put("medicalRecords", medicalRecords);
     }
 
     public ParseObject getAppointments() {
