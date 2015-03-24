@@ -1,11 +1,14 @@
 package main.java.cz2006project.mojojo.Entity;
 
+import com.parse.ParseObject;
+import com.parse.ParseUser;
+
 import java.util.Date;
 
 /**
  * Created by Dhruv on 2/24/2015.
  */
-public class Admin {
+public class Admin extends ParseObject{
 
     private String name;
     private String NRIC;
