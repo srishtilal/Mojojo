@@ -2,6 +2,7 @@ package main.java.cz2006project.mojojo.Entity;
 
 import java.util.ArrayList;
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 /**
  * Created by Dhruv on 2/24/2015.
@@ -25,28 +26,29 @@ public class Doctor extends ParseObject {
 
     public void setSchedule(ArrayList<Schedule> schedule)
     {
-        put("schedule",schedule);
+        put("schedule", schedule);
     }
 
 
 
-    public String getNRIC()
+    ParseUser getDoctorNRIC()
     {
-        return NRIC;
+        return getParseUser("DoctorNRIC");
     }
 
 
 
-    public void setNRIC(String NRIC)
+    public void setDoctorNRIC(String DoctorNRIC)
     {
-        put("NRIC",NRIC);
+        put("DoctorNRIC",DoctorNRIC);
     }
+
 
 
 
     public String getPassword()
     {
-        return password;
+        return getString ("password");
     }
 
 
@@ -60,7 +62,7 @@ public class Doctor extends ParseObject {
 
     public String getName()
     {
-        return name;
+        return getString ("name");
     }
 
 

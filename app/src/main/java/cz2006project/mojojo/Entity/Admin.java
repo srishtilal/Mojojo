@@ -1,13 +1,14 @@
 package main.java.cz2006project.mojojo.Entity;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by Dhruv on 2/24/2015.
+ * Created by ZX&SL on 2/24/2015.
  */
 public class Admin extends ParseObject
 {
@@ -41,16 +42,16 @@ public class Admin extends ParseObject
 
 
 
-    public String getNRIC()
+    ParseUser getAdminNRIC()
     {
-        return getString ("NRIC");
+        return getParseUser("AdminNRIC");
     }
 
 
 
-    public void setNRIC(String NRIC)
+    public void setAdminNRIC(String AdminNRIC)
     {
-        put("NRIC",NRIC);
+        put("AdminNRIC",AdminNRIC);
     }
 
 
