@@ -66,18 +66,18 @@ public class SampleProfileActivity extends Activity {
         loginOrLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentUser != null) {
+               /* if (currentUser != null) {
                     // User clicked to log out.
                     ParseUser.logOut();
                     currentUser = null;
-                    showProfileLoggedOut();
-                } else {
+                    //showProfileLoggedOut();
+                } else {*/
                     // User clicked to log in.
                     ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
                             SampleProfileActivity.this);
                     startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
                 }
-            }
+
         });
     }
 
@@ -89,9 +89,13 @@ public class SampleProfileActivity extends Activity {
         if (currentUser != null) {
             showProfileLoggedIn();
         } else {
-            showProfileLoggedOut();
+            ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
+                    SampleProfileActivity.this);
+            startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
         }
-    }
+            //showProfileLoggedOut();
+        }
+    //}
 
     @Override
     protected void onResume() {
@@ -116,11 +120,12 @@ public class SampleProfileActivity extends Activity {
 
     /**
      * Show a message asking the user to log in, toggle login/logout button text.
-     */
+
     private void showProfileLoggedOut() {
         titleTextView.setText(R.string.profile_title_logged_out);
         emailTextView.setText("");
         nameTextView.setText("");
         loginOrLogoutButton.setText(R.string.profile_login_button_label);
     }
+     */
 }
