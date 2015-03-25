@@ -5,8 +5,4 @@
     <item android:drawable="@color/com_parse_ui_twitter_login_button"/>
 
 </selector>
-<<<<<<< HEAD
-<!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/res/drawable/com_parse_ui_twitter_login_button_background_selector.xml --><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/drawable/com_parse_ui_twitter_login_button_background_selector.xml -->
-=======
-<!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/res/drawable/com_parse_ui_twitter_login_button_background_selector.xml --><!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/drawable/com_parse_ui_twitter_login_button_background_selector.xml -->
->>>>>>> origin/master
+<!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/res/drawable/com_parse_ui_twitter_login_button_background_selector.xml --><!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/drawable/com_parse_ui_twitter_login_button_background_selector.xml -->

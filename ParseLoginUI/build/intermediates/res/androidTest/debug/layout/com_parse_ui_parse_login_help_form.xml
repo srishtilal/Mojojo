@@ -26,8 +26,4 @@
         android:layout_marginTop="@dimen/com_parse_ui_xlarge_vertical_spacing"
         android:text="@string/com_parse_ui_login_help_submit_button_label" />
 </LinearLayout>
-<<<<<<< HEAD
-<!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_help_form.xml --><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/layout/com_parse_ui_parse_login_help_form.xml -->
-=======
-<!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_help_form.xml --><!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/layout/com_parse_ui_parse_login_help_form.xml -->
->>>>>>> origin/master
+<!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_help_form.xml --><!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/layout/com_parse_ui_parse_login_help_form.xml -->

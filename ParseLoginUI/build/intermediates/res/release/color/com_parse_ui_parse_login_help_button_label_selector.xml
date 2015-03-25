@@ -5,8 +5,4 @@
     <item android:color="@color/com_parse_ui_parse_login_help_button_label"/>
 
 </selector>
-<<<<<<< HEAD
-<!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/res/color/com_parse_ui_parse_login_help_button_label_selector.xml -->
-=======
-<!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/res/color/com_parse_ui_parse_login_help_button_label_selector.xml -->
->>>>>>> origin/master
+<!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/res/color/com_parse_ui_parse_login_help_button_label_selector.xml -->

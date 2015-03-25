@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< HEAD
-<merger version="3"><dataSet config="main"><source path="C:\Users\Zi\Documents\GitHub\Mojojo\ParseLoginUI\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Zi\Documents\GitHub\Mojojo\ParseLoginUI\src\debug\assets"/></dataSet></merger>
-=======
-<merger version="3"><dataSet config="main"><source path="/Users/srishti/Downloads/Mojojo/ParseLoginUI/src/main/assets"/></dataSet><dataSet config="debug"><source path="/Users/srishti/Downloads/Mojojo/ParseLoginUI/src/debug/assets"/></dataSet></merger>
->>>>>>> origin/master
+<merger version="3"><dataSet config="main"><source path="C:\Users\Lee.SAIMUN-PC\Documents\GitHub\Mojojo\ParseLoginUI\src\main\assets"/></dataSet><dataSet config="debug"><source path="C:\Users\Lee.SAIMUN-PC\Documents\GitHub\Mojojo\ParseLoginUI\src\debug\assets"/></dataSet></merger>

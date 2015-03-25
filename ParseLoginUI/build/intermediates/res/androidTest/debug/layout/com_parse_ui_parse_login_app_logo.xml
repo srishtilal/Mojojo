@@ -5,8 +5,4 @@
     android:layout_height="wrap_content"
     android:src="@drawable/app_logo"
     android:contentDescription="@string/com_parse_ui_logo_content_description" />
-<<<<<<< HEAD
-<!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_app_logo.xml --><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/layout/com_parse_ui_parse_login_app_logo.xml -->
-=======
-<!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_app_logo.xml --><!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/layout/com_parse_ui_parse_login_app_logo.xml -->
->>>>>>> origin/master
+<!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_app_logo.xml --><!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/build/intermediates/bundles/debug/res/layout/com_parse_ui_parse_login_app_logo.xml -->
