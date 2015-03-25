@@ -1,18 +1,43 @@
 package main.java.cz2006project.mojojo.Boundary;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import cz2006project.mojojo.R;
 
 public class Profile extends Activity {
 
+    private TextView welcomeTextView;
+    private TextView appointmentTextView;
+    private View appointmentDetail;
+    private Button consultADoctor;
+    private Button bookMoreAppointment;
+    private Button checkAppointmentRecord;
+    private Button aboutUs;
+    private Button viewMyRecord;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        welcomeTextView = (TextView) findViewById(R.id.Welcome);
+        appointmentTextView = (TextView) findViewById(R.id.Upcoming_Appoint);
+        appointmentDetail = findViewById(R.id.listView);
+        consultADoctor = (Button) findViewById(R.id.ConsultADoctor);
+        checkAppointmentRecord = (Button) findViewById(R.id.CheckAppointRecords);
+        bookMoreAppointment = (Button) findViewById(R.id.Book_More_Appointments);
+        aboutUs = (Button) findViewById(R.id.About_Us);
+        viewMyRecord = (Button)findViewById(R.id.View_My_Records);
+
+        welcomeTextView.setText("Welcome");
+        appointmentTextView.setText("Upcoming Appointment:");
+
     }
 
 
@@ -36,5 +61,11 @@ public class Profile extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void Consult()
+    {
+        Intent intent = new Intent(this,Search_Doctor.class);
+        startActivity(intent);
     }
 }

@@ -1,10 +1,9 @@
 package main.java.cz2006project.mojojo.Control;
 
-import com.parse.ParseObject;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 
-import java.text.ParseException;
-import java.util.ArrayList;
+import java.util.List;
 
 import main.java.cz2006project.mojojo.Entity.Appointment;
 
@@ -14,17 +13,17 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
     public class AppointmentManager {
 
-    private ArrayList<Appointment> AppointmentList;
+    private List<Appointment> AppointmentList;
     private ParseQuery<Appointment> Query = null;
-    public void AppointmentManager(){
-
+    public void AppointmentManager()
+    {
+        Query = new ParseQuery<Appointment>("Appointment");
 
     }
 
 
     public void CreateAppointment()
     {
-
 
 
     }
@@ -47,12 +46,11 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
     public Boolean VerifyFollowUpAppointment(int AppointmentNo)
     {
-        Query = new ParseQuery<Appointment>("Appointment");
         Query = ParseQuery.getQuery("Appointment");
         Query.whereEqualTo("AppointmentNo",AppointmentNo);
         try
         {
-            AppointmentList = (ArrayList)Query.find();
+            AppointmentList = Query.find();
             for(Appointment Appt : AppointmentList)
             {
                 if(Appt.IsFollowUpAppointment())
@@ -68,9 +66,18 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
 
 
-    public Boolean ValidateAppointment()
+    public Boolean ValidateAppointment(int AppointmentNo)
     {
-        return true;
+        Query = ParseQuery.getQuery("Appointment");
+        Query.whereEqualTo("AppointmentNo",AppointmentNo);
+        try {
+            AppointmentList = Query.find();
+            return true;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return false;
+
     }
 
 }

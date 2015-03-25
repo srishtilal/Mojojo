@@ -80,7 +80,8 @@
         android:id="@+id/ConsultADoctor"
         android:gravity="right"
         android:layout_below="@+id/linearLayout2"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="Consult"/>
 
     <Button
         android:layout_width="wrap_content"
