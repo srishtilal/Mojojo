@@ -1,6 +1,178 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="main.java.cz2006project.mojojo.Boundary.Book_Appointment">
 
-</LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout2">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/l1"
+            android:padding="10dp"
+            android:paddingLeft="40dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="QwickSearch"
+                android:id="@+id/Welcome"
+                android:textColor="#c0484a"
+                android:layout_weight="1"
+                android:textSize="50dp"
+                android:gravity="center_horizontal" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:id="@+id/l2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Booking Of An Appointment"
+                android:id="@+id/Upcoming_Appoint"
+                android:layout_weight="1"
+                android:textSize="30dp"
+                android:textAlignment="gravity" />
+        </LinearLayout>
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Doctor"
+                    android:id="@+id/Doctor"
+                    android:padding="5dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Clinic"
+                    android:id="@+id/Clinic"
+                    android:padding="5dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Date"
+                    android:id="@+id/Date"
+                    android:padding="5dp"
+                    android:layout_weight="1" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Time"
+                    android:id="@+id/Time"
+                    android:layout_weight="1"
+                    android:padding="5dp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="Other Specification"
+                    android:id="@+id/Other_Specification"
+                    android:padding="5dp"
+                    android:paddingTop="10dp" />
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consult A Doctor"
+        android:id="@+id/ConsultADoctor"
+        android:gravity="right"
+        android:layout_below="@+id/linearLayout2"
+        android:layout_centerHorizontal="true"
+        android:onClick="Consult"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check Appointment Records"
+        android:id="@+id/CheckAppointRecords"
+        android:gravity="right"
+        android:layout_below="@+id/ConsultADoctor"
+        android:layout_centerHorizontal="true"
+        android:onClick = "CheckAppointmentRecords"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Book More Appointments"
+        android:id="@+id/Book_More_Appointments"
+        android:layout_below="@+id/CheckAppointRecords"
+        android:layout_centerHorizontal="true"
+        android:onClick = "BookMoreAppointments"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="About Us"
+        android:id="@+id/About_Us"
+        android:layout_below="@+id/Book_More_Appointments"
+        android:layout_centerHorizontal="true"
+        android:onClick = "AboutUs"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View My Records"
+        android:id="@+id/View_My_Records"
+        android:layout_below="@+id/About_Us"
+        android:layout_centerHorizontal="true"
+        android:onClick = "ViewMyRecords"/>
+
+</RelativeLayout>

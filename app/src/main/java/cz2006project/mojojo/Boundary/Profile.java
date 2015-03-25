@@ -63,9 +63,27 @@ public class Profile extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Consult()
+    public void Consult(View view)
     {
         Intent intent = new Intent(this,Search_Doctor.class);
         startActivity(intent);
     }
+    public void CheckAppointmentRecords(View view)
+    {
+
+    }
+    public void BookMoreAppointments(View view)
+    {
+
+    }
+    public void AboutUs(View view)
+    {
+        Intent intent = new Intent(this,Search_Doctor.class); //no about us UI is made yet
+        startActivity(intent);
+    }
+    public void ViewMyRecords(View view)
+    {
+
+    }
+
 }
