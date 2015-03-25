@@ -1,6 +1,7 @@
 package main.java.cz2006project.mojojo.Control;
 
 import com.parse.ParseException;
+import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
 import java.util.List;
@@ -22,9 +23,10 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     }
 
 
-    public void CreateAppointment()
+    public void CreateAppointment(int AppointmentNo)
     {
-
+        if (VerifyFollowUpAppointment(AppointmentNo) == true)
+        {Appointment appointment = new  Appointment();};
 
     }
 
@@ -32,6 +34,13 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
     public void  CancelAppointment(int AppointmentNo)
     {
+        if (ValidateAppointment( AppointmentNo) == true)
+        {
+            //Appointment.delete();
+
+        }
+
+
 
     }
 

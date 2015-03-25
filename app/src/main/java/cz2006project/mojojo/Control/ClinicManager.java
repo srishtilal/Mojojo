@@ -8,32 +8,32 @@ import java.util.ArrayList;
  * Created by  on 2/24/2015.
  */
 
-/**
+
  public class ClinicManager {
 
- private ArrayList<Clinic> ClinicList;
+    private ArrayList<Clinic> ClinicList;
 
- public ClinicManager(){
+    public ClinicManager() {
 
- }
+    }
 
- public void RegisterClinic(){
+    public void RegisterClinic() {
 
- }
+    }
 
- public void DeregisterClinic(){
-
-
- }
+    public void DeregisterClinic() {
 
 
- public ArrayList<Clinic> GetClinic(){
+    }
 
- return ClinicList;
 
- }
+    public ArrayList<Clinic> GetClinic() {
 
- public void AuthenticateDoctor(){
+        return ClinicList;
 
- }
-*/
+    }
+
+    public void AuthenticateDoctor() {
+
+    }
+}
