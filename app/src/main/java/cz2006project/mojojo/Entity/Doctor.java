@@ -1,8 +1,10 @@
 package main.java.cz2006project.mojojo.Entity;
 
-import java.util.ArrayList;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dhruv on 2/24/2015.
@@ -17,14 +19,14 @@ public class Doctor extends ParseObject {
     private ArrayList<Schedule> schedule = new ArrayList<Schedule>();
 
 
-    public ArrayList<Schedule> getSchedule()
+    public List<Schedule> getSchedule()
     {
-        return schedule;
+        return getList ("schedule");
     }
 
 
 
-    public void setSchedule(ArrayList<Schedule> schedule)
+    public void setSchedule(List<Schedule> schedule)
     {
         put("schedule", schedule);
     }
@@ -88,16 +90,17 @@ public class Doctor extends ParseObject {
 
 
 
-    public ArrayList<String> getSpecialty()
+    public List<String> getSpecialty()
     {
-        return specialty;
+        return getList(" specialty");
     }
 
 
 
-    public void setSpecialty(ArrayList<String> specialty)
+    public void setSpecialty(List<String> specialty)
+
     {
-        put("schedule",schedule);
+        put("specialty",specialty);
     }
 
 

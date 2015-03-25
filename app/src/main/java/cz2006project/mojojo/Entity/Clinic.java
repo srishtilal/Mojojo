@@ -3,6 +3,7 @@ package main.java.cz2006project.mojojo.Entity;
 import com.parse.ParseObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dhruv on 2/24/2015.
@@ -14,30 +15,32 @@ public class Clinic extends ParseObject {
     private String Location;
 
 
-    public ArrayList<Doctor> getDoctorList()
+    public List<Doctor> getDoctorList()
     {
-        return doctorList;
+        return getList ("doctorList");
     }
 
 
 
-    public void setDoctorList(ArrayList<Doctor> doctorList)
+    public void setDoctorList(List<Doctor> doctorList)
+
     {
-        this.doctorList = doctorList;
+        put("doctorList",doctorList);
     }
 
 
 
-    public ArrayList<Admin> getAdminList()
+    public List<Admin> getAdminList()
     {
-        return adminList;
+        return getList ("adminList");
     }
 
 
 
-    public void setAdminList(ArrayList<Admin> adminList)
+    public void setAdminList(List<Admin> adminList)
+
     {
-        this.adminList = adminList;
+        put("adminList",adminList);
     }
 
 

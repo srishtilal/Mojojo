@@ -1,12 +1,16 @@
 package main.java.cz2006project.mojojo.Entity;
 
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.Date;
+import java.util.List;
 
 
 public class Patient extends ParseObject{
+
+    private ParseQuery<Appointment> Query = null;
 
     public String getPatientName()
     {
@@ -98,23 +102,23 @@ public class Patient extends ParseObject{
 
 
 
-    public void setMedicalRecords(ParseObject medicalRecords)
+    public void setMedicalRecord(List<MedicalRecords> medicalRecords)
     {
         put("medicalRecords", medicalRecords);
     }
 
 
 
-    public ParseObject getAppointments()
+    public List<Appointment> getAppointments()
     {
-        return getParseObject("appointments");
+        return getList("Appointments");
     }
 
 
 
-    public void setAppointments(ParseObject appointments)
+    public void setAppointments(List<Appointment> Appointments)
     {
-        put("appointments",appointments);
+        put("Appointment",Appointments);
     }
 
 

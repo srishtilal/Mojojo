@@ -3,8 +3,6 @@ package main.java.cz2006project.mojojo.Entity;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,16 +10,6 @@ import java.util.Date;
  */
 public class Admin extends ParseObject
 {
-
-    private String name;
-    private String NRIC;
-    private String password;
-    private String email;
-    private boolean gender;
-    private Date dateOfBirth;
-
-
-
     public void setAppointmentDate(Date appointmentDate)
     {
         put("appointmentDate",appointmentDate);

@@ -1,17 +1,14 @@
 package main.java.cz2006project.mojojo.Entity;
 
+import com.parse.ParseObject;
+
 import java.sql.Time;
 import java.util.Date;
-import com.parse.ParseObject;
 /**
- * Created by srishti on 15/3/15.
+ * Created by ZX&SL on 26/3/15.
  */
 public class Schedule extends ParseObject {
 
-
-    private Time appointmentTime;
-    private Date appointmentDate;
-    private String comment;
 
     public Time getAppointmentTime()
     {

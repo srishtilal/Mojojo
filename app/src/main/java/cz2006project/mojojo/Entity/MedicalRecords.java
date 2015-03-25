@@ -24,29 +24,28 @@ public class MedicalRecords extends ParseObject
     }
 
 
-
-    public ParseObject getAllergy()
+    public String getAllergy()
     {
-        return getParseObject("allergy");
+        return getString("allergy");
     }
 
 
 
-    public void setAllergy(ParseObject allergy)
+    public void setAllergy(String allergy)
     {
         put("allergy",allergy);
     }
 
 
 
-    public ParseObject getHealthStatus()
+    public String getHealthStatus()
     {
-        return getParseObject("healthStatus");
+        return getString("healthStatus");
     }
 
 
 
-    public void setHealthStatus(ParseObject healthStatus)
+    public void setHealthStatus(String healthStatus)
     {
         put("healthStatus",healthStatus);
     }

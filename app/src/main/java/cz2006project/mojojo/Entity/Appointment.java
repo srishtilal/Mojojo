@@ -1,9 +1,9 @@
 package main.java.cz2006project.mojojo.Entity;
 
 import com.parse.ParseObject;
+import com.parse.ParseUser;
 
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,14 +11,8 @@ import java.util.Date;
  */
 public class Appointment extends ParseObject
 {
-
-    private Date appointmentDate;
-    private Time time;
-    private String otherSpecification;
     private Doctor DoctorName;
     private Clinic clinicName;
-    private int AppointmentNo;
-    private Boolean IsFollowUpAppointment;
 
 
     public Date getAppointmentDate()
@@ -90,16 +84,16 @@ public class Appointment extends ParseObject
 
 
 
-    public int getAppointmentNo()
+    public ParseUser getAppointmentNo()
     {
-        return getInt("appointmentNo");
+        return getParseUser("appointmentNo");
     }
 
 
 
     public void setAppointmentNo(int appointmentNo)
     {
-        getString("appointmentNo");
+        put("appointmentNo", appointmentNo);
     }
 
 
