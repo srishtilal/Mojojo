@@ -108,9 +108,6 @@ package main.java.cz2006project.mojojo.Control;
         this.DoctorScheduleList = DoctorScheduleList;
     }
 
-
-
-
     public boolean SetReminders(String Reminder, Date Appointmentdate, String PatientNric)
     {
         for (int i = 0 ; i < AppointmentList.size(); i++)
@@ -125,9 +122,6 @@ package main.java.cz2006project.mojojo.Control;
         return false;
 
     }
-
-
-
 
 
     public void AddDoctor(Doctor doctor)

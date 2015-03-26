@@ -4,6 +4,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 
+import java.util.Date;
 import java.util.List;
 
 import main.java.cz2006project.mojojo.Entity.Appointment;
@@ -23,12 +24,23 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
     }
 
-
-    public void CreateAppointment(int AppointmentNo)
+    public void CreateAppointment()
     {
-        if (VerifyFollowUpAppointment(AppointmentNo) == true)
-        {Appointment appointment = new  Appointment();};
+        Appointment appointment = new  Appointment();
+    }
 
+
+    public void CreateFollowUpAppointment(int AppointmentNo)
+    {
+        if (VerifyFollowUpAppointment(AppointmentNo) != true)
+        {
+            Appointment appointment = new  Appointment();
+        }
+
+        else if (VerifyFollowUpAppointment(AppointmentNo) ==true)
+        {
+            Appointment appointment = new  Appointment();
+        }
     }
 
 
@@ -37,22 +49,30 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     {
         if (ValidateAppointment( AppointmentNo) == true)
         {
-            AppointmentList.remove();
-
+            AppointmentList.remove(AppointmentNo);
         }
 
+        else
+        {
+            Error();
+        }
 
 
     }
 
-
-
-    public void ModifyAppointment(int AppointmentNo)
+    public void StoreAppointment (int AppointmentNo)
     {
 
     }
 
 
+
+    /*public void ModifyAppointment(int AppointmentNo)
+    {
+        if (ValidateAppointment(AppointmentNo)== true)
+
+    }
+    */
 
     public Boolean VerifyFollowUpAppointment(int AppointmentNo)
     {
@@ -89,5 +109,33 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
         return false;
 
     }
+
+    public boolean SetReminders(String Reminder, int AppointmentNo)
+    {
+        for (int i = 0 ; i < AppointmentList.size(); i++)
+        {
+            if (ValidateAppointment(AppointmentNo) == true)
+            {
+                AppointmentList.get(i).setReminder(Reminder);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
+    public void SendReminders()
+    {
+
+    }
+
+    public String Error()
+    {
+        return ("There is an error!");
+    }
+
+
+
 
 }

@@ -3,8 +3,10 @@ package main.java.cz2006project.mojojo.Entity;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.net.InetSocketAddress;
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Dhruv on 2/24/2015.
@@ -13,6 +15,7 @@ public class Appointment extends ParseObject
 {
     private Doctor DoctorName;
     private Clinic clinicName;
+    private String patientNRIC;
 
 
     public Date getAppointmentDate()
@@ -20,7 +23,12 @@ public class Appointment extends ParseObject
         return getDate("appointmentDate");
     }
 
+    public String getReminder() {return getString("Reminder");}
 
+    public void setReminder (String Reminder)
+    {
+        put("Reminder",Reminder);
+    }
 
     public void setAppointmentDate(Date appointmentDate)
     {
@@ -106,6 +114,16 @@ public class Appointment extends ParseObject
     public void setIsFollowUpAppointment(Boolean number)
     {
         put("IsFollowUpAppointment",number);
+    }
+
+    public List<Integer> getRequiredAppointment()
+    {
+    return getList("RequiredAppointment");
+    }
+
+    public void setRequiredAppointment(List <Integer> ApptList)
+    {
+        put("RequiredAppointment",ApptList);
     }
 
 
