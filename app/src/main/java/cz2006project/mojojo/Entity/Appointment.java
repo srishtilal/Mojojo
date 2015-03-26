@@ -1,6 +1,10 @@
 package main.java.cz2006project.mojojo.Entity;
 
+import com.parse.FindCallback;
+import com.parse.ParseClassName;
+import com.parse.ParseException;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.net.InetSocketAddress;
@@ -11,120 +15,94 @@ import java.util.List;
 /**
  * Created by Dhruv on 2/24/2015.
  */
-public class Appointment extends ParseObject
-{
-    private Doctor DoctorName;
-    private Clinic clinicName;
-    private String patientNRIC;
+@ParseClassName("Appointment")
+public class Appointment extends ParseObject {
 
+        public Appointment(){
+        //A default constructor is required
+        }
 
-    public Date getAppointmentDate()
-    {
-        return getDate("appointmentDate");
+    final Appointment appointment = new Appointment();
+
+    public void setDoctor(ParseObject doctor) {
+        put("doctor", doctor);
     }
 
-    public String getReminder() {return getString("Reminder");}
-
-    public void setReminder (String Reminder)
-    {
-        put("Reminder",Reminder);
+    public ParseObject getDoctor(){
+        return getParseObject("doctor");
     }
 
-    public void setAppointmentDate(Date appointmentDate)
-    {
-        put("appointmentDate",appointmentDate);
+    public void setClinic(ParseObject clinic) {
+        put("clinic", clinic);
+            }
+
+    public ParseObject getClinic(){
+        return getParseObject("clinic");
     }
 
-
-
-    public Time getTime()
-    {
-        return getTime();
-    }
-
-
-    public void setTime(Time time)
-    {
-        put("time",time);
+    public void setPatient(ParseObject patient) {
+        put("patient", patient);
     }
 
 
+    public ParseObject getPatient(){
+        return getParseObject("patient");
+    }
 
-    public String getOtherSpecification()
-    {
-        return getString("otherSpecification");
+    public void setNotes(String notes) {
+           put("notes", notes);
     }
 
 
+    public String getNotes(){
+        return getString("notes");
+    }
 
-    public void setOtherSpecification(String otherSpecification)
-    {
-        put("otherSpecification",otherSpecification);
+    public void setIsFollowUpAppointment(boolean isFollowUpAppointment) {
+        put("followUp", isFollowUpAppointment);
     }
 
 
+    public boolean getIsFollowUpAppointment(){
+        return getBoolean("followup");
+    }
 
-    public Doctor getDoctorName()
-    {
-        return DoctorName;
+    public void setReminder(String reminder) {
+        put("reminder", reminder);
     }
 
 
+    public String getReminder(){
+        return getString("reminder");
+    }
 
-    public void setDoctorName(Doctor doctorName)
-    {
-        DoctorName = doctorName;
+    public void setAppointmentNo(int appointmentNo) {
+        put("AppointmentNumber", appointmentNo);
     }
 
 
+    public int getAppointmentNo(){
+        return getInt("AppointmentNumber");
+    }
 
-    public Clinic getCinicName()
-    {
-        return clinicName;
+    public void setAppointmentDate(Date appointmentDate) {
+        put("Date", appointmentDate);
     }
 
 
+    public Date getAppointmentDate(){
+        return getDate("Date");
+    }
 
-    public void setCinicName(Clinic cinicName)
-    {
-        this.clinicName = cinicName;
+    public void setAppointmentTime(String appointmentTime) {
+        put("Time", appointmentTime);
     }
 
 
-
-    public ParseUser getAppointmentNo()
-    {
-        return getParseUser("appointmentNo");
-    }
-
-
-
-    public void setAppointmentNo(int appointmentNo)
-    {
-        put("appointmentNo", appointmentNo);
-    }
-
-
-    public boolean IsFollowUpAppointment()
-    {
-        return getBoolean("IsFollowUpAppointment");
-    }
-
-
-    public void setIsFollowUpAppointment(Boolean number)
-    {
-        put("IsFollowUpAppointment",number);
-    }
-
-    public List<Integer> getRequiredAppointment()
-    {
-    return getList("RequiredAppointment");
-    }
-
-    public void setRequiredAppointment(List <Integer> ApptList)
-    {
-        put("RequiredAppointment",ApptList);
+    public String getAppointmentTime(){
+        return getString("date");
     }
 
 
 }
+

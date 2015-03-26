@@ -2,6 +2,9 @@ package main.java.cz2006project.mojojo.Entity;
 
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +20,8 @@ public class Doctor extends ParseObject {
     private String password;
     private String NRIC;
     private ArrayList<Schedule> schedule = new ArrayList<Schedule>();
+
+
 
 
     public List<Schedule> getSchedule()

@@ -18,6 +18,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     private List<Appointment> AppointmentList;
     private ParseQuery<Appointment> Query = null;
 
+
     public void AppointmentManager()
     {
         Query = new ParseQuery<Appointment>("Appointment");
@@ -83,7 +84,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
             AppointmentList = Query.find();
             for(Appointment Appt : AppointmentList)
             {
-                if(Appt.IsFollowUpAppointment())
+                if(Appt.getIsFollowUpAppointment())
                     return true;
             }
         }

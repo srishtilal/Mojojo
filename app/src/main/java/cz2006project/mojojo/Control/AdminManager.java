@@ -2,6 +2,7 @@ package main.java.cz2006project.mojojo.Control;
 
 import com.parse.ParseUser;
 
+import java.util.Date;
 import java.util.List;
 
 import main.java.cz2006project.mojojo.Entity.Appointment;
@@ -122,14 +123,13 @@ public class AdminManager
         this.DoctorScheduleList = DoctorScheduleList;
     }
 
-<<<<<<< HEAD
     public boolean SetReminders(String Reminder, Date Appointmentdate, String PatientNric)
     {
         for (int i = 0 ; i < AppointmentList.size(); i++)
         {
-            if (AppointmentList.get(i).getAppointmentDate() == Appointmentdate && AppointmentList.get(i).getPatientNRIC().equals(PatientNric))
+            //if (AppointmentList.get(i).getAppointmentDate() == Appointmentdate && AppointmentList.get(i).getPatientNRIC().equals(PatientNric))
             {
-                appointmentManager.SetReminder();
+                //appointmentManager.SetReminders();
                 return true;
             }
 
@@ -139,8 +139,6 @@ public class AdminManager
     }
 
 
-=======
->>>>>>> origin/master
     public void AddDoctor(Doctor doctor)
     {
         DoctorList.add(doctor);
@@ -151,11 +149,11 @@ public class AdminManager
     {
         for (int i = 0 ; i < DoctorList.size(); i++)
         {
-            if (DoctorList.get(i).getDoctorNRIC() == DoctorNRIC)
+            /*if (DoctorList.get(i).getDoctorNRIC() == DoctorNRIC)
             {
                 DoctorList.remove(i);
                 return true;
-            }
+            }*/
         }
         return false;
     }

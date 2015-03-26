@@ -1,4 +1,4 @@
-package cz2006project.mojojo;
+package main.java.cz2006project.mojojo;
 
 /**
  * Created by srishti on 21/3/15.
@@ -30,13 +30,18 @@ import android.app.Application;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
 import com.parse.ParseTwitterUtils;
+
+import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Entity.Appointment;
 
 public class SampleApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
         // Required - Initialize the Parse SDK
+        ParseObject.registerSubclass(Appointment.class);
         Parse.initialize(this, getString(R.string.parse_app_id),
                 getString(R.string.parse_client_key));
 

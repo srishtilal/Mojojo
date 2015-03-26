@@ -9,9 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.ParseObject;
+
 import cz2006project.mojojo.R;
 
 public class Profile extends Activity {
+
 
     private TextView welcomeTextView;
     private TextView appointmentTextView;
