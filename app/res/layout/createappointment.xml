@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.39"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="395dp"
+            android:layout_height="wrap_content"
+            android:text="Make an appointment now!"
+            android:id="@+id/textView6"
+            android:layout_weight="0.43"
+            android:textSize="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
+
+    <Spinner
+        android:layout_width="353dp"
+        android:layout_height="61dp"
+        android:id="@+id/spinner6"
+        android:layout_gravity="center_horizontal"
+        android:spinnerMode="dropdown"
+        android:contentDescription="Doctor" />
+
+    <Spinner
+        android:layout_width="349dp"
+        android:layout_height="62dp"
+        android:id="@+id/spinner7"
+        android:layout_gravity="center_horizontal"
+        android:spinnerMode="dropdown" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="346dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/ll"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="78dp"
+            android:layout_height="64dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Date"
+            android:id="@+id/textView4"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="30dp" />
+
+        <DatePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/datePicker2" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Time"
+            android:id="@+id/textView5"
+            android:layout_weight="0.80"
+            android:layout_margin="50dp" />
+
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/timePicker2"
+            android:layout_weight="0.23" />
+
+    </LinearLayout>
+
+    <CheckBox
+        android:layout_width="362dp"
+        android:layout_height="wrap_content"
+        android:text="Is it a follow-up appointment?"
+        android:id="@+id/checkBox"
+        android:layout_gravity="right"
+        android:layout_weight="0.16"
+        android:checked="false" />
+
+    <Button
+        android:layout_width="177dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:id="@+id/button3"
+        android:layout_gravity="center_horizontal" />
+
+</LinearLayout>

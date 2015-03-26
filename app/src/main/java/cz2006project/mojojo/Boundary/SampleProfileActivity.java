@@ -1,4 +1,4 @@
-package cz2006project.mojojo;
+package main.java.cz2006project.mojojo.Boundary;
 /*
  *  Copyright (c) 2014, Parse, LLC. All rights reserved.
  *
@@ -27,16 +27,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.TextView;
-
 import com.facebook.AppEventsLogger;
 import com.parse.ParseUser;
 import com.parse.ui.ParseLoginBuilder;
+
+import cz2006project.mojojo.R;
 
 /**
  * Shows the user profile. This simple activity can function regardless of whether the user
@@ -51,6 +46,7 @@ public class SampleProfileActivity extends Activity {
     private Button loginOrLogoutButton;
 
     private ParseUser currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

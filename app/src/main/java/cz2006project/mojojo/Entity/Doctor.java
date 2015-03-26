@@ -1,113 +1,112 @@
 package main.java.cz2006project.mojojo.Entity;
 
-import com.parse.ParseObject;
-import com.parse.ParseUser;
+import com.parse.FindCallback;
+import com.parse.ParseClassName;
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.SaveCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
-import java.util.ArrayList;
+import java.net.InetSocketAddress;
+import java.sql.Time;
+import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Dhruv on 2/24/2015.
  */
+@ParseClassName("Doctor")
 public class Doctor extends ParseObject {
 
-    private ArrayList<String> specialty = new ArrayList<String>();
-    private Clinic clinic;
-    private String name;
-    private String password;
-    private String NRIC;
-    private ArrayList<Schedule> schedule = new ArrayList<Schedule>();
+
+    public Doctor(){
+        //A default constructor is required
+    }
+
+    final Doctor doctor = new Doctor();
 
 
 
+    public void setDoctor(ParseObject doctor) {
+        put("doctor", doctor);
 
-    public List<Schedule> getSchedule()
-    {
-        return getList ("schedule");
+    }
+
+    public ParseObject getDoctor(){
+        return getParseObject("doctor");
+    }
+
+    public void setClinic(ParseObject clinic) {
+        put("clinic", clinic);
+    }
+
+    public ParseObject getClinic(){
+        return getParseObject("clinic");
+    }
+
+    public void setPatient(ParseObject patient) {
+        put("patient", patient);
     }
 
 
+    public ParseObject getPatient(){
+        return getParseObject("patient");
+    }
 
-    public void setSchedule(List<Schedule> schedule)
-    {
-        put("schedule", schedule);
+    public void setNotes(String notes) {
+        put("notes", notes);
     }
 
 
+    public String getNotes(){
+        return getString("notes");
+    }
 
-    ParseUser getDoctorNRIC()
-    {
-        return getParseUser("DoctorNRIC");
+    public void setIsFollowUpAppointment(boolean isFollowUpAppointment) {
+        put("followUp", isFollowUpAppointment);
     }
 
 
+    public boolean getIsFollowUpAppointment(){
+        return getBoolean("followup");
+    }
 
-    public void setDoctorNRIC(String DoctorNRIC)
-    {
-        put("DoctorNRIC",DoctorNRIC);
+    public void setReminder(String reminder) {
+        put("reminder", reminder);
     }
 
 
+    public String getReminder(){
+        return getString("reminder");
+    }
 
-
-    public String getPassword()
-    {
-        return getString ("password");
+    public void setAppointmentNo(int appointmentNo) {
+        put("AppointmentNumber", appointmentNo);
     }
 
 
+    public int getAppointmentNo(){
+        return getInt("AppointmentNumber");
+    }
 
-    public void setPassword(String password)
-    {
-        put("password",password);
+    public void setAppointmentDate(Date appointmentDate) {
+        put("Date", appointmentDate);
     }
 
 
+    public Date getAppointmentDate(){
+        return getDate("Date");
+    }
 
-    public String getName()
-    {
-        return getString ("name");
+    public void setAppointmentTime(String appointmentTime) {
+        put("Time", appointmentTime);
     }
 
 
-
-    public void setName(String name)
-    {
-        put("name",name);
+    public String getAppointmentTime(){
+        return getString("date");
     }
-
-
-
-    public Clinic getClinic()
-    {
-        return clinic;
-    }
-
-
-
-    public void setClinic(Clinic clinic)
-    {
-        put("clinic",clinic);
-    }
-
-
-
-    public List<String> getSpecialty()
-    {
-        return getList(" specialty");
-    }
-
-
-
-    public void setSpecialty(List<String> specialty)
-
-    {
-        put("specialty",specialty);
-    }
-
 
 
 }
+

@@ -12,9 +12,7 @@ import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Dhruv on 2/24/2015.
- */
+
 @ParseClassName("Appointment")
 public class Appointment extends ParseObject {
 
@@ -24,8 +22,11 @@ public class Appointment extends ParseObject {
 
     final Appointment appointment = new Appointment();
 
+
+
     public void setDoctor(ParseObject doctor) {
         put("doctor", doctor);
+
     }
 
     public ParseObject getDoctor(){

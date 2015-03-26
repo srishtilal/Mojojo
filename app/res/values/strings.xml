@@ -29,4 +29,5 @@
     <string name="title_activity_upcomming_appointment">UpcommingAppointment</string>
     <string name="title_activity_edit__profile">Edit_Profil</string>
     <string name="title_activity_main">MainActivity</string>
+
 </resources>

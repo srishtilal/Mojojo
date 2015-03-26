@@ -31,6 +31,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
@@ -50,15 +54,21 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
   private EditText nameField;
   private Button createAccountButton;
   private ParseOnLoginSuccessListener onLoginSuccessListener;
+  private RadioGroup userType;
+  private RadioButton doctor, patient;
 
-  private ParseLoginConfig config;
+
+
+    private ParseLoginConfig config;
   private int minPasswordLength;
 
   private static final String LOG_TAG = "ParseSignupFragment";
   private static final int DEFAULT_MIN_PASSWORD_LENGTH = 6;
   private static final String USER_OBJECT_NAME_FIELD = "name";
+  private static final String USER_OBJECT_TYPE_FIELD = "type";
 
-  public static ParseSignupFragment newInstance(Bundle configOptions, String username, String password) {
+
+    public static ParseSignupFragment newInstance(Bundle configOptions, String username, String password) {
     ParseSignupFragment signupFragment = new ParseSignupFragment();
     Bundle args = new Bundle(configOptions);
     args.putString(ParseSignupFragment.USERNAME, username);
@@ -84,6 +94,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
 
     View v = inflater.inflate(R.layout.com_parse_ui_parse_signup_fragment,
         parent, false);
+
     ImageView appLogo = (ImageView) v.findViewById(R.id.app_logo);
     usernameField = (EditText) v.findViewById(R.id.signup_username_input);
     passwordField = (EditText) v.findViewById(R.id.signup_password_input);
@@ -91,7 +102,16 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         .findViewById(R.id.signup_confirm_password_input);
     emailField = (EditText) v.findViewById(R.id.signup_email_input);
     nameField = (EditText) v.findViewById(R.id.signup_name_input);
-    createAccountButton = (Button) v.findViewById(R.id.create_account);
+    userType = (RadioGroup) v.findViewById(R.id.signup_radio_type);
+     patient = (RadioButton) v.findViewById(R.id.patient);
+     doctor = (RadioButton) v.findViewById(R.id.doctor);
+
+
+
+
+
+
+      createAccountButton = (Button) v.findViewById(R.id.create_account);
 
     usernameField.setText(username);
     passwordField.setText(password);
@@ -151,6 +171,17 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     if (nameField != null) {
       name = nameField.getText().toString();
     }
+        String type = null;
+      int selectedId = userType.getCheckedRadioButtonId();
+      if(selectedId == patient.getId()) {
+          type = "Patient";
+      }
+      else {
+            type = "Doctor";
+      }
+
+
+
 
     if (username.length() == 0) {
       if (config.isParseLoginEmailAsUsername()) {
@@ -173,11 +204,12 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     } else if (email != null && email.length() == 0) {
       showToast(R.string.com_parse_ui_no_email_toast);
     } else if (name != null && name.length() == 0) {
-      showToast(R.string.com_parse_ui_no_name_toast);
+        showToast(R.string.com_parse_ui_no_name_toast);
+
     } else {
       ParseUser user = new ParseUser();
 
-      // Set standard fields
+        // Set standard fields
       user.setUsername(username);
       user.setPassword(password);
       user.setEmail(email);
@@ -186,6 +218,10 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
       if (name.length() != 0) {
         user.put(USER_OBJECT_NAME_FIELD, name);
       }
+        if (userType != null) {
+            user.put(USER_OBJECT_TYPE_FIELD, type);
+        }
+
 
       loadingStart();
       user.signUpInBackground(new SignUpCallback() {
@@ -223,6 +259,13 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
       });
     }
   }
+
+
+
+
+
+
+
 
   @Override
   protected String getLogTag() {
