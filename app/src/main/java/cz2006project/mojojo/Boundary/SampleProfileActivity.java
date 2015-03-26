@@ -83,7 +83,10 @@ public class SampleProfileActivity extends Activity {
 
         currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            showProfileLoggedIn();
+            if (currentUser.getString("type").equals("Doctor"))
+            showDoctorProfileLoggedIn();
+           else
+             showPatientProfileLoggedIn();
         } else {
             ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
                     SampleProfileActivity.this);
@@ -104,8 +107,18 @@ public class SampleProfileActivity extends Activity {
     /**
      * Shows the profile of the given user.
      */
-    private void showProfileLoggedIn() {
-        titleTextView.setText(R.string.profile_title_logged_in);
+    private void showDoctorProfileLoggedIn() {
+        titleTextView.setText(getString(R.string.profile_title_logged_in, "doctor"));
+        emailTextView.setText(currentUser.getEmail());
+        String fullName = currentUser.getString("name");
+        if (fullName != null) {
+            nameTextView.setText(fullName);
+        }
+        loginOrLogoutButton.setText(R.string.profile_logout_button_label);
+    }
+
+    private void showPatientProfileLoggedIn() {
+        titleTextView.setText(getString(R.string.profile_title_logged_in, "patient"));
         emailTextView.setText(currentUser.getEmail());
         String fullName = currentUser.getString("name");
         if (fullName != null) {
