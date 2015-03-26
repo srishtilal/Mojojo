@@ -1,17 +1,29 @@
 package main.java.cz2006project.mojojo.Control;
 
+import com.parse.ParseUser;
+
+import java.util.List;
+
+import main.java.cz2006project.mojojo.Entity.Appointment;
+import main.java.cz2006project.mojojo.Entity.Doctor;
+import main.java.cz2006project.mojojo.Entity.MedicalRecords;
+import main.java.cz2006project.mojojo.Entity.Patient;
+import main.java.cz2006project.mojojo.Entity.Schedule;
+
 /**
  * Created by Mai and zx on 5/3/2015.
  */
-/**public class AdminManager
+public class AdminManager
+{
 
-{ AppointmentManager appointmentManager = null;
+    AppointmentManager appointmentManager = null;
     private String Reminders;
-    private ArrayList<Patient> PatientList;
-    private ArrayList<Doctor> DoctorList;
-    //private ArrayList<Schedule> DoctorScheduleList;
-    private ArrayList<Appointment> AppointmentList;
-    public AdminManager(ArrayList<Patient> PatientList,ArrayList<Doctor> DoctorList,ArrayList<Schedule> DoctorScheduleList,ArrayList<Appointments> AppointmentList)
+    private List<Patient> PatientList;
+    private List<Doctor> DoctorList;
+    private List<Schedule> DoctorScheduleList;
+    private List<Appointment> AppointmentList;
+
+    public AdminManager(List<Patient> PatientList,List<Doctor> DoctorList,List<Schedule> DoctorScheduleList,List<Appointment> AppointmentList)
     {
         this.PatientList = PatientList;
         this.DoctorList = DoctorList;
@@ -22,113 +34,93 @@ package main.java.cz2006project.mojojo.Control;
 
     public AdminManager()
     {
-        Admin admin = new Admin();
+        //Admin admin = new Admin();
         appointmentManager = new AppointmentManager();
     }
 
-    public boolean CreateAppointment(String PatientNRIC)
+   /* public boolean CreateAppointment(ParseUser PatientNRIC)
     {
         for(Patient person : PatientList)
         {
-            if(person.getNRIC() != PatientNRIC)
+            if(person.getPatientNRIC() != PatientNRIC)
                 return false;
         }
         appointmentManager.CreateAppointment();
         return true;
-    }
-
-    public boolean CancelAppointment(String PatientNRIC,int AppointmentNo)
+    }*/
+/*
+    public boolean CancelAppointment(ParseUser PatientNRIC,int AppointmentNo)
     {
         for(Patient person : PatientList)
         {
-            if(person.getNRIC() != PatientNRIC)
+            if(person.getPatientNRIC() != PatientNRIC)
                 return false;
         }
         appointmentManager.CancelAppointment(AppointmentNo);
         return true;
     }
-
-    public boolean ModifyAppointment(String PatientNRIC,int AppointmentNo)
+    */
+/*
+    public boolean ModifyAppointment(ParseUser PatientNRIC,int AppointmentNo)
     {
         for(Patient person : PatientList)
         {
-            if(person.getNRIC() != PatientNRIC)
+            if(person.getPatientNRIC() != PatientNRIC)
                 return false;
         }
         appointmentManager.ModifyAppointment(AppointmentNo);
         return true;
     }
-
-    public boolean CreateAppointment(String PatientNRIC,int AppointmentNo, ArrayList<Patient> ExistingFollowUpAppointment)
+   */
+/*
+    public boolean CreateAppointment(ParseUser PatientNRIC,int AppointmentNo, List<Patient> ExistingFollowUpAppointment)
     {
         for(Patient person : PatientList)
         {
-            if(person.getNRIC() != PatientNRIC)
+            if(person.getPatientNRIC() != PatientNRIC)
                 return false;
         }
         appointmentManager.CreateAppointment(ExistingFollowUpAppointment,AppointmentNo);
         return true;
     }
+*/
 
+    public List<Appointment> getAppointmentsList(){return AppointmentList;}
 
-    public ArrayList<Appointments> getAppointmentsList(){return AppointmentList;}
-
-    public void setAppointmentsList(ArrayList<Appointments> AppointmentsList)
+    public void setAppointmentsList(List<Appointment> AppointmentsList)
     {
         this.AppointmentList = AppointmentsList;
     }
 
-    public ArrayList<Patient> getPatientList()
+    public List<Patient> getPatientList()
     {
         return PatientList;
     }
 
-    public void setPatientList(ArrayList<Patient> PatientList)
+    public void setPatientList(List<Patient> PatientList)
     {
         this.PatientList = PatientList;
     }
 
-    public ArrayList<Doctor> getDoctorList()
+    public List<Doctor> getDoctorList()
     {
         return DoctorList;
     }
 
-    public void setDoctorList(ArrayList<Doctor> DoctorList)
+    public void setDoctorList(List<Doctor> DoctorList)
     {
         this.DoctorList = DoctorList;
     }
 
-    public ArrayList<Schedule> getScheduleList()
+    public List<Schedule> getScheduleList()
     {
         return DoctorScheduleList;
     }
 
-    public void setDoctorScheduleList(ArrayList<Schedule> DoctorScheduleList)
+    public void setDoctorScheduleList(List<Schedule> DoctorScheduleList)
     {
         this.DoctorScheduleList = DoctorScheduleList;
     }
-
-
-
-
-    public boolean SetReminders(String Reminder, Date Appointmentdate, String PatientNric)
-    {
-        for (int i = 0 ; i < AppointmentList.size(); i++)
-        {
-            if (AppointmentList.get(i).getAppointmentDate() == Appointmentdate && AppointmentList.get(i).getPatientNRIC().equals(PatientNric))
-            {
-                appointmentManager.SetReminder();
-                return true;
-            }
-
-        }
-        return false;
-
-    }
-
-
-
-
 
     public void AddDoctor(Doctor doctor)
     {
@@ -136,11 +128,11 @@ package main.java.cz2006project.mojojo.Control;
     }
 
 
-    public boolean RemoveDoctor(String DoctorNRIC)
+    public boolean RemoveDoctor(ParseUser DoctorNRIC)
     {
         for (int i = 0 ; i < DoctorList.size(); i++)
         {
-            if (DoctorList.get(i).getNRIC() == DoctorNRIC)
+            if (DoctorList.get(i).getDoctorNRIC() == DoctorNRIC)
             {
                 DoctorList.remove(i);
                 return true;
@@ -152,11 +144,11 @@ package main.java.cz2006project.mojojo.Control;
 
 
 
-    public void UpdateMedicalRecords(Srting PatientNric, MedicalRecords Medicalrecord)
+    public void UpdateMedicalRecords(ParseUser PatientNric, MedicalRecords Medicalrecord)
     {
         for (Patient patient : PatientList)
         {
-            if (patient.getNRIC() == PatientNric);
+            if (patient.getPatientNRIC() == PatientNric);
             {
 
             }
@@ -164,7 +156,7 @@ package main.java.cz2006project.mojojo.Control;
         }
     }
 }
-*/
+
 
 
 
