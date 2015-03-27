@@ -16,12 +16,12 @@ import java.util.List;
 @ParseClassName("Appointment")
 public class Appointment extends ParseObject {
 
-        public Appointment(){
-        //A default constructor is required
+    final Appointment appointment;
+
+        public Appointment()
+        {
+            appointment = new Appointment();
         }
-
-    final Appointment appointment = new Appointment();
-
 
 
     public void setDoctor(ParseObject doctor) {

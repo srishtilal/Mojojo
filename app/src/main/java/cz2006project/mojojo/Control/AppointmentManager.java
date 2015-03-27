@@ -10,7 +10,7 @@ import java.util.List;
 import main.java.cz2006project.mojojo.Entity.Appointment;
 
 /**
- * Created by Dhruv again on 2/24/2015.
+ * Created by SL & ZX again on 2/24/2015.
  */
 
     public class AppointmentManager {
@@ -61,19 +61,33 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
     }
 
-    public void StoreAppointment (int AppointmentNo)
+    public void StoreAppointment (int AppointmentNo, Appointment appointment)
     {
+        if (ValidateAppointment(AppointmentNo) != true)
+        {
+            AppointmentList.add(appointment);
+        }
 
-    }
+    }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
 
 
 
-    /*public void ModifyAppointment(int AppointmentNo)
+    public void ModifyAppointment(int AppointmentNo, Date AppointmentDate , String AppointmentTime)
+     /*assuming the modifyhere is after the user has keyed in the new date*/
     {
         if (ValidateAppointment(AppointmentNo)== true)
+        {
+            AppointmentList.get(AppointmentNo).setAppointmentDate(AppointmentDate) ;
+            AppointmentList.get(AppointmentNo).setAppointmentTime(AppointmentTime);
+
+        }
+        else
+        {
+            Error();
+        }
 
     }
-    */
+
 
     public Boolean VerifyFollowUpAppointment(int AppointmentNo)
     {
@@ -129,7 +143,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
     public void SendReminders()
     {
-
+        
     }
 
     public String Error()
