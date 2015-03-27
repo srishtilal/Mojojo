@@ -141,8 +141,9 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
 
 
-    public void SendReminders()
+    public void SendReminders(String Reminder, int AppointmentNo)
     {
+
         
     }
 
