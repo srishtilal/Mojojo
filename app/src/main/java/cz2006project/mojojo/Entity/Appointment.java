@@ -1,14 +1,8 @@
 package main.java.cz2006project.mojojo.Entity;
 
-import com.parse.FindCallback;
 import com.parse.ParseClassName;
-import com.parse.ParseException;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
-import java.net.InetSocketAddress;
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
@@ -16,12 +10,16 @@ import java.util.List;
 @ParseClassName("Appointment")
 public class Appointment extends ParseObject {
 
-        public Appointment(){
-        //A default constructor is required
-        }
-
-    final Appointment appointment = new Appointment();
-
+    public Appointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
+    {
+        setClinic(clinic);
+        setPatient(patient);
+        setDoctor(doctor);
+        setNotes(notes);
+        setAppointmentNo(appointmentNo);
+        setAppointmentDate(date);
+        setAppointmentTime(time);
+    }
 
 
     public void setDoctor(ParseObject doctor) {
@@ -45,18 +43,8 @@ public class Appointment extends ParseObject {
         put("patient", patient);
     }
 
-
     public ParseObject getPatient(){
         return getParseObject("patient");
-    }
-
-    public void setNotes(String notes) {
-           put("notes", notes);
-    }
-
-
-    public String getNotes(){
-        return getString("notes");
     }
 
     public void setIsFollowUpAppointment(boolean isFollowUpAppointment) {
@@ -102,6 +90,15 @@ public class Appointment extends ParseObject {
 
     public String getAppointmentTime(){
         return getString("date");
+    }
+
+    public List<Integer> getFollowUpAppointmentNo()
+    {
+        return(getList("followUpAppointmentNo"));
+    }
+    public void setFollowUpAppointmenttNo(List<Integer> appointmentNo)
+    {
+        put("followUpAppointmentNo",appointmentNo);
     }
 
 
