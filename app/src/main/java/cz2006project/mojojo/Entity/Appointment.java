@@ -2,7 +2,6 @@ package main.java.cz2006project.mojojo.Entity;
 
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
-import com.parse.ParseUser;
 
 import java.util.Date;
 import java.util.List;
@@ -11,11 +10,12 @@ import java.util.List;
 @ParseClassName("Appointment")
 public class Appointment extends ParseObject {
 
-    public Appointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, ParseUser appointmentNo, Date date, String time)
+    public Appointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
     {
         setClinic(clinic);
         setPatient(patient);
         setDoctor(doctor);
+        setNotes(notes);
         setAppointmentNo(appointmentNo);
         setAppointmentDate(date);
         setAppointmentTime(time);
@@ -33,7 +33,7 @@ public class Appointment extends ParseObject {
 
     public void setClinic(ParseObject clinic) {
         put("clinic", clinic);
-    }
+            }
 
     public ParseObject getClinic(){
         return getParseObject("clinic");
@@ -47,6 +47,15 @@ public class Appointment extends ParseObject {
         return getParseObject("patient");
     }
 
+    public void setIsFollowUpAppointment(boolean isFollowUpAppointment) {
+        put("followUp", isFollowUpAppointment);
+    }
+
+
+    public boolean getIsFollowUpAppointment(){
+        return getBoolean("followup");
+    }
+
     public void setReminder(String reminder) {
         put("reminder", reminder);
     }
@@ -56,13 +65,13 @@ public class Appointment extends ParseObject {
         return getString("reminder");
     }
 
-    public void setAppointmentNo(ParseUser appointmentNo) {
+    public void setAppointmentNo(int appointmentNo) {
         put("AppointmentNumber", appointmentNo);
     }
 
 
-    public ParseUser getAppointmentNo(){
-        return getParseUser("AppointmentNumber");
+    public int getAppointmentNo(){
+        return getInt("AppointmentNumber");
     }
 
     public void setAppointmentDate(Date appointmentDate) {
@@ -83,21 +92,13 @@ public class Appointment extends ParseObject {
         return getString("date");
     }
 
-    public List<ParseUser> getFollowUpAppointmentNo()
+    public List<Integer> getFollowUpAppointmentNo()
     {
         return(getList("followUpAppointmentNo"));
     }
-    public void setFollowUpAppointmenttNo(List<ParseUser> appointmentNo)
+    public void setFollowUpAppointmenttNo(List<Integer> appointmentNo)
     {
         put("followUpAppointmentNo",appointmentNo);
-    }
-    public boolean getHasAttended()
-    {
-        return getBoolean("hasAttended") ;
-    }
-    public void  setHasAttended(boolean hasAttended)
-    {
-        put("hasAttended",hasAttended);
     }
 
 

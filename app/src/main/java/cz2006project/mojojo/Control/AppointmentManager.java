@@ -3,7 +3,6 @@ package main.java.cz2006project.mojojo.Control;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 
 import java.util.Date;
 import java.util.List;
@@ -14,11 +13,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
  * Created by SL & ZX again on 2/24/2015.
  */
 
-<<<<<<< Updated upstream
-public class AppointmentManager{
-=======
-    public class AppointmentManager extends ParseObject{
->>>>>>> Stashed changes
+    public class AppointmentManager{
 
     private List<Appointment> AppointmentList = null;
     private ParseQuery<Appointment> Query = null;
@@ -29,14 +24,14 @@ public class AppointmentManager{
         Query = new ParseQuery<Appointment>("Appointment");
     }
 
-    public void CreateAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, ParseUser appointmentNo, Date date, String time)
+    public void CreateAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
     {
         Appointment appointment = new  Appointment(clinic, patient,doctor,notes,appointmentNo,date,time);
 
     }
 
 
-    public void CreateFollowUpAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, ParseUser appointmentNo, Date date, String time)
+    public void CreateFollowUpAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
     {
         if (VerifyFollowUpAppointment(appointmentNo)== false)
         {
@@ -46,7 +41,6 @@ public class AppointmentManager{
         else
         {
             Appointment appointment = new  Appointment(clinic, patient,doctor,notes,appointmentNo,date,time);
-
             AppointmentList.add(appointment);
 
         }
@@ -58,7 +52,7 @@ public class AppointmentManager{
     {
         if (ValidateAppointment( AppointmentNo) == true)
         {
-            Appointment.;
+            AppointmentList.remove(AppointmentNo);
         }
 
         else
@@ -66,16 +60,14 @@ public class AppointmentManager{
             Error();
         }
 
+
     }
 
-<<<<<<< Updated upstream
     public void StoreAppointment (List<Appointment> AppointmentList)
     {
 
-
+        
     }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
-=======
->>>>>>> Stashed changes
 
 
 
@@ -96,9 +88,8 @@ public class AppointmentManager{
     }
 
 
-    public Boolean VerifyFollowUpAppointment(ParseUser AppointmentNo)
+    public Boolean VerifyFollowUpAppointment(int AppointmentNo)
     {
-        Boolean check = null;
         Query = ParseQuery.getQuery("Appointment");
         Query.whereEqualTo("AppointmentNo",AppointmentNo);
         try
@@ -106,23 +97,15 @@ public class AppointmentManager{
             AppointmentList = Query.find();
             for(Appointment Appt : AppointmentList)
             {
-                for(ParseUser FollowUpAppointmentNo : Appt.getFollowUpAppointmentNo())
-                {
-                    check = false;
-                    for(Appointment Appt2 : AppointmentList)
-                    {
-                        if(FollowUpAppointmentNo == Appt2.getAppointmentNo() && Appt2.getHasAttended())
-                            check = true;
-                    }
-
-                }
+                if(Appt.getIsFollowUpAppointment())
+                    return true;
             }
         }
         catch (com.parse.ParseException e)
         {
-            e.printStackTrace();
+                e.printStackTrace();
         }
-        return check;
+        return false;
     }
 
 
@@ -160,7 +143,7 @@ public class AppointmentManager{
     public void SendReminders(String Reminder, int AppointmentNo)
     {
 
-
+        
     }
 
     public String Error()
@@ -168,7 +151,7 @@ public class AppointmentManager{
         return ("There is an error!");
     }
 
-    public static ParseQuery<AppointmentManager> getQuery() {
-        return ParseQuery.getQuery(AppointmentManager.class);
+
+
 
 }
