@@ -1,24 +1,5 @@
 package main.java.cz2006project.mojojo.Control;
 
-import android.content.Entity;
-import android.util.Log;
-
-import com.parse.FindCallback;
-import com.parse.GetCallback;
-import com.parse.ParseQuery;
-import com.parse.ParseObject;
-import com.parse.ParseUser;
-import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.SaveCallback;
-
-import java.util.ArrayList;
-import java.util.List;
-import main.java.cz2006project.mojojo.Entity.Doctor;
-import main.java.cz2006project.mojojo.Entity.MedicalRecords;
-
-import java.util.Scanner;
-
 /**
  * Created by sai on 23/3/15.
  */
@@ -36,8 +17,8 @@ getspecialty
 setspecialy
  */
 
-/*public class DoctorManager {
-
+public class DoctorManager {
+/*
     private ParseQuery<Doctor> Query = null;
     private ParseQuery<MedicalRecords> = null
 
@@ -74,4 +55,5 @@ setspecialy
     public void ViewMedicalRecord() {
 
     }
+    */
 }

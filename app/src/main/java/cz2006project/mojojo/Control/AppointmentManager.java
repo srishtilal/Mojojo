@@ -3,6 +3,7 @@ package main.java.cz2006project.mojojo.Control;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.Date;
 import java.util.List;
@@ -13,7 +14,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
  * Created by SL & ZX again on 2/24/2015.
  */
 
-    public class AppointmentManager{
+public class AppointmentManager{
 
     private List<Appointment> AppointmentList = null;
     private ParseQuery<Appointment> Query = null;
@@ -24,14 +25,14 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
         Query = new ParseQuery<Appointment>("Appointment");
     }
 
-    public void CreateAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
+    public void CreateAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, ParseUser appointmentNo, Date date, String time)
     {
         Appointment appointment = new  Appointment(clinic, patient,doctor,notes,appointmentNo,date,time);
 
     }
 
 
-    public void CreateFollowUpAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
+    public void CreateFollowUpAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, ParseUser appointmentNo, Date date, String time)
     {
         if (VerifyFollowUpAppointment(appointmentNo)== false)
         {
@@ -66,7 +67,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     public void StoreAppointment (List<Appointment> AppointmentList)
     {
 
-        
+
     }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
 
 
@@ -88,8 +89,9 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     }
 
 
-    public Boolean VerifyFollowUpAppointment(int AppointmentNo)
+    public Boolean VerifyFollowUpAppointment(ParseUser AppointmentNo)
     {
+        Boolean check = null;
         Query = ParseQuery.getQuery("Appointment");
         Query.whereEqualTo("AppointmentNo",AppointmentNo);
         try
@@ -97,15 +99,23 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
             AppointmentList = Query.find();
             for(Appointment Appt : AppointmentList)
             {
-                if(Appt.getIsFollowUpAppointment())
-                    return true;
+                for(ParseUser FollowUpAppointmentNo : Appt.getFollowUpAppointmentNo())
+                {
+                    check = false;
+                    for(Appointment Appt2 : AppointmentList)
+                    {
+                        if(FollowUpAppointmentNo == Appt2.getAppointmentNo() && Appt2.getHasAttended())
+                            check = true;
+                    }
+
+                }
             }
         }
         catch (com.parse.ParseException e)
         {
-                e.printStackTrace();
+            e.printStackTrace();
         }
-        return false;
+        return check;
     }
 
 
@@ -143,7 +153,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     public void SendReminders(String Reminder, int AppointmentNo)
     {
 
-        
+
     }
 
     public String Error()
