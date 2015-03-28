@@ -13,34 +13,36 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
  * Created by SL & ZX again on 2/24/2015.
  */
 
-    public class AppointmentManager {
+    public class AppointmentManager{
 
-    private List<Appointment> AppointmentList;
+    private List<Appointment> AppointmentList = null;
     private ParseQuery<Appointment> Query = null;
 
 
     public void AppointmentManager()
     {
         Query = new ParseQuery<Appointment>("Appointment");
+    }
+
+    public void CreateAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
+    {
+        Appointment appointment = new  Appointment(clinic, patient,doctor,notes,appointmentNo,date,time);
 
     }
 
-    public void CreateAppointment()
-    {
-        Appointment appointment = new  Appointment();
-    }
 
-
-    public void CreateFollowUpAppointment(int AppointmentNo)
+    public void CreateFollowUpAppointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
     {
-        if (VerifyFollowUpAppointment(AppointmentNo) != true)
+        if (VerifyFollowUpAppointment(appointmentNo)== false)
         {
-            Appointment appointment = new  Appointment();
+            Error();
         }
 
-        else if (VerifyFollowUpAppointment(AppointmentNo) ==true)
+        else
         {
-            Appointment appointment = new  Appointment();
+            Appointment appointment = new  Appointment(clinic, patient,doctor,notes,appointmentNo,date,time);
+            AppointmentList.add(appointment);
+
         }
     }
 
@@ -61,13 +63,10 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
     }
 
-    public void StoreAppointment (int AppointmentNo, Appointment appointment)
+    public void StoreAppointment (List<Appointment> AppointmentList)
     {
-        if (ValidateAppointment(AppointmentNo) != true)
-        {
-            AppointmentList.add(appointment);
-        }
 
+        
     }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
 
 
