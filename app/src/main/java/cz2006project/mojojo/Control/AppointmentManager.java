@@ -14,11 +14,8 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
  * Created by SL & ZX again on 2/24/2015.
  */
 
-<<<<<<< Updated upstream
-public class AppointmentManager{
-=======
-    public class AppointmentManager extends ParseObject{
->>>>>>> Stashed changes
+
+public class AppointmentManager extends ParseObject {
 
     private List<Appointment> AppointmentList = null;
     private ParseQuery<Appointment> Query = null;
@@ -68,14 +65,13 @@ public class AppointmentManager{
 
     }
 
-<<<<<<< Updated upstream
+
     public void StoreAppointment (List<Appointment> AppointmentList)
     {
 
 
     }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
-=======
->>>>>>> Stashed changes
+
 
 
 
@@ -170,5 +166,6 @@ public class AppointmentManager{
 
     public static ParseQuery<AppointmentManager> getQuery() {
         return ParseQuery.getQuery(AppointmentManager.class);
+    }
 
 }
