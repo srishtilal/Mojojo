@@ -30,4 +30,14 @@
     <string name="title_activity_edit__profile">Edit_Profil</string>
     <string name="title_activity_main">MainActivity</string>
 
+
+    <string name="appointment_created">Your appointment has been booked!</string>
+    <string name="clinic_name">Name of Clinic</string>
+    <string name="doctor_name">Name of Doctor</string>
+    <string name="medical_issue">Medical Issue</string>
+    <string name="notes">notes</string>
+
+
+
+
 </resources>

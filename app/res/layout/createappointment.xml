@@ -1,104 +1,199 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
+    android:orientation="vertical"
+    tools:context="main.java.cz2006project.mojojo.Boundary.editAppointment"
+    android:scrollbarAlwaysDrawVerticalTrack="true">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.39"
-        android:weightSum="1">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="7"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="395dp"
-            android:layout_height="wrap_content"
-            android:text="Make an appointment now!"
-            android:id="@+id/textView6"
-            android:layout_weight="0.43"
-            android:textSize="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="15dp" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                >
+                <Spinner
+                    android:id="@+id/clinicspinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/clinic_name"
+                />
 
-    <Spinner
-        android:layout_width="353dp"
-        android:layout_height="61dp"
-        android:id="@+id/spinner6"
-        android:layout_gravity="center_horizontal"
-        android:spinnerMode="dropdown"
-        android:contentDescription="Doctor" />
 
-    <Spinner
-        android:layout_width="349dp"
-        android:layout_height="62dp"
-        android:id="@+id/spinner7"
-        android:layout_gravity="center_horizontal"
-        android:spinnerMode="dropdown" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                >
+                <Spinner
+                    android:id="@+id/doctorspinner"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/doctor_name"
+                />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="346dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/ll"
-        android:weightSum="1">
 
-        <TextView
-            android:layout_width="78dp"
-            android:layout_height="64dp"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Date"
-            android:id="@+id/textView4"
-            android:layout_marginTop="50dp"
-            android:layout_marginLeft="30dp" />
 
-        <DatePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/datePicker2" />
-    </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                >
+                <Spinner
+                    android:id="@+id/medicalissue"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:hint="@string/medical_issue"
+                     />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="131dp"
-        android:layout_gravity="center_horizontal"
-        android:weightSum="1">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Time"
-            android:id="@+id/textView5"
-            android:layout_weight="0.80"
-            android:layout_margin="50dp" />
 
-        <TimePicker
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/timePicker2"
-            android:layout_weight="0.23" />
+            </LinearLayout>
 
-    </LinearLayout>
 
-    <CheckBox
-        android:layout_width="362dp"
-        android:layout_height="wrap_content"
-        android:text="Is it a follow-up appointment?"
-        android:id="@+id/checkBox"
-        android:layout_gravity="right"
-        android:layout_weight="0.16"
-        android:checked="false" />
 
-    <Button
-        android:layout_width="177dp"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:id="@+id/button3"
-        android:layout_gravity="center_horizontal" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                >
+
+                <main.java.cz2006project.mojojo.MaterialEditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/appointment_date"
+                    android:hint="click on date"
+                    android:layout_margin="10dp"
+                    android:editable="false"
+                    />
+                <ImageButton
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="0"
+                    android:text="Set Date"
+                    android:layout_margin="5dp"
+                    android:id="@+id/date_picker"
+                    android:layout_gravity="center"
+                    android:background="@drawable/date"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                    >
+
+                <main.java.cz2006project.mojojo.MaterialEditText
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/appointment_time"
+                    android:hint="click on time"
+                    android:layout_margin="10dp"
+                    android:editable="false"
+                    />
+                <ImageButton
+                    android:layout_width="54dp"
+                    android:layout_height="54dp"
+                    android:layout_weight="0"
+                    android:text="Set Time"
+                    android:layout_margin="5dp"
+                    android:id="@+id/time_picker"
+                    android:layout_gravity="center"
+                    android:background="@drawable/clock"
+                    android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/abc_textfield_search_activated_mtrl_alpha">
+
+                <main.java.cz2006project.mojojo.MaterialEditText
+                    android:id="@+id/notes"
+                    android:layout_width="fill_parent"
+                    android:layout_height= "100dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:hint="Notes"
+                     />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                >
+                <CheckBox
+                    android:layout_width="362dp"
+                    android:layout_height="wrap_content"
+                    android:text="Is it a follow-up appointment?"
+                    android:id="@+id/checkBox"
+                    android:layout_gravity="right"
+                    android:layout_weight="0.16"
+                    android:checked="false" />
+
+
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submit_button"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="bottom|center"
+                android:background="@drawable/btn_sel"
+                android:text="submit"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
+
+
+

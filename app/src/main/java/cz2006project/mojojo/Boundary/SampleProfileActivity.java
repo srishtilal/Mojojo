@@ -20,8 +20,10 @@ package main.java.cz2006project.mojojo.Boundary;
  *
  */
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,7 +39,7 @@ import cz2006project.mojojo.R;
  * Shows the user profile. This simple activity can function regardless of whether the user
  * is currently logged in.
  */
-public class SampleProfileActivity extends Activity {
+public class SampleProfileActivity extends ActionBarActivity {
     private static final int LOGIN_REQUEST = 0;
 
     private TextView titleTextView;
