@@ -1,11 +1,10 @@
 package main.java.cz2006project.mojojo.Control;
 
-
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -131,7 +130,7 @@ public class AppointmentManager extends ParseObject {
         try {
             AppointmentList = Query.find();
             return true;
-        } catch (com.parse.ParseException e) {
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return false;
