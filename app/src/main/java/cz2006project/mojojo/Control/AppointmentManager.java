@@ -140,11 +140,10 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 
 
 
-    public void SendReminders(String Reminder, int AppointmentNo)
+    /*public void SendReminders(String Reminder, int AppointmentNo)
     {
 
-        
-    }
+    }*/
 
     public String Error()
     {
