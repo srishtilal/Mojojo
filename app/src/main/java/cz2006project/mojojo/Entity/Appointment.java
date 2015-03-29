@@ -100,6 +100,6 @@ public class Appointment extends ParseObject {
         put("followUpAppointmentNo",appointmentNo);
     }
 
-s
+
 }
 
