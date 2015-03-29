@@ -45,7 +45,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 import main.java.cz2006project.mojojo.Entity.Doctor;
 import main.java.cz2006project.mojojo.MaterialEditText;
 
-public class editAppointment extends Fragment {
+/*public class editAppointment extends Fragment {
 
 
     Button create;
@@ -80,7 +80,7 @@ public class editAppointment extends Fragment {
                 chooseImage();
             }
 
-        });*/
+        });
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,4 +216,4 @@ public class editAppointment extends Fragment {
 
 
 
-}
+}*/
