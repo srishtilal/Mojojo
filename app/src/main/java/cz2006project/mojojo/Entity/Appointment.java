@@ -15,7 +15,6 @@ public class Appointment extends ParseObject {
         setClinic(clinic);
         setPatient(patient);
         setDoctor(doctor);
-        setNotes(notes);
         setAppointmentNo(appointmentNo);
         setAppointmentDate(date);
         setAppointmentTime(time);
@@ -101,6 +100,6 @@ public class Appointment extends ParseObject {
         put("followUpAppointmentNo",appointmentNo);
     }
 
-
+s
 }
 
