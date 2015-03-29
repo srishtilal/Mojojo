@@ -13,7 +13,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
  * Created by SL & ZX again on 2/24/2015.
  */
 
-    public class AppointmentManager{
+public class AppointmentManager{
 
     private List<Appointment> AppointmentList = null;
     private ParseQuery<Appointment> Query = null;
@@ -66,7 +66,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
     public void StoreAppointment (List<Appointment> AppointmentList)
     {
 
-        
+
     }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
 
 
@@ -103,7 +103,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
         }
         catch (com.parse.ParseException e)
         {
-                e.printStackTrace();
+            e.printStackTrace();
         }
         return false;
     }
