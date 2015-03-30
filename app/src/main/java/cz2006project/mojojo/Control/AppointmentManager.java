@@ -63,12 +63,6 @@ public class AppointmentManager{
 
     }
 
-    public void StoreAppointment (List<Appointment> AppointmentList)
-    {
-
-
-    }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
-
 
 
     public void ModifyAppointment(int AppointmentNo, Date AppointmentDate , String AppointmentTime)
@@ -140,10 +134,17 @@ public class AppointmentManager{
 
 
 
-    /*public void SendReminders(String Reminder, int AppointmentNo)
+    public void SendReminders(String Reminder, int AppointmentNo , int preferredmethod)
     {
+        if (preferredmethod == 0 ) //where 0 is email as preferred method
+        {
 
-    }*/
+        }
+
+
+
+
+    }
 
     public String Error()
     {
