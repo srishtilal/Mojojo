@@ -29,7 +29,7 @@ import main.java.cz2006project.mojojo.Entity.Appointment;
 import main.java.cz2006project.mojojo.MaterialEditText;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
 
-public class editAppointment extends Fragment {
+/*public class editAppointment extends Fragment {
 
 
     Button create;
@@ -163,7 +163,7 @@ public class editAppointment extends Fragment {
 
             }
 
-        });*/
+        });
             Appointment appointment = new Appointment();
 
         appointment.put(ParseTables.Appointment.DATE, appointments.get(ParseTables.Appointment.DATE));
@@ -243,10 +243,15 @@ public class editAppointment extends Fragment {
         list.add("list 1");
         list.add("list 2");
         list.add("list 3");
+<<<<<<< HEAD
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(editAppointment.this,android.R.layout.simple_spinner_item, list);
+=======
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(addItemsOnSpinner2.this,android.R.layout.simple_spinner_item, list);
+>>>>>>> origin/master
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cspinner.setAdapter(dataAdapter);
         */
     }
 
 }
+*/
