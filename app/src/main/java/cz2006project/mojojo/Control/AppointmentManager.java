@@ -1,3 +1,4 @@
+/*
 package main.java.cz2006project.mojojo.Control;
 
 import com.parse.ParseException;
@@ -9,9 +10,11 @@ import java.util.List;
 
 import main.java.cz2006project.mojojo.Entity.Appointment;
 
+*/
 /**
  * Created by SL & ZX again on 2/24/2015.
- */
+ *//*
+
 
 public class AppointmentManager{
 
@@ -67,12 +70,16 @@ public class AppointmentManager{
     {
 
 
-    }  /* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) */
+    }  */
+/* I DONT KNOW IF THIS IS THE LOGICAL WAYYY HELLPPPPP!>< (as in the .add(appointment) thingy) *//*
+
 
 
 
     public void ModifyAppointment(int AppointmentNo, Date AppointmentDate , String AppointmentTime)
-     /*assuming the modifyhere is after the user has keyed in the new date*/
+     */
+/*assuming the modifyhere is after the user has keyed in the new date*//*
+
     {
         if (ValidateAppointment(AppointmentNo)== true)
         {
@@ -140,10 +147,12 @@ public class AppointmentManager{
 
 
 
-    /*public void SendReminders(String Reminder, int AppointmentNo)
+    */
+/*public void SendReminders(String Reminder, int AppointmentNo)
     {
 
-    }*/
+    }*//*
+
 
     public String Error()
     {
@@ -154,3 +163,4 @@ public class AppointmentManager{
 
 
 }
+*/

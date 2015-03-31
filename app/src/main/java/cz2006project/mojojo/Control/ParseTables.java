@@ -14,6 +14,8 @@ public class ParseTables {
             public static final String USERNAME = "email";
             public static final String PASSWORD = "password";
             public static final String TYPE = "type";
+            public static final String LOCATION = "location";
+
 
         }
     public static class Schedule {

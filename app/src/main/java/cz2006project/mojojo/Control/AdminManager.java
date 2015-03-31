@@ -1,3 +1,4 @@
+/*
 package main.java.cz2006project.mojojo.Control;
 
 import com.parse.ParseUser;
@@ -11,9 +12,11 @@ import main.java.cz2006project.mojojo.Entity.MedicalRecords;
 import main.java.cz2006project.mojojo.Entity.Patient;
 import main.java.cz2006project.mojojo.Entity.Schedule;
 
+*/
 /**
  * Created by Mai and zx on 5/3/2015.
- */
+ *//*
+
 public class AdminManager
 {
 
@@ -39,7 +42,8 @@ public class AdminManager
         appointmentManager = new AppointmentManager();
     }
 
-   /* public boolean CreateAppointment(ParseUser PatientNRIC)
+   */
+/* public boolean CreateAppointment(ParseUser PatientNRIC)
     {
         for(Patient person : PatientList)
         {
@@ -48,7 +52,9 @@ public class AdminManager
         }
         appointmentManager.CreateAppointment();
         return true;
-    }*/
+    }*//*
+
+*/
 /*
     public boolean CancelAppointment(ParseUser PatientNRIC,int AppointmentNo)
     {
@@ -60,7 +66,9 @@ public class AdminManager
         appointmentManager.CancelAppointment(AppointmentNo);
         return true;
     }
-    */
+    *//*
+
+*/
 /*
     public boolean ModifyAppointment(ParseUser PatientNRIC,int AppointmentNo)
     {
@@ -72,7 +80,9 @@ public class AdminManager
         appointmentManager.ModifyAppointment(AppointmentNo);
         return true;
     }
-   */
+   *//*
+
+*/
 /*
     public boolean CreateAppointment(ParseUser PatientNRIC,int AppointmentNo, List<Patient> ExistingFollowUpAppointment)
     {
@@ -84,7 +94,8 @@ public class AdminManager
         appointmentManager.CreateAppointment(ExistingFollowUpAppointment,AppointmentNo);
         return true;
     }
-*/
+*//*
+
 
     public List<Appointment> getAppointmentsList(){return AppointmentList;}
 
@@ -149,11 +160,13 @@ public class AdminManager
     {
         for (int i = 0 ; i < DoctorList.size(); i++)
         {
-            /*if (DoctorList.get(i).getDoctorNRIC() == DoctorNRIC)
+            */
+/*if (DoctorList.get(i).getDoctorNRIC() == DoctorNRIC)
             {
                 DoctorList.remove(i);
                 return true;
-            }*/
+            }*//*
+
         }
         return false;
     }
@@ -177,3 +190,4 @@ public class AdminManager
 
 
 
+*/

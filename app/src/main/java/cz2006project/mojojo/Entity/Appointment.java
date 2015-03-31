@@ -10,14 +10,8 @@ import java.util.List;
 @ParseClassName("Appointment")
 public class Appointment extends ParseObject {
 
-    public Appointment(ParseObject clinic, ParseObject patient, ParseObject doctor, String notes, int appointmentNo, Date date, String time)
-    {
-        setClinic(clinic);
-        setPatient(patient);
-        setDoctor(doctor);
-        setAppointmentNo(appointmentNo);
-        setAppointmentDate(date);
-        setAppointmentTime(time);
+    public Appointment() {
+
     }
 
 
@@ -26,15 +20,15 @@ public class Appointment extends ParseObject {
 
     }
 
-    public ParseObject getDoctor(){
+    public ParseObject getDoctor() {
         return getParseObject("doctor");
     }
 
     public void setClinic(ParseObject clinic) {
         put("clinic", clinic);
-            }
+    }
 
-    public ParseObject getClinic(){
+    public ParseObject getClinic() {
         return getParseObject("clinic");
     }
 
@@ -42,7 +36,7 @@ public class Appointment extends ParseObject {
         put("patient", patient);
     }
 
-    public ParseObject getPatient(){
+    public ParseObject getPatient() {
         return getParseObject("patient");
     }
 
@@ -51,7 +45,7 @@ public class Appointment extends ParseObject {
     }
 
 
-    public boolean getIsFollowUpAppointment(){
+    public boolean getIsFollowUpAppointment() {
         return getBoolean("followup");
     }
 
@@ -60,7 +54,7 @@ public class Appointment extends ParseObject {
     }
 
 
-    public String getReminder(){
+    public String getReminder() {
         return getString("reminder");
     }
 
@@ -69,7 +63,7 @@ public class Appointment extends ParseObject {
     }
 
 
-    public int getAppointmentNo(){
+    public int getAppointmentNo() {
         return getInt("AppointmentNumber");
     }
 
@@ -78,7 +72,7 @@ public class Appointment extends ParseObject {
     }
 
 
-    public Date getAppointmentDate(){
+    public Date getAppointmentDate() {
         return getDate("Date");
     }
 
@@ -87,19 +81,16 @@ public class Appointment extends ParseObject {
     }
 
 
-    public String getAppointmentTime(){
+    public String getAppointmentTime() {
         return getString("date");
     }
 
-    public List<Integer> getFollowUpAppointmentNo()
-    {
-        return(getList("followUpAppointmentNo"));
-    }
-    public void setFollowUpAppointmenttNo(List<Integer> appointmentNo)
-    {
-        put("followUpAppointmentNo",appointmentNo);
+    public List<Integer> getFollowUpAppointmentNo() {
+        return (getList("followUpAppointmentNo"));
     }
 
-s
+    public void setFollowUpAppointmenttNo(List<Integer> appointmentNo) {
+        put("followUpAppointmentNo", appointmentNo);
+    }
 }
 

@@ -14,20 +14,26 @@ import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -35,24 +41,31 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
 import main.java.cz2006project.mojojo.Entity.Appointment;
 import main.java.cz2006project.mojojo.Entity.Doctor;
 import main.java.cz2006project.mojojo.MaterialEditText;
+import main.java.cz2006project.mojojo.ProgressBarCircular;
 
 public class editAppointment extends Fragment {
 
 
     Button create;
     static View v;
+    private Spinner cspinner, dspinner, mspinner;
     private static HashMap<String, String> appointments;
     ImageButton setDate;
     ImageButton setTime;
+    ProgressBarCircular progressBarCircular;
+
 
     public editAppointment() {
         // Required empty public constructor
@@ -70,17 +83,12 @@ public class editAppointment extends Fragment {
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.createappointment, container, false);
         create = (Button) v.findViewById(R.id.submit_button);
-        //setDate =  v.findViewById(R.id.datePicker2);
-        //setTime =  v.findViewById(R.id.timePicker);
-        /*
-        uploadPicture.setOnClickListener(new View.OnClickListener() {
+        setDate = (ImageButton) v.findViewById(R.id.date_picker);
+        setTime = (ImageButton) v.findViewById(R.id.time_picker);
+        cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
+  
 
-            @Override
-            public void onClick(View v) {
-                chooseImage();
-            }
 
-        });*/
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,6 +101,18 @@ public class editAppointment extends Fragment {
             public void onClick(View v) {
                 DatePickerFragment datePicker = new DatePickerFragment();
                 datePicker.show(getActivity().getSupportFragmentManager(), "Set Date");
+            }
+        });
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBarCircular.setBackgroundColor(getResources().getColor(R.color.eventsColorPrimary));
+                progressBarCircular.setVisibility(View.VISIBLE);
+                create.setClickable(false);
+                addInput();
+                if (checkIfEmpty()) {
+                    pushDataToParse();
+                }
             }
         });
         return v;
@@ -110,7 +130,6 @@ public class editAppointment extends Fragment {
         appointments.put(ParseTables.Appointment.DOCTOR,  dspinner.getSelectedItem().toString());
         appointments.put(ParseTables.Appointment.CLINIC,  cspinner.getSelectedItem().toString());
         appointments.put(ParseTables.Appointment.MEDICALISSUE,  mspinner.getSelectedItem().toString());
-        appointments.put(ParseTables.Appointment.NOTES,  cspinner.getSelectedItem().toString());
         appointments.put(ParseTables.Appointment.NOTES, ((MaterialEditText) v.findViewById(R.id.notes)).getText() + "");
 
 
@@ -142,6 +161,35 @@ public class editAppointment extends Fragment {
     }
 
     private void pushDataToParse() {
+       /* Spinner dspinner = (Spinner)v.findViewById(R.id.doctorspinner);
+        Spinner cspinner = (Spinner)v.findViewById(R.id.clinicspinner);
+        Spinner mspinner = (Spinner)v.findViewById(R.id.medicalissue);
+
+        ParseQuery<ParseObject> queryDoctor = ParseQuery.getQuery("Doctor");
+        ParseQuery<ParseObject> queryPatient = ParseQuery.getQuery("Patient");
+        ParseQuery<ParseObject> queryClinic = ParseQuery.getQuery("Clinic");
+
+        queryDoctor.whereEqualTo("Name", dspinner);
+        queryPatient.whereEqualTo("Name", cspinner);
+        queryPatient.whereEqualTo("Name", ParseUser.getCurrentUser().getString("name"));
+        queryDoctor.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> doctorList, List<ParseObject> patientList, List<ParseObject> clinicList, ParseException e) {
+                if (e == null) {
+                    Log.d("doctor", "Retrieved " + doctorList.size() + " doctors");
+                    Log.d("patient", "Retrieved " + patientList.size() + " doctors");
+                    Log.d("clinic", "Retrieved " + clinicList.size() + " doctors");
+
+
+                    Appointment appointment = new Appointment(clinicList.get(0), patientList.get(0), doctorList.get(0),notes );
+                    appointments.put(ParseTables.Appointment.NOTES, ((MaterialEditText) v.findViewById(R.id.notes)).getText() + "");
+
+
+
+                }
+
+            }
+
+        });*/
             Appointment appointment = new Appointment();
 
         appointment.put(ParseTables.Appointment.DATE, appointments.get(ParseTables.Appointment.DATE));
@@ -150,7 +198,7 @@ public class editAppointment extends Fragment {
         appointment.put(ParseTables.Appointment.DOCTOR, appointments.get(ParseTables.Appointment.DOCTOR));
         appointment.put(ParseTables.Appointment.FOLLOWUP, appointments.get(ParseTables.Appointment.FOLLOWUP));
         appointment.put(ParseTables.Appointment.NOTES, appointments.get(ParseTables.Appointment.NOTES));
-        appointment.put(ParseTables.Appointment.PATIENT, appointments.get(ParseTables.Appointment.PATIENT));
+       appointment.put(ParseTables.Appointment.PATIENT, appointments.get(ParseTables.Appointment.PATIENT));
 
         appointment.saveInBackground(new SaveCallback() {
             @Override
@@ -213,7 +261,18 @@ public class editAppointment extends Fragment {
 
     }
 
+    public void addItemsOnSpinner2() {
 
+        cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
+        List<String> list = new ArrayList<String>();
+        list.add("list 1");
+        list.add("list 2");
+        list.add("list 3");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(editAppointment.this,
+                android.R.layout.simple_spinner_item, list);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        cspinner.setAdapter(dataAdapter);
+    }
 
 
 }

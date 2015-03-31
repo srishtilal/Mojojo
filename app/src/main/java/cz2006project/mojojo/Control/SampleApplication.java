@@ -30,22 +30,42 @@ import com.parse.Parse;
 import com.parse.ParseTwitterUtils;
 
 import cz2006project.mojojo.R;
-//import main.java.cz2006project.mojojo.Entity.Appointment;
 
-public class SampleApplication extends Application {
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        // Required - Initialize the Parse SDK
-//        ParseObject.registerSubclass(Appointment.class);
-        Parse.initialize(this, getString(R.string.parse_app_id),
-                getString(R.string.parse_client_key));
 
-        Parse.setLogLevel(Parse.LOG_LEVEL_DEBUG);
+        import android.app.Application;
+        import android.graphics.drawable.ColorDrawable;
+        import android.graphics.drawable.Drawable;
+        import android.os.Build;
+        import android.support.v7.app.ActionBarActivity;
+        import android.util.Log;
 
-        // Optional - If you don't want to allow Twitter login, you can
-        // remove this line (and other related ParseTwitterUtils calls)
-        ParseTwitterUtils.initialize(getString(R.string.twitter_consumer_key),
-                getString(R.string.twitter_consumer_secret));
-    }
-}
+        import com.parse.Parse;
+        import com.parse.ParseACL;
+        import com.parse.ParseTwitterUtils;
+        import com.parse.ParseUser;
+
+  public class SampleApplication extends Application {
+            public static final boolean LOG_DEBUG = true;
+            public static final boolean LOG_INFO = true;
+
+            @Override
+            public void onCreate() {
+                super.onCreate();
+                Parse.enableLocalDatastore(this);
+                Parse.initialize(this, getString(R.string.parse_app_id),
+                        getString(R.string.parse_client_key));
+                ParseUser.enableAutomaticUser();
+                ParseACL defaultACL = new ParseACL();
+                ParseTwitterUtils.initialize(getString(R.string.twitter_consumer_key),
+                        getString(R.string.twitter_consumer_secret));
+            }
+
+            public static void setCustomTheme(ActionBarActivity actionBarActivity, int primary, int secondary){
+                actionBarActivity.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(primary));
+                if(Build.VERSION.SDK_INT==Build.VERSION_CODES.LOLLIPOP){
+                    actionBarActivity.getWindow().setNavigationBarColor(secondary);
+                    actionBarActivity.getWindow().setStatusBarColor(secondary);
+                }
+            }
+
+        }

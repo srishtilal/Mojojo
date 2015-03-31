@@ -22,6 +22,8 @@ package main.java.cz2006project.mojojo.Boundary;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -39,7 +41,7 @@ import cz2006project.mojojo.R;
  * Shows the user profile. This simple activity can function regardless of whether the user
  * is currently logged in.
  */
-public class SampleProfileActivity extends ActionBarActivity {
+public class SampleProfileActivity extends Activity {
     private static final int LOGIN_REQUEST = 0;
 
     private TextView titleTextView;
@@ -85,11 +87,11 @@ public class SampleProfileActivity extends ActionBarActivity {
 
         currentUser = ParseUser.getCurrentUser();
         if (currentUser != null) {
-            if (currentUser.getString("type").equals("Doctor"))
-            showDoctorProfileLoggedIn();
-           else
-             showPatientProfileLoggedIn();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+
         } else {
+
             ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
                     SampleProfileActivity.this);
             startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
