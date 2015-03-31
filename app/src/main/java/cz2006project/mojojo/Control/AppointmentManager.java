@@ -138,10 +138,13 @@ public class AppointmentManager{
     {
         if (preferredmethod == 0 ) //where 0 is email as preferred method
         {
-
+            
         }
 
+        if (preferredmethod == 0 ) //where 1 is sms as preferred method
+        {
 
+        }
 
 
     }
