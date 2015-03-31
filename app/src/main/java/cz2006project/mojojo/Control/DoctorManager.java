@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import main.java.cz2006project.mojojo.Entity.Doctor;
 import main.java.cz2006project.mojojo.Entity.MedicalRecords;
+import main.java.cz2006project.mojojo.Entity.Patient;
 
 import java.util.Scanner;
 
@@ -36,7 +37,7 @@ getspecialty
 setspecialy
  */
 
-/*public class DoctorManager {
+public class DoctorManager {
 
     private ParseQuery<Doctor> Query = null;
     private ParseQuery<MedicalRecords> = null
@@ -61,18 +62,23 @@ setspecialy
         });
     }
 
-    public void PrescribeMedicine(String message) {
-        //validate patient or doctor enter he nric
-        //update the message into the database
-        // create a pointer to th object id s
+    Patient srishti = new Patient();
+    ParseUser nric = srishti.getPatientNRIC();
+
+    public void PrescribeMedicine(ParseUser nric) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Patient");
+        querty.whereEqualTo("PateintName","PatientNRIC");
+        query.getFirstIn Background((object, e) -> {
+
+        })
     }
 
     public void UpdateSchedule() {
-
+        //
     }
 
     public void ViewMedicalRecord() {
-
+        //
     }
 }
 */
