@@ -3,55 +3,29 @@ package main.java.cz2006project.mojojo.Boundary;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.GetCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
 import main.java.cz2006project.mojojo.Entity.Appointment;
-import main.java.cz2006project.mojojo.Entity.Doctor;
 import main.java.cz2006project.mojojo.MaterialEditText;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
 
@@ -86,8 +60,8 @@ public class editAppointment extends Fragment {
         setDate = (ImageButton) v.findViewById(R.id.date_picker);
         setTime = (ImageButton) v.findViewById(R.id.time_picker);
         cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
-  
-
+        dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
+        mspinner = (Spinner) v.findViewById(R.id.medicalissue);
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,18 +235,18 @@ public class editAppointment extends Fragment {
 
     }
 
-    public void addItemsOnSpinner2() {
 
+    public void addItemsOnSpinner2() {
+/*
         cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
         List<String> list = new ArrayList<String>();
         list.add("list 1");
         list.add("list 2");
         list.add("list 3");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(editAppointment.this,
-                android.R.layout.simple_spinner_item, list);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(editAppointment.this,android.R.layout.simple_spinner_item, list);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cspinner.setAdapter(dataAdapter);
+        */
     }
-
 
 }
