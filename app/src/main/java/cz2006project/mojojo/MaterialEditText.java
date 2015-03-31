@@ -1,10 +1,7 @@
 package main.java.cz2006project.mojojo;
 
 import android.animation.ArgbEvaluator;
-<<<<<<< HEAD
 import android.animation.ObjectAnimator;
-=======
->>>>>>> origin/master
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -21,9 +18,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.MultiAutoCompleteTextView;
-
-import android.animation.ObjectAnimator;
-import android.animation.ObjectAnimator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

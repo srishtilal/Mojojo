@@ -1,35 +1,25 @@
 package main.java.cz2006project.mojojo.Boundary;
 
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
-import java.util.Calendar;
 import java.util.HashMap;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
-import main.java.cz2006project.mojojo.Entity.Appointment;
 import main.java.cz2006project.mojojo.MaterialEditText;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
 
-/*public class editAppointment extends Fragment {
+public class editAppointment extends Fragment {
 
 
     Button create;
@@ -66,14 +56,14 @@ import main.java.cz2006project.mojojo.ProgressBarCircular;
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TimePickerFragment timePickerFragment = new TimePickerFragment();
+                changeAppointment.TimePickerFragment timePickerFragment = new changeAppointment.TimePickerFragment();
                 timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
             }
         });
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerFragment datePicker = new DatePickerFragment();
+                changeAppointment.DatePickerFragment datePicker = new changeAppointment.DatePickerFragment();
                 datePicker.show(getActivity().getSupportFragmentManager(), "Set Date");
             }
         });
@@ -243,15 +233,12 @@ import main.java.cz2006project.mojojo.ProgressBarCircular;
         list.add("list 1");
         list.add("list 2");
         list.add("list 3");
-<<<<<<< HEAD
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(editAppointment.this,android.R.layout.simple_spinner_item, list);
-=======
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(addItemsOnSpinner2.this,android.R.layout.simple_spinner_item, list);
->>>>>>> origin/master
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cspinner.setAdapter(dataAdapter);
         */
     }
 
 }
-*/
+
