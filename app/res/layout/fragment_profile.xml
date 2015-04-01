@@ -82,7 +82,7 @@
             <main.java.cz2006project.mojojo.MaterialEditText
                 android:id="@+id/account_info_password"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_margin="@dimen/fragment_sign_up_edit_text_margin"
                 android:layout_weight="4"
                 android:descendantFocusability="beforeDescendants"
@@ -94,23 +94,23 @@
                 app:primaryColor="@color/colorPrimaryDark" />
 
             <ImageButton
+                android:id="@+id/cancel_edit_password_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:scaleType="centerInside"
+                android:src="@drawable/cross"
+                android:visibility="invisible" />
+
+            <ImageButton
                 android:id="@+id/edit_password_button"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:scaleType="centerInside"
                 android:src="@drawable/pencil" />
-
-            <ImageButton
-                android:id="@+id/cancel_edit_password_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"
-                android:src="@drawable/cross2"
-                android:visibility= "invisible"/>
 
         </LinearLayout>
 
