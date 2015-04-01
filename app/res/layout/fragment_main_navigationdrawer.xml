@@ -15,9 +15,7 @@
             android:background="#009688">
 
         </FrameLayout>
-
-        <main.java.cz2006project.mojojo.ParseCircularImageView
-            android:id="@+id/nav_drawer_profile_pic"
+            android:id="@+id/ma"
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_gravity="bottom|left"
