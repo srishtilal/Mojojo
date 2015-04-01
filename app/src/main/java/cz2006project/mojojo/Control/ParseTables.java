@@ -66,6 +66,7 @@ public class ParseTables {
         public static final String LASTCHECKUP = "lastcheckup";
         public static final String MEDICATION = "medication";
         public static final String PATIENT = "patient";
+        public static final String CREATED_AT = "created_at";
 
 
     }

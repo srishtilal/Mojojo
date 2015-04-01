@@ -20,12 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.parse.ParseFacebookUtils;
 import com.parse.ParseImageView;
 import com.parse.ParseUser;
 
@@ -110,6 +112,7 @@ public class NavigationDrawerFragment extends Fragment {
         //toolbar = (Toolbar) mDrawerLinearLayout.findViewById(R.id.toolbar);
 
 
+
         mDrawerLinearLayout = (LinearLayout) inflater.inflate(
                 R.layout.fragment_main_navigationdrawer, container, false);
         mDrawerListView = (ListView) mDrawerLinearLayout.findViewById(R.id.main_navdrawer_list);
@@ -133,12 +136,16 @@ public class NavigationDrawerFragment extends Fragment {
                         "Account"
                 }));
 */
-        mDrawerListView.setAdapter(new NavigationDrawerAdapter(new String[]{
-                "Appointments",
-                "QwikSearch",
-                "My Profile",
 
-        }));
+            mDrawerListView.setAdapter(new NavigationDrawerAdapter(new String[]{
+                    "Appointments",
+                    "Find a Doctor",
+                    "My Profile",
+
+            }));
+
+
+
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
         //mDrawerListView.addFooterView(mDrawerLinearLayout);
@@ -147,8 +154,12 @@ public class NavigationDrawerFragment extends Fragment {
         mProfilePic.setPlaceholder(getResources().getDrawable(R.drawable.com_facebook_profile_default_icon));
 
 
-        return mDrawerLinearLayout;
+
+
+return mDrawerLinearLayout;
+
     }
+
 
     public boolean isDrawerOpen() {
         return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(mFragmentContainerView);
@@ -328,6 +339,12 @@ public class NavigationDrawerFragment extends Fragment {
         public NavigationDrawerAdapter(String[] mCategoryMap) {
 
             this.mCategoryMap = mCategoryMap;
+        }
+
+
+        public void changeDrawerOptions(ParseUser user)
+        {
+
         }
 
         @Override
