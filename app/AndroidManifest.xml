@@ -44,6 +44,15 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="main.java.cz2006project.mojojo.Boundary.DoctorActivity"
+            android:label="@string/title_activity_main"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.parse.ui.ParseLoginActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" >

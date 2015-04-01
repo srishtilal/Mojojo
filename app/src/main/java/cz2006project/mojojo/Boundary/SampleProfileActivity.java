@@ -26,6 +26,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -72,10 +73,12 @@ public class SampleProfileActivity extends Activity {
                     currentUser = null;
                     //showProfileLoggedOut();
                 } else {*/
-                    // User clicked to log in.
-                    ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
-                            SampleProfileActivity.this);
-                    startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
+                // User clicked to log in.
+
+                ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
+                        SampleProfileActivity.this);
+                startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
+
                 }
 
         });
@@ -86,18 +89,32 @@ public class SampleProfileActivity extends Activity {
         super.onStart();
 
         currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+        if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
 
-        } else {
+            Intent patientIntent = new Intent(this, MainActivity.class);
+            startActivity(patientIntent);
 
-            ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
-                    SampleProfileActivity.this);
-            startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
+        }
+        if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Doctor") ) {
+
+            Intent doctorIntent = new Intent(this, DoctorActivity.class);
+            startActivity(doctorIntent);
+        }
+/*
+            else if (currentUser.isAuthenticated() && currentUser.getString("type").equals("Doctor")) {
+            Intent doctorIntent = new Intent(this, DoctorActivity.class);
+            startActivity(doctorIntent);
+        }*/
+
+         else {
+
+                ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
+                        SampleProfileActivity.this);
+                startActivityForResult(loginBuilder.build(), LOGIN_REQUEST);
+            }
         }
             //showProfileLoggedOut();
-        }
+
     //}
 
     @Override

@@ -86,7 +86,7 @@ public class editAppointment extends Fragment {
         setDate = (ImageButton) v.findViewById(R.id.date_picker);
         setTime = (ImageButton) v.findViewById(R.id.time_picker);
         cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
-  
+
 
 
         setTime.setOnClickListener(new View.OnClickListener() {
@@ -261,18 +261,6 @@ public class editAppointment extends Fragment {
 
     }
 
-    public void addItemsOnSpinner2() {
-
-        cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
-        List<String> list = new ArrayList<String>();
-        list.add("list 1");
-        list.add("list 2");
-        list.add("list 3");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(editAppointment.this,
-                android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cspinner.setAdapter(dataAdapter);
-    }
 
 
 }

@@ -1,8 +1,8 @@
 package main.java.cz2006project.mojojo.Boundary;
 
 /**
- * Created by srishti on 30/3/15.
-*/
+ * Created by srishti on 31/3/15.
+ */
 
         import android.os.Bundle;
         import android.support.v4.app.Fragment;
@@ -39,36 +39,36 @@ package main.java.cz2006project.mojojo.Boundary;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyAppointmentsFragment extends Fragment {
+public class ScheduledAppointmentsFragment extends Fragment {
 
     RecyclerView appointmentsList;
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
     private boolean refresh = false;
-    private boolean check_my_appointments=false;
+    //private boolean check_my_appointments=false;
     View v;
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
 
-    public MyAppointmentsFragment(){
+    public ScheduledAppointmentsFragment(){
 
     }
 
-    public static MyAppointmentsFragment newInstance(Boolean check){
-        MyAppointmentsFragment myAppointmentsFragment = new MyAppointmentsFragment();
-        Bundle b = new Bundle();
-        b.putBoolean("check", check);
-        myAppointmentsFragment.setArguments(b);
-        return myAppointmentsFragment;
+    public static ScheduledAppointmentsFragment newInstance(){
+        ScheduledAppointmentsFragment scheduledAppointmentsFragment = new ScheduledAppointmentsFragment();
+        //Bundle b = new Bundle();
+        //b.putBoolean("check", check);
+        //scheduledAppointmentsFragment.setArguments(b);
+        return scheduledAppointmentsFragment;
     }
 
     @Override
     public void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        if(this.getArguments() != null){
+        /*if(this.getArguments() != null){
             check_my_appointments = getArguments().getBoolean("check");
-        }
+        }*/
     }
 
     @Override
@@ -114,17 +114,16 @@ public class MyAppointmentsFragment extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
-            holder.doctor.setText((String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
+            holder.patient.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
             holder.clinic.setText((String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
             holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
             holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
 
 
-            if(check_my_appointments){
                 holder.appointment_creator.setVisibility(View.GONE);
                 holder.appointment_delete.setVisibility(View.VISIBLE);
-            }
+
 
             if (position == expandedPosition) {
                 holder.expanded_area.setVisibility(View.VISIBLE);
@@ -158,7 +157,7 @@ public class MyAppointmentsFragment extends Fragment {
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView appointment_number;
             TextView clinic;
-            TextView doctor;
+            TextView patient;
             TextView medicalissue;
             RelativeLayout expanded_area;
             TextView notes;
@@ -172,7 +171,7 @@ public class MyAppointmentsFragment extends Fragment {
                 super(itemView);
                 this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
-                this.doctor = (TextView) itemView.findViewById(R.id.doctor);
+                this.patient = (TextView) itemView.findViewById(R.id.patient);
                 this.medicalissue = (TextView) itemView.findViewById(R.id.medicalissue);
                 this.expanded_area = (RelativeLayout) itemView.findViewById(R.id.expanded_area);
                 this.appointment_creator = (TextView) itemView.findViewById(R.id.appointment_creator);
@@ -207,9 +206,9 @@ public class MyAppointmentsFragment extends Fragment {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "Appointments");
         query.orderByAscending(ParseTables.Appointment.DATE);
-        if(check_my_appointments){
-            query.whereEqualTo(ParseTables.Appointment.PATIENT, ParseUser.getCurrentUser().getString("NAME"));
-        }
+
+            query.whereEqualTo(ParseTables.Appointment.DOCTOR, ParseUser.getCurrentUser().getString("NAME"));
+
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
@@ -225,9 +224,9 @@ public class MyAppointmentsFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
             refresh = false;
         }
-        if(check_my_appointments && adapter.getItemCount() == 0){
+
             appointmentsMainLayout.setVisibility(View.GONE);
-        }
+
     }
 
     @Override
@@ -236,18 +235,7 @@ public class MyAppointmentsFragment extends Fragment {
         inflater.inflate(R.menu.menu_search, menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.appintment_add:
-                AppointmentsFragment eFragment = (AppointmentsFragment) getParentFragment();
-                eFragment.goToOtherFragment(1);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
 
-    }
+}
 

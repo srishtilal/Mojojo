@@ -35,6 +35,10 @@
     <string name="logout">Log Out</string>
     <string name="profile">My Profile</string>
     <string name="appointments">Appointments</string>
+    <string name="scheduled_appointments">Scheduled Appointments</string>
+    <string name="patient_medical_records">Appointments</string>
+
+
     <string-array name="clinics_array">
         <item>Mercury</item>
         <item>Venus</item>

@@ -1,27 +1,34 @@
 package main.java.cz2006project.mojojo.Boundary;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+/**
+ * Created by srishti on 31/3/15.
+ */
 
-import com.parse.ParseUser;
+        import android.app.Activity;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.support.v4.app.FragmentManager;
+        import android.support.v4.widget.DrawerLayout;
+        import android.support.v7.app.ActionBar;
+        import android.support.v7.app.ActionBarActivity;
+        import android.support.v7.widget.Toolbar;
+        import android.util.Log;
+        import android.view.Menu;
+        import android.view.MenuItem;
 
-import cz2006project.mojojo.R;
-import main.java.cz2006project.mojojo.Control.SampleApplication;
-import main.java.cz2006project.mojojo.NavigationDrawerFragment;
+        import com.parse.ParseFacebookUtils;
+        import com.parse.ParseUser;
 
-public class MainActivity extends ActionBarActivity
+
+        import cz2006project.mojojo.R;
+        import main.java.cz2006project.mojojo.Control.SampleApplication;
+        import main.java.cz2006project.mojojo.NavigationDrawerFragment;
+
+
+public class DoctorActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "DoctorActivity";
     public static final boolean DEBUG = SampleApplication.LOG_DEBUG;
     public static final boolean INFO = SampleApplication.LOG_INFO;
     private ParseUser currentUser;
@@ -29,17 +36,13 @@ public class MainActivity extends ActionBarActivity
 
     String[] paths;
     Toolbar toolbar;
-
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
-
     private NavigationDrawerFragment mNavigationDrawerFragment;
-
     /**
      * Used to store the last screen title. For use in {@link #restoreActionBar()}.
      */
-
     private CharSequence mTitle;
     private String myTitle;
 
@@ -65,7 +68,7 @@ public class MainActivity extends ActionBarActivity
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        mTitle = getResources().getString(R.string.appointments);
+        mTitle = getResources().getString(R.string.scheduled_appointments);
 
         // Set up the drawer.
         mNavigationDrawerFragment.setUp(
@@ -75,6 +78,7 @@ public class MainActivity extends ActionBarActivity
 
     }
 
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
@@ -82,17 +86,17 @@ public class MainActivity extends ActionBarActivity
         switch (position) {
             case 0:
             default:
-                if (DEBUG) Log.d(TAG, "appointment fragment");
-                mTitle = "Appointments";
+                if (DEBUG) Log.d(TAG, "scheduled appointment fragment");
+                mTitle = "Scheduled Appointments";
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, AppointmentsFragment.newInstance())
+                        .replace(R.id.container, ScheduledAppointmentsFragment.newInstance())
                         .commit();
                 break;
             case 1:
-                if (DEBUG) Log.d(TAG, "qwiksearch fragment");
-                mTitle = "QwikSearch";
+                if (DEBUG) Log.d(TAG, "medical records fragment");
+                mTitle = "Patient Medical Records";
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new QwikSearchFragment())
+                        .replace(R.id.container, new MedicalRecordSearchFragment())
                         .commit();
                 break;
             case 2:
@@ -112,7 +116,7 @@ public class MainActivity extends ActionBarActivity
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
-                mTitle = getString(R.string.qwiksearch);
+                mTitle = getString(R.string.patient_medical_records);
                 break;
             case 2:
                 mTitle = getString(R.string.profile);
@@ -137,7 +141,7 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+        if (!mNavigationDrawerFragmentDoctor.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
