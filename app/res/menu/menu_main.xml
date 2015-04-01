@@ -5,9 +5,9 @@
     <!--<item android:id="@+id/action_example" android:title="@string/action_example"
         app:showAsAction="withText|ifRoom" />-->
     <item
-        android:id="@+id/action_signout"
+        android:id="@+id/action_aboutUs"
         android:orderInCategory="100"
-        android:title="Signout"
+        android:title="About Us"
         app:showAsAction="never" />
 
 </menu>

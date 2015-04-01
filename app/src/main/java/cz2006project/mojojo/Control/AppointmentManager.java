@@ -150,6 +150,13 @@ public class AppointmentManager{
     */
 /*public void SendReminders(String Reminder, int AppointmentNo)
     {
+<<<<<<< Updated upstream
+=======
+        if (preferredmethod == 0 ) //where 0 is email as preferred method
+        {
+
+        }
+>>>>>>> Stashed changes
 
     }*//*
 

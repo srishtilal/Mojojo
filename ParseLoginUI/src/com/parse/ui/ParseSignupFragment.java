@@ -52,6 +52,8 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
   private EditText confirmPasswordField;
   private EditText emailField;
   private EditText nameField;
+  private EditText doctor_specialty;
+  private EditText doctor_branch;
   private Button createAccountButton;
   private ParseOnLoginSuccessListener onLoginSuccessListener;
   private RadioGroup userType;
@@ -106,12 +108,31 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
      patient = (RadioButton) v.findViewById(R.id.patient);
      doctor = (RadioButton) v.findViewById(R.id.doctor);
 
+      userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+          @Override
+          public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+              if(checkedId==R.id.patient)
+              {
+                  doctor_specialty.setVisibility(View.INVISIBLE);
+                  doctor_branch.setVisibility(View.INVISIBLE);
+              }
+              else if(checkedId==R.id.doctor)
+              {
+                  doctor_specialty.setVisibility(View.VISIBLE);
+                  doctor_branch.setVisibility(View.VISIBLE);
+              }
+              else{
+                  doctor_specialty.setVisibility(View.INVISIBLE);
+                  doctor_branch.setVisibility(View.INVISIBLE);
+              }
+          }
+      });
 
 
 
-
-
-      createAccountButton = (Button) v.findViewById(R.id.create_account);
+     createAccountButton = (Button) v.findViewById(R.id.create_account);
 
     usernameField.setText(username);
     passwordField.setText(password);
@@ -258,6 +279,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         }
       });
     }
+
   }
 
 

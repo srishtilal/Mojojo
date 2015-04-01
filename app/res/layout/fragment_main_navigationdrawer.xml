@@ -16,13 +16,10 @@
 
         </FrameLayout>
 
-        <main.java.cz2006project.mojojo.ParseCircularImageView
-            android:id="@+id/nav_drawer_profile_pic"
-            android:layout_width="72dp"
-            android:layout_height="72dp"
-            android:layout_gravity="bottom|left"
-            android:layout_margin="10dp"
-            android:src="@drawable/com_facebook_profile_default_icon" />
+
+        <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </FrameLayout>
 
     <ListView

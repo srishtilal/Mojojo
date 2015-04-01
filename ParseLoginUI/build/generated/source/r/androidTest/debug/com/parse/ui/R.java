@@ -186,8 +186,10 @@ public final class R {
 		public static final int com_facebook_usersettingsfragment_login_button = 0x7f0a0025;
 		public static final int com_facebook_usersettingsfragment_logo_image = 0x7f0a0023;
 		public static final int com_facebook_usersettingsfragment_profile_name = 0x7f0a0024;
-		public static final int create_account = 0x7f0a003b;
-		public static final int doctor = 0x7f0a003a;
+		public static final int create_account = 0x7f0a003d;
+		public static final int doctor = 0x7f0a0034;
+		public static final int doctor_branch = 0x7f0a003c;
+		public static final int doctor_specialty = 0x7f0a003b;
 		public static final int facebook_login = 0x7f0a0031;
 		public static final int inline = 0x7f0a0004;
 		public static final int large = 0x7f0a0009;
@@ -203,15 +205,15 @@ public final class R {
 		public static final int parse_login_button = 0x7f0a002b;
 		public static final int parse_login_help = 0x7f0a002d;
 		public static final int parse_signup_button = 0x7f0a002c;
-		public static final int patient = 0x7f0a0039;
+		public static final int patient = 0x7f0a0033;
 		public static final int picker_subtitle = 0x7f0a001b;
 		public static final int right = 0x7f0a0008;
-		public static final int signup_confirm_password_input = 0x7f0a0035;
-		public static final int signup_email_input = 0x7f0a0036;
-		public static final int signup_name_input = 0x7f0a0037;
-		public static final int signup_password_input = 0x7f0a0034;
-		public static final int signup_radio_type = 0x7f0a0038;
-		public static final int signup_username_input = 0x7f0a0033;
+		public static final int signup_confirm_password_input = 0x7f0a0038;
+		public static final int signup_email_input = 0x7f0a0039;
+		public static final int signup_name_input = 0x7f0a003a;
+		public static final int signup_password_input = 0x7f0a0037;
+		public static final int signup_radio_type = 0x7f0a0035;
+		public static final int signup_username_input = 0x7f0a0036;
 		public static final int small = 0x7f0a000b;
 		public static final int standard = 0x7f0a0002;
 		public static final int top = 0x7f0a0005;
@@ -324,12 +326,14 @@ public final class R {
 		public static final int com_parse_ui_password_input_hint = 0x7f080048;
 		public static final int com_parse_ui_progress_dialog_text = 0x7f080049;
 		public static final int com_parse_ui_reenter_password_toast = 0x7f08004a;
-		public static final int com_parse_ui_signup_failed_unknown_toast = 0x7f08004b;
-		public static final int com_parse_ui_twitter_login_button_label = 0x7f08004c;
-		public static final int com_parse_ui_twitter_login_failed_toast = 0x7f08004d;
-		public static final int com_parse_ui_username_input_hint = 0x7f08004e;
-		public static final int com_parse_ui_username_taken_toast = 0x7f08004f;
-		public static final int reset_password = 0x7f080050;
+		public static final int com_parse_ui_signup_branch = 0x7f08004b;
+		public static final int com_parse_ui_signup_failed_unknown_toast = 0x7f08004c;
+		public static final int com_parse_ui_signup_specialty = 0x7f08004d;
+		public static final int com_parse_ui_twitter_login_button_label = 0x7f08004e;
+		public static final int com_parse_ui_twitter_login_failed_toast = 0x7f08004f;
+		public static final int com_parse_ui_username_input_hint = 0x7f080050;
+		public static final int com_parse_ui_username_taken_toast = 0x7f080051;
+		public static final int reset_password = 0x7f080052;
 	}
 	public static final class style {
 		public static final int ParseLoginUI = 0x7f090000;

@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.parse.ParseUser;
-
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.SampleApplication;
 import main.java.cz2006project.mojojo.NavigationDrawerFragment;
@@ -156,14 +154,14 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_signout) {
+     /*   if (id == R.id.action_aboutUs) {
             ParseUser.logOut();
             currentUser = null;
             Intent i = new Intent(this, SampleProfileActivity.class);
             startActivity(i);
             finish();
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
