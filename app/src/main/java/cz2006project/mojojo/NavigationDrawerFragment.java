@@ -149,7 +149,6 @@ public class NavigationDrawerFragment extends Fragment {
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
 
         //mDrawerListView.addFooterView(mDrawerLinearLayout);
-<<<<<<< Updated upstream
 
         mProfilePic = ((ParseCircularImageView) mDrawerLinearLayout.findViewById(R.id.nav_drawer_profile_pic));
         mProfilePic.setPlaceholder(getResources().getDrawable(R.drawable.com_facebook_profile_default_icon));
@@ -159,9 +158,6 @@ public class NavigationDrawerFragment extends Fragment {
 
 return mDrawerLinearLayout;
 
-=======
-        return mDrawerLinearLayout;
->>>>>>> Stashed changes
     }
 
 
