@@ -19,6 +19,8 @@
     <string name="com_parse_ui_parse_login_failed_unknown_toast">Could not log in, please try again later</string>
     <string name="com_parse_ui_facebook_login_failed_toast">Facebook login failed</string>
     <string name="com_parse_ui_twitter_login_failed_toast">Twitter login failed</string>
+    <string name="com_parse_ui_signup_specialty">Specialty</string>
+    <string name="com_parse_ui_signup_branch">Branch</string>
 
     <plurals name="com_parse_ui_password_too_short_toast">
         <item quantity="one">Password must be at least %d character long</item>
