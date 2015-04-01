@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.ParseUser;
+
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.SampleApplication;
 import main.java.cz2006project.mojojo.NavigationDrawerFragment;
