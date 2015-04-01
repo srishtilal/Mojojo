@@ -2,17 +2,24 @@ package main.java.cz2006project.mojojo.Boundary;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.HashMap;
+import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
@@ -52,6 +59,21 @@ public class editAppointment extends Fragment {
         cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
         dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
         mspinner = (Spinner) v.findViewById(R.id.medicalissue);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("GameScore");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> cliniclist, ParseException e) {
+                if (e == null) {
+                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                            getActivity(), R.array.clinics_array, android.R.layout.simple_spinner_item);
+                    cspinner.setAdapter(adapter);
+                    Log.d("score", "Retrieved " + cliniclist.size() + " scores");
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
+                }
+            }
+        });
+
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
