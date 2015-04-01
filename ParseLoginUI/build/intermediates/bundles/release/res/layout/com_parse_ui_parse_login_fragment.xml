@@ -26,4 +26,8 @@
         <include layout="@layout/com_parse_ui_parse_login_third_party_section" />
     </LinearLayout>
 </LinearLayout>
+<<<<<<< Updated upstream
 <!-- From: file:/C:/Users/Dhruv/Documents/Mojojo/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_fragment.xml -->
+=======
+<!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_fragment.xml -->
+>>>>>>> Stashed changes
