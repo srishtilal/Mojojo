@@ -50,7 +50,8 @@ public class MainActivity extends ActionBarActivity
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_exp);
 
@@ -88,7 +89,7 @@ public class MainActivity extends ActionBarActivity
             case 0:
             default:
                 if (DEBUG) Log.d(TAG, "appointment fragment");
-                mTitle = "Appointments";
+                mTitle = "Menu";
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, AppointmentsFragment.newInstance())
                         .commit();
