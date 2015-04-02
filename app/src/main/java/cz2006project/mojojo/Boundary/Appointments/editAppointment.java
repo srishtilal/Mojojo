@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,6 +37,7 @@ import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
+import main.java.cz2006project.mojojo.CustomTimePicker;
 import main.java.cz2006project.mojojo.Entity.Appointment;
 import main.java.cz2006project.mojojo.MaterialEditText;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
@@ -323,6 +325,8 @@ final String clinicName = cspinner.getSelectedItem().toString();
             String date = String.valueOf(dayOfMonth) + "/" + monthOfYear + "/" + year;
             appointments.put(ParseTables.Appointment.DATE, date);
             ((MaterialEditText)v.findViewById(R.id.appointment_date)).setText(date);
+
+
         }
 
         @Override
@@ -332,14 +336,32 @@ final String clinicName = cspinner.getSelectedItem().toString();
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
-            return new DatePickerDialog(getActivity(), this, year, month, day);
+
+            DatePickerDialog date =   new DatePickerDialog(getActivity(), this, year, month, day);
+
+
+            final Calendar cal = Calendar.getInstance();
+            cal.set(year, month + 1, day);
+
+            date.getDatePicker().setMinDate(c.getTimeInMillis());
+            date.getDatePicker().setMaxDate(cal.getTimeInMillis());
+
+
+
+            //If you need you can set min date too
+
+
+            return date;
         }
+
     }
 
     public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+
             String time;
             String min = Integer.toString(minute);
             if(minute < 10){
@@ -358,10 +380,12 @@ final String clinicName = cspinner.getSelectedItem().toString();
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final Calendar c = Calendar.getInstance();
-            int hour = c.get(Calendar.HOUR_OF_DAY);
-            int minute = c.get(Calendar.MINUTE);
+            int hour = 9;
+            int minute = 0;
+            CustomTimePicker cusTimePicker = new CustomTimePicker(getActivity(), this, hour, minute , DateFormat.is24HourFormat(getActivity()));
 
-            return new TimePickerDialog(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
+
+            return cusTimePicker;
         }
 
     }

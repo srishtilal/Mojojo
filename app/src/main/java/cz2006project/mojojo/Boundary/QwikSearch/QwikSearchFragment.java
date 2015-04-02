@@ -52,10 +52,10 @@ public class QwikSearchFragment extends Fragment {
                 switch (position) {
                     case 0:
                         return (new SearchNearMe());
-                    /*case 1:
+                    case 1:
                         return (new SearchByDoctor());
                     case 2:
-                        return (new SearchByClinic());*/
+                        return (new SearchByClinic());
 
                 }
                 return new editAppointment();
