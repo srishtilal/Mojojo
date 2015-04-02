@@ -2,17 +2,24 @@ package main.java.cz2006project.mojojo.Boundary;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
 import java.util.HashMap;
+import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
@@ -53,41 +60,27 @@ public class editAppointment extends Fragment {
         dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
         mspinner = (Spinner) v.findViewById(R.id.medicalissue);
 
-        setTime.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeAppointment.TimePickerFragment timePickerFragment = new changeAppointment.TimePickerFragment();
-                timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
-            }
-        });
-        setDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeAppointment.DatePickerFragment datePicker = new changeAppointment.DatePickerFragment();
-                datePicker.show(getActivity().getSupportFragmentManager(), "Set Date");
-            }
-        });
-        create.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBarCircular.setBackgroundColor(getResources().getColor(R.color.eventsColorPrimary));
-                progressBarCircular.setVisibility(View.VISIBLE);
-                create.setClickable(false);
-                addInput();
-                if (checkIfEmpty()) {
-                    pushDataToParse();
+        mspinner.setClickable(false);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("clinic");
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> scoreList, ParseException e) {
+                if (e == null) {
+                    ArrayAdapter<CharSequence> adapterItem = ArrayAdapter.createFromResource(getActivity(), R.array.clinics_array, android.R.layout.simple_spinner_item);
+                    cspinner.setAdapter(adapterItem);
+                    Log.d("score", "Retrieved " + scoreList.size() + " scores");
+                } else {
+                    Log.d("score", "Error: " + e.getMessage());
                 }
             }
         });
         return v;
-
     }
 
-
     public void addInput() {
-        Spinner dspinner = (Spinner)v.findViewById(R.id.doctorspinner);
-        Spinner cspinner = (Spinner)v.findViewById(R.id.clinicspinner);
-        Spinner mspinner = (Spinner)v.findViewById(R.id.medicalissue);
+        dspinner = (Spinner)v.findViewById(R.id.doctorspinner);
+        cspinner = (Spinner)v.findViewById(R.id.clinicspinner);
+        mspinner = (Spinner)v.findViewById(R.id.medicalissue);
 
 
         appointments.put(ParseTables.Appointment.PATIENT, ParseUser.getCurrentUser().getString("name"));

@@ -7,23 +7,6 @@
     android:gravity="center"
     android:orientation="vertical"    >
 
-<<<<<<< Updated upstream
-=======
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I am a patient"
-        android:id="@+id/patient"
-        android:checked="true" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I am a doctor"
-        android:id="@+id/doctor"
-        android:layout_gravity="center_horizontal"
-        android:checked="false" />
->>>>>>> Stashed changes
 
     <RadioGroup
         android:id="@+id/signup_radio_type"
@@ -124,16 +107,4 @@
         android:text="@string/com_parse_ui_create_account_button_label" />
 
 </LinearLayout>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-</ScrollView><!-- From: file:/C:/Users/Dhruv/Documents/Mojojo/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
-=======
-<<<<<<< Updated upstream
-<!-- From: file:/C:/Users/Dhruv/Documents/Mojojo/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
-=======
-<!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
->>>>>>> Stashed changes
->>>>>>> origin/master
-=======
-<!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
->>>>>>> Stashed changes
+</ScrollView><!-- From: file:/C:/Users/Zi/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
