@@ -114,10 +114,10 @@ public class NavigationDrawerFragment extends Fragment {
         //toolbar = (Toolbar) mDrawerLinearLayout.findViewById(R.id.toolbar);
 
 
-
         mDrawerLinearLayout = (LinearLayout) inflater.inflate(
                 R.layout.fragment_main_navigationdrawer, container, false);
         mDrawerListView = (ListView) mDrawerLinearLayout.findViewById(R.id.main_navdrawer_list);
+
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
