@@ -17,10 +17,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -45,7 +47,8 @@ public class editAppointment extends Fragment {
     static View v;
     private Spinner cspinner, dspinner;
     private CheckBox isFollowUp;
-
+private int AppointmentNumber;
+    private String appNo;
     private static HashMap<String, String> appointments;
     ImageButton setDate;
     ImageButton setTime;
@@ -73,8 +76,6 @@ public class editAppointment extends Fragment {
         cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
         dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
         isFollowUp = (CheckBox) v.findViewById(R.id.checkBox);
-
-
         //mspinner = (Spinner) v.findViewById(R.id.medicalissue);
 
         ParseQueryAdapter.QueryFactory<ParseObject> Clinic =
@@ -85,9 +86,11 @@ public class editAppointment extends Fragment {
 
         ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), Clinic);
         adapter.setTextKey("name");
-        cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
+        adapter.notifyDataSetChanged();
+
         cspinner.setAdapter(adapter);
-        cspinner.setSelection(1);
+        adapter.notifyDataSetChanged();
+
 
 
         cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -97,11 +100,15 @@ public class editAppointment extends Fragment {
                                        int arg2, long arg3) {
                 // TODO Auto-generated method stub
 
+final String clinicName = cspinner.getSelectedItem().toString();
 
                 ParseQueryAdapter.QueryFactory<ParseObject> Doctor =
                         new ParseQueryAdapter.QueryFactory<ParseObject>() {
                             public ParseQuery<ParseObject> create() {
                                 ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Doctor");
+                                query.whereEqualTo("Clinic" ,"Evil Inc");
+
+                                //query.whereEqualTo("name", clinicName).include("doctor").include("Name");
                                 return query;
                             }
                         };
@@ -111,7 +118,7 @@ public class editAppointment extends Fragment {
                 adapter1.setTextKey("Name");
                 dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
                 dspinner.setAdapter(adapter1);
-                dspinner.setSelection(1);
+
             }
 
 
@@ -215,9 +222,23 @@ public class editAppointment extends Fragment {
 
 
 
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
+        query.orderByDescending("AppointmentNumber");
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                //Is relationship exists?
+                AppointmentNumber = parseObject.getInt("appN") + 1;
+                 appNo = String.valueOf(AppointmentNumber);
+
+            }
+        });
+
+
 
         //Spinner mspinner = (Spinner)v.findViewById(R.id.medicalissue);
 
+        appointments.put(ParseTables.Appointment.APPOINTMENTNUMBER, appNo);
 
         appointments.put(ParseTables.Appointment.PATIENT, ParseUser.getCurrentUser().getString("name"));
         appointments.put(ParseTables.Appointment.DOCTOR,  dspinner.getSelectedItem().toString());
@@ -247,6 +268,9 @@ public class editAppointment extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(), "Please select clinic", Toast.LENGTH_LONG).show();
             return false;
         }
+        if (appointments.get(ParseTables.Appointment.APPOINTMENTNUMBER).isEmpty()) {
+            return false;
+        }
 
 
         if(!appointments.containsKey(ParseTables.Appointment.DATE)){
@@ -269,6 +293,9 @@ public class editAppointment extends Fragment {
 
 
             Appointment appointment = new Appointment();
+
+
+        appointment.put(ParseTables.Appointment.APPOINTMENTNUMBER, appointments.get(ParseTables.Appointment.APPOINTMENTNUMBER));
 
         appointment.put(ParseTables.Appointment.DATE, appointments.get(ParseTables.Appointment.DATE));
         appointment.put(ParseTables.Appointment.TIME, appointments.get(ParseTables.Appointment.TIME));

@@ -114,7 +114,7 @@ public class changeAppointment extends Fragment {
 
     public void addInput() {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
+     /*   ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
 
 // Retrieve the object by id
         query.getInBackground("xWMyZ4YEGZ", new GetCallback<ParseObject>() {
@@ -128,14 +128,14 @@ public class changeAppointment extends Fragment {
                 }
             }
         });
-
+*/
 
 
 
         appointments.put(ParseTables.Appointment.PATIENT, ParseUser.getCurrentUser().getString("name"));
         appointments.put(ParseTables.Appointment.DOCTOR,  ParseTables.Appointment.DOCTOR);
         appointments.put(ParseTables.Appointment.CLINIC,  ParseTables.Appointment.CLINIC);
-        appointments.put(ParseTables.Appointment.MEDICALISSUE,  ParseTables.Appointment.MEDICALISSUE);
+        //appointments.put(ParseTables.Appointment.MEDICALISSUE,  ParseTables.Appointment.MEDICALISSUE);
         appointments.put(ParseTables.Appointment.NOTES, ((MaterialEditText) v.findViewById(R.id.notes)).getText() + "");
 
 

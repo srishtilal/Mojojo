@@ -64,5 +64,8 @@
     <string name="reset_password">Reset your password</string>
     <string name="app_name">Reset your password</string>
 
+    <string name="enter_name">Please Enter Name</string>
+    <string name="enter_password">Please Enter password</string>
+    <string name="select_type">Select type of user</string>
 
 </resources>

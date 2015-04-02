@@ -5,6 +5,8 @@ package main.java.cz2006project.mojojo.Boundary;
  */
 
         import android.app.Activity;
+        import android.app.AlertDialog;
+        import android.content.DialogInterface;
         import android.content.Intent;
         import android.os.Bundle;
         import android.support.v4.app.FragmentManager;
@@ -15,12 +17,15 @@ package main.java.cz2006project.mojojo.Boundary;
         import android.util.Log;
         import android.view.Menu;
         import android.view.MenuItem;
+        import android.widget.ListView;
 
-        import com.parse.ParseFacebookUtils;
         import com.parse.ParseUser;
 
 
         import cz2006project.mojojo.R;
+        import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
+        import main.java.cz2006project.mojojo.Boundary.DoctorAppointments.ScheduledAppointmentsFragment;
+        import main.java.cz2006project.mojojo.Boundary.MedicalRecords.MedicalRecordSearchFragment;
         import main.java.cz2006project.mojojo.Control.SampleApplication;
         import main.java.cz2006project.mojojo.NavigationDrawerFragment;
 
@@ -32,6 +37,8 @@ public class DoctorActivity extends ActionBarActivity
     public static final boolean DEBUG = SampleApplication.LOG_DEBUG;
     public static final boolean INFO = SampleApplication.LOG_INFO;
     private ParseUser currentUser;
+    private ListView mDrawerListView;
+
 
 
     String[] paths;
@@ -107,6 +114,26 @@ public class DoctorActivity extends ActionBarActivity
                         .commit();
                 break;
 
+            case 3:
+                if (DEBUG) Log.d(TAG, "logout");
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to exit?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                DoctorActivity.this.finish();
+                                ParseUser.logOut();
+                                currentUser = null;
+                                Intent i = new Intent(DoctorActivity.this, SampleProfileActivity.class);
+                                DoctorActivity.this.startActivity(i);
+
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+                break;
+
+
 
 
         }
@@ -180,5 +207,7 @@ public class DoctorActivity extends ActionBarActivity
         super.onActivityResult(requestCode, resultCode, data);
 
     }
+
+
 
 }

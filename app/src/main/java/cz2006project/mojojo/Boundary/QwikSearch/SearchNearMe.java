@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz2006project.mojojo.R;
-import main.java.cz2006project.mojojo.Boundary.ViewDoctor;
 import main.java.cz2006project.mojojo.Control.ParseTables;
 import main.java.cz2006project.mojojo.ParseCircularImageView;
 import main.java.cz2006project.mojojo.ProgressBarCircular;

@@ -27,12 +27,14 @@ package main.java.cz2006project.mojojo.Control;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
 import com.parse.ParseTwitterUtils;
 
 import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Entity.Appointment;
 
 
-        import android.app.Application;
+import android.app.Application;
         import android.graphics.drawable.ColorDrawable;
         import android.graphics.drawable.Drawable;
         import android.os.Build;
@@ -51,6 +53,7 @@ import cz2006project.mojojo.R;
             @Override
             public void onCreate() {
                 super.onCreate();
+
                 Parse.enableLocalDatastore(this);
                 Parse.initialize(this, getString(R.string.parse_app_id),
                         getString(R.string.parse_client_key));
@@ -58,6 +61,8 @@ import cz2006project.mojojo.R;
                 ParseACL defaultACL = new ParseACL();
                 ParseTwitterUtils.initialize(getString(R.string.twitter_consumer_key),
                         getString(R.string.twitter_consumer_secret));
+
+                ParseObject.registerSubclass(Appointment.class);
             }
 
             public static void setCustomTheme(ActionBarActivity actionBarActivity, int primary, int secondary){

@@ -40,6 +40,8 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import java.util.HashMap;
+
 /**
  * Fragment for the user signup screen.
  */
@@ -68,7 +70,15 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
   private static final String LOG_TAG = "ParseSignupFragment";
   private static final int DEFAULT_MIN_PASSWORD_LENGTH = 6;
   private static final String USER_OBJECT_NAME_FIELD = "name";
-  private static final String USER_OBJECT_TYPE_FIELD = "type";
+    private HashMap<String, String> input;
+
+    private static final String USER_OBJECT_TYPE_FIELD = "type";
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        input = new HashMap();
+    }
 
 
     public static ParseSignupFragment newInstance(Bundle configOptions, String username, String password) {
@@ -171,13 +181,60 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     }
   }
 
-  @Override
+
+    private boolean validateInput() {
+        //validate input stored in input
+        boolean f = true;
+        if (input.get(ParseTables.Users.USERNAME).isEmpty()) {
+            Toast.makeText(getActivity(), getActivity().getString(R.string.enter_name), Toast.LENGTH_LONG).show();
+            f = false;
+        }
+        if (input.get(ParseTables.Users.PASSWORD).isEmpty()) {
+            Toast.makeText(getActivity(), getActivity().getString(R.string.enter_password), Toast.LENGTH_LONG).show();
+            f = false;
+        }
+
+        if (f && input.get(ParseTables.Users.TYPE).isEmpty()) {
+            Toast.makeText(getActivity(), getActivity().getString(R.string.select_type), Toast.LENGTH_LONG).show();
+            f = false;
+        }
+        /*
+
+        if (f && input.get(ParseTables.Users.EMAIL).isEmpty()) {
+            Toast.makeText(getActivity(), getActivity().getString(R.string.enter_email),
+                    Toast.LENGTH_LONG).show();
+            f = false;
+        }
+
+        if (f && input.get(ParseTables.Users.QUALIFICATIONS).isEmpty()) {
+            Toast.makeText(getActivity(), getString(R.string.enter_qualifications),
+                    Toast.LENGTH_LONG).show();
+            f = false;
+        }
+
+        if (f && !isEmailValid(input.get(ParseTables.Users.EMAIL))) {
+            Toast.makeText(getActivity(), "Please enter a valid email id",
+                    Toast.LENGTH_LONG).show();
+            f = false;
+        }*/
+
+        return f;
+    }
+
+    @Override
   public void onClick(View v) {
     String username = usernameField.getText().toString();
     String password = passwordField.getText().toString();
     String passwordAgain = confirmPasswordField.getText().toString();
 
-    String email = null;
+      //Add the others
+      input.put(ParseTables.Users.NAME, username);
+      input.put(ParseTables.Users.PASSWORD, password);
+
+
+
+
+      String email = null;
     if (config.isParseLoginEmailAsUsername()) {
       email = usernameField.getText().toString();
     } else if (emailField != null) {
@@ -190,6 +247,12 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     }
         String type = null;
       int selectedId = userType.getCheckedRadioButtonId();
+
+        if(selectedId== R.id.patient) {
+            doctor_specialty.setVisibility(View.INVISIBLE);
+            doctor_branch.setVisibility(View.INVISIBLE);
+            actv(true);
+        }
       if(selectedId == patient.getId()) {
           type = "Patient";
       }
@@ -230,6 +293,12 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
       user.setUsername(username);
       user.setPassword(password);
       user.setEmail(email);
+
+        user.setUsername(input.get(ParseTables.Users.USERNAME));
+        user.setPassword(input.get(ParseTables.Users.PASSWORD));
+
+        user.put(ParseTables.Users.NAME, input.get(ParseTables.Users.NAME));
+        user.put(ParseTables.Users.TYPE, input.get(ParseTables.Users.TYPE));
 
       // Set additional custom fields only if the user filled it out
       if (name.length() != 0) {

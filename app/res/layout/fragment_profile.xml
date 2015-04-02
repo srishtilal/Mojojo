@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="main.java.cz2006project.mojojo.Boundary.ProfileFragment">
+    tools:context="main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

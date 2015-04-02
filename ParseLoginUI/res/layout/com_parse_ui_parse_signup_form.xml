@@ -98,8 +98,6 @@
          />
 
 
-
-
     <Button
         android:id="@+id/create_account"
         style="@style/ParseLoginUI.Button"

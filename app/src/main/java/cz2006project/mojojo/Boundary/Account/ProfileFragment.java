@@ -2,38 +2,36 @@ package main.java.cz2006project.mojojo.Boundary.Account;
 
 /**
  * Created by srishti on 30/3/15.
-*/
+ */
 
-        import android.app.AlertDialog;
-        import android.content.Context;
-        import android.os.Bundle;
-        import android.os.StrictMode;
-        import android.support.v4.app.Fragment;
-        import android.support.v7.app.ActionBarActivity;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.view.animation.Animation;
-        import android.view.animation.AnimationUtils;
-        import android.widget.EditText;
-        import android.widget.ImageButton;
-        import android.widget.LinearLayout;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.parse.LogInCallback;
-        import com.parse.ParseException;
-        import com.parse.ParseFile;
-        import com.parse.ParseImageView;
-        import com.parse.ParseUser;
-        import com.parse.SaveCallback;
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
-        import java.util.HashMap;
+import java.util.HashMap;
 
-        import cz2006project.mojojo.R;
-        import main.java.cz2006project.mojojo.Control.ParseTables;
-        import main.java.cz2006project.mojojo.Control.SampleApplication;
-        import main.java.cz2006project.mojojo.MaterialEditText;
+import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Control.ParseTables;
+import main.java.cz2006project.mojojo.Control.SampleApplication;
+import main.java.cz2006project.mojojo.MaterialEditText;
 
 
 public class ProfileFragment extends Fragment {
@@ -43,14 +41,13 @@ public class ProfileFragment extends Fragment {
     private static final String USER_QUALIFICATIONS = "QUALIFICATIONS";
     private static final String USER_AUTH = "authData";
     private static final String FB_APP_ID = "90313744064438";
-    private EditText ePassword, eQualificaton, eInstitute, eNewPassword, eConfirmPassword;//eInterests
+    private EditText ePassword, eNewPassword, eConfirmPassword, eSpecialty, eEmail;//eInterests
     private TextView tEmail, tFullName;
-    private ImageButton editPassword, editQualification, editInstitute, canEditInstitute, canEditQualifiacaton, canEditPassword; //editInterest
+    private ImageButton editPassword, editEmail, canEditEmail, canEditPassword; //editInterest
     private View.OnClickListener oclEdit, oclSubmit, oclCancelEdit, oclPasswordEdit, oclPasswordSubmit, oclCancelPasswordEdit;
     private View rootView;
     private LinearLayout passwordContainer;
     private View newpassFormContainer;
-    private ParseImageView imageProfile;
     private Bundle fbParams;
     private HashMap<String, String> userInfo;
 

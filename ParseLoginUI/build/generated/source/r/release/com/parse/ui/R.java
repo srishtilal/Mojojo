@@ -294,7 +294,7 @@ containing a value of this type.
         public static int com_facebook_list_section_header_background=0x7f020015;
         public static int com_facebook_loginbutton_silver=0x7f020016;
         public static int com_facebook_logo=0x7f020017;
-        public static int com_facebook_picker_default_separator_color=0x7f020036;
+        public static int com_facebook_picker_default_separator_color=0x7f020037;
         public static int com_facebook_picker_item_background=0x7f020018;
         public static int com_facebook_picker_list_focused=0x7f020019;
         public static int com_facebook_picker_list_longpressed=0x7f02001a;
@@ -325,6 +325,7 @@ containing a value of this type.
         public static int com_parse_ui_parse_login_button_background_selector=0x7f020033;
         public static int com_parse_ui_twitter_login_button_background_selector=0x7f020034;
         public static int com_parse_ui_twitter_login_logo=0x7f020035;
+        public static int date=0x7f020036;
     }
     public static final class id {
         public static int app_logo=0x7f0a0026;
@@ -504,7 +505,10 @@ containing a value of this type.
         public static int com_parse_ui_twitter_login_failed_toast=0x7f08004f;
         public static int com_parse_ui_username_input_hint=0x7f080050;
         public static int com_parse_ui_username_taken_toast=0x7f080051;
-        public static int reset_password=0x7f080052;
+        public static int enter_name=0x7f080052;
+        public static int enter_password=0x7f080053;
+        public static int reset_password=0x7f080054;
+        public static int select_type=0x7f080055;
     }
     public static final class style {
         public static int ParseLoginUI=0x7f090000;

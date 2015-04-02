@@ -1,6 +1,8 @@
 package main.java.cz2006project.mojojo.Boundary;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +17,9 @@ import android.view.MenuItem;
 import com.parse.ParseUser;
 
 import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
+import main.java.cz2006project.mojojo.Boundary.Appointments.AppointmentsFragment;
+import main.java.cz2006project.mojojo.Boundary.QwikSearch.QwikSearchFragment;
 import main.java.cz2006project.mojojo.Control.SampleApplication;
 import main.java.cz2006project.mojojo.NavigationDrawerFragment;
 
@@ -101,6 +106,24 @@ public class MainActivity extends ActionBarActivity
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new ProfileFragment())
                         .commit();
+                break;
+            case 3:
+                if (DEBUG) Log.d(TAG, "logout");
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to exit?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                MainActivity.this.finish();
+                                ParseUser.logOut();
+                                currentUser = null;
+                                Intent i = new Intent(MainActivity.this, SampleProfileActivity.class);
+                                MainActivity.this.startActivity(i);
+
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
                 break;
 
 

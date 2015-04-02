@@ -32,6 +32,7 @@ import com.parse.ParseImageView;
 import com.parse.ParseUser;
 
 import java.lang.reflect.Array;
+import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
@@ -69,7 +70,8 @@ public class NavigationDrawerFragment extends Fragment {
     private LinearLayout mDrawerLinearLayout;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
-    private ParseImageView mProfilePic;
+
+
     private ParseImageView mCoverPic;
 
     private int mCurrentSelectedPosition = 0;
@@ -122,27 +124,30 @@ public class NavigationDrawerFragment extends Fragment {
                 selectItem(position);
             }
         });
-/*
-        mDrawerListView.setAdapter(new ArrayAdapter<String>(
-                getActivity().getApplicationContext(),
-                R.layout.drawer_simple_list_item,
-                R.id.texttext,
-                new String[]{
-                        "Feeds",
-                        "Notes",
-                        "People",
-                        "Listings",
-                        "Events",
-                        "Account"
-                }));
-*/
 
+       ParseUser currentUser =  ParseUser.getCurrentUser();
+        //if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
             mDrawerListView.setAdapter(new NavigationDrawerAdapter(new String[]{
                     "Appointments",
-                    "Find a Doctor",
+                    "Search",
                     "My Profile",
+                    "Log Out"
 
             }));
+       // }
+
+          /*  else {
+
+                mDrawerListView.setAdapter(new NavigationDrawerAdapter(new String[]{
+                        "Scheduled Appointments",
+                        "Medical Records",
+                        "My Profile",
+
+                }));
+
+
+
+            }*/
 
 
 
@@ -339,10 +344,6 @@ return mDrawerLinearLayout;
         }
 
 
-        public void changeDrawerOptions(ParseUser user)
-        {
-
-        }
 
         @Override
         public int getCount() {

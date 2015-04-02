@@ -10,7 +10,7 @@ public class ParseTables {
          * Created by championswimmer on 26/1/15.
          */
         public static class Users {
-            public static final String NAME = "name";
+            public static final String NAME = "Name";
             public static final String USERNAME = "email";
             public static final String PASSWORD = "password";
             public static final String TYPE = "type";
@@ -26,7 +26,7 @@ public class ParseTables {
 
     }
     public static class Appointment {
-        public static final String APPOINTMENTNUMBER = "name";
+        public static final String APPOINTMENTNUMBER = "apptNo";
         public static final String CLINIC = "clinic";
         public static final String DATE = "date";
         public static final String DOCTOR = "doctor";
