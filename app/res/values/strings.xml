@@ -40,16 +40,6 @@
     <string name="patient_medical_records">Search</string>
 
 
-    <string-array name="clinics_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-    </string-array>
 
 
     <string name="user_name">Name</string>
@@ -69,8 +59,8 @@
     <string name="user_password">Password</string>
 
 
-
-
+    <!-- Content Description -->
+    <string name="desc_list_item_icon">Item Icon</string>
 
 
     <string name="appointment_created">Your appointment has been booked!</string>
