@@ -1,4 +1,4 @@
-package main.java.cz2006project.mojojo.Boundary;
+package main.java.cz2006project.mojojo.Boundary.QwikSearch;
 
 /**
  * Created by srishti on 30/3/15.
@@ -15,6 +15,7 @@ package main.java.cz2006project.mojojo.Boundary;
         import android.view.ViewGroup;
 
         import cz2006project.mojojo.R;
+        import main.java.cz2006project.mojojo.Boundary.Appointments.editAppointment;
         import main.java.cz2006project.mojojo.Control.SampleApplication;
 
 

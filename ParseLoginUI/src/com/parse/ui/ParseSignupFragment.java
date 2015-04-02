@@ -43,7 +43,7 @@ import com.parse.SignUpCallback;
 /**
  * Fragment for the user signup screen.
  */
-public class ParseSignupFragment extends ParseLoginFragmentBase implements OnClickListener {
+public class ParseSignupFragment extends ParseLoginFragmentBase implements OnClickListener, RadioGroup.OnCheckedChangeListener {
   public static final String USERNAME = "com.parse.ui.ParseSignupFragment.USERNAME";
   public static final String PASSWORD = "com.parse.ui.ParseSignupFragment.PASSWORD";
 
@@ -57,6 +57,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
   private Button createAccountButton;
   private ParseOnLoginSuccessListener onLoginSuccessListener;
   private RadioGroup userType;
+
   private RadioButton doctor, patient;
 
 
@@ -82,8 +83,24 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                            Bundle savedInstanceState) {
+      View v = inflater.inflate(R.layout.com_parse_ui_parse_signup_fragment,
+              parent, false);
+      userType = (RadioGroup) v.findViewById(R.id.signup_radio_type);
+      userType.setOnCheckedChangeListener(this);
+      doctor_specialty = (EditText) v.findViewById(R.id.doctor_specialty);
+      doctor_branch = (EditText) v.findViewById(R.id.doctor_branch);
+      actv(false);
 
-    Bundle args = getArguments();
+      doctor_specialty.setEnabled(false);
+      doctor_specialty.setInputType(InputType.TYPE_NULL);
+      doctor_specialty.setFocusable(false);
+
+      doctor_branch.setEnabled(false);
+      doctor_branch.setInputType(InputType.TYPE_NULL);
+      doctor_branch.setFocusable(false);
+
+
+      Bundle args = getArguments();
     config = ParseLoginConfig.fromBundle(args, getActivity());
 
     minPasswordLength = DEFAULT_MIN_PASSWORD_LENGTH;
@@ -94,8 +111,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     String username = (String) args.getString(USERNAME);
     String password = (String) args.getString(PASSWORD);
 
-    View v = inflater.inflate(R.layout.com_parse_ui_parse_signup_fragment,
-        parent, false);
+
 
     ImageView appLogo = (ImageView) v.findViewById(R.id.app_logo);
     usernameField = (EditText) v.findViewById(R.id.signup_username_input);
@@ -108,31 +124,11 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
      patient = (RadioButton) v.findViewById(R.id.patient);
      doctor = (RadioButton) v.findViewById(R.id.doctor);
 
-      userType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-
-          @Override
-          public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-              if(checkedId==R.id.patient)
-              {
-                  doctor_specialty.setVisibility(View.INVISIBLE);
-                  doctor_branch.setVisibility(View.INVISIBLE);
-              }
-              else if(checkedId==R.id.doctor)
-              {
-                  doctor_specialty.setVisibility(View.VISIBLE);
-                  doctor_branch.setVisibility(View.VISIBLE);
-              }
-              else{
-                  doctor_specialty.setVisibility(View.INVISIBLE);
-                  doctor_branch.setVisibility(View.INVISIBLE);
-              }
-          }
-      });
 
 
 
-     createAccountButton = (Button) v.findViewById(R.id.create_account);
+
+      createAccountButton = (Button) v.findViewById(R.id.create_account);
 
     usernameField.setText(username);
     passwordField.setText(password);
@@ -297,4 +293,32 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
   private void signupSuccess() {
     onLoginSuccessListener.onLoginSuccess();
   }
-}
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+            if(checkedId== R.id.patient) {
+                doctor_specialty.setVisibility(View.INVISIBLE);
+                doctor_branch.setVisibility(View.INVISIBLE);
+                actv(true);
+            }
+
+            else if(checkedId== R.id.doctor) {
+                doctor_specialty.setVisibility(View.VISIBLE);
+                doctor_branch.setVisibility(View.VISIBLE);
+                actv(false);
+            }
+        }
+
+    private void actv(final boolean active)
+    {
+        doctor_specialty.setEnabled(active);
+        doctor_branch.setEnabled(active);
+        if (active)
+        {
+            doctor_specialty.requestFocus();
+            doctor_branch.requestFocus();
+        }
+    }
+    }
+

@@ -1,4 +1,4 @@
-package main.java.cz2006project.mojojo.Boundary;
+package main.java.cz2006project.mojojo.Boundary.Appointments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -99,8 +99,7 @@ public class changeAppointment extends Fragment {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBarCircular.setBackgroundColor(getResources().getColor(R.color.eventsColorPrimary));
-                progressBarCircular.setVisibility(View.VISIBLE);
+
                 create.setClickable(false);
                 addInput();
                 if (checkIfEmpty()) {
@@ -114,6 +113,21 @@ public class changeAppointment extends Fragment {
 
 
     public void addInput() {
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
+
+// Retrieve the object by id
+        query.getInBackground("xWMyZ4YEGZ", new GetCallback<ParseObject>() {
+            public void done(ParseObject gameScore, ParseException e) {
+                if (e == null) {
+                    // Now let's update it with some new data. In this case, only cheatMode and score
+                    // will get sent to the Parse Cloud. playerName hasn't changed.
+                    gameScore.put("score", 1338);
+                    gameScore.put("cheatMode", true);
+                    gameScore.saveInBackground();
+                }
+            }
+        });
 
 
 

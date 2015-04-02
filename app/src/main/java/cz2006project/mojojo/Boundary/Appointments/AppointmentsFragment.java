@@ -1,17 +1,11 @@
-package main.java.cz2006project.mojojo.Boundary;
+package main.java.cz2006project.mojojo.Boundary.Appointments;
 
 /**
  * Created by srishti on 30/3/15.
  */
 
 
-        import android.content.Intent;
-        import android.database.Cursor;
-        import android.graphics.Bitmap;
-        import android.graphics.BitmapFactory;
-        import android.net.Uri;
         import android.os.Bundle;
-        import android.provider.MediaStore;
         import android.support.v4.app.Fragment;
         import android.support.v4.app.FragmentPagerAdapter;
         import android.support.v4.view.ViewPager;
@@ -19,8 +13,6 @@ package main.java.cz2006project.mojojo.Boundary;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
-
-        import java.io.ByteArrayOutputStream;
 
         import cz2006project.mojojo.R;
         import main.java.cz2006project.mojojo.Control.SampleApplication;

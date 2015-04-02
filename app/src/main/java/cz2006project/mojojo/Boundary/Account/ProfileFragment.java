@@ -1,4 +1,4 @@
-package main.java.cz2006project.mojojo.Boundary;
+package main.java.cz2006project.mojojo.Boundary.Account;
 
 /**
  * Created by srishti on 30/3/15.

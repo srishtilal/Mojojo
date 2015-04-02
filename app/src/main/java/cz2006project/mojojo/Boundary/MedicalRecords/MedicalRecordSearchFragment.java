@@ -1,4 +1,4 @@
-package main.java.cz2006project.mojojo.Boundary;
+package main.java.cz2006project.mojojo.Boundary.MedicalRecords;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

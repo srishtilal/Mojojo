@@ -1,4 +1,4 @@
-package main.java.cz2006project.mojojo.Boundary;
+package main.java.cz2006project.mojojo.Boundary.QwikSearch;
 
 
 import android.graphics.BitmapFactory;

@@ -1,28 +1,40 @@
-package main.java.cz2006project.mojojo.Boundary;
+package main.java.cz2006project.mojojo.Boundary.Appointments;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
+import main.java.cz2006project.mojojo.Entity.Appointment;
 import main.java.cz2006project.mojojo.MaterialEditText;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
 
@@ -31,7 +43,9 @@ public class editAppointment extends Fragment {
 
     Button create;
     static View v;
-    private Spinner cspinner, dspinner, mspinner;
+    private Spinner cspinner, dspinner;
+    private CheckBox isFollowUp;
+
     private static HashMap<String, String> appointments;
     ImageButton setDate;
     ImageButton setTime;
@@ -58,42 +72,129 @@ public class editAppointment extends Fragment {
         setTime = (ImageButton) v.findViewById(R.id.time_picker);
         cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
         dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
-        mspinner = (Spinner) v.findViewById(R.id.medicalissue);
+        isFollowUp = (CheckBox) v.findViewById(R.id.checkBox);
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("GameScore");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> cliniclist, ParseException e) {
-                if (e == null) {
-                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                            getActivity(), R.array.clinics_array, android.R.layout.simple_spinner_item);
-                    cspinner.setAdapter(adapter);
-                    Log.d("score", "Retrieved " + cliniclist.size() + " scores");
-                } else {
-                    Log.d("score", "Error: " + e.getMessage());
-                }
+
+        //mspinner = (Spinner) v.findViewById(R.id.medicalissue);
+
+        ParseQueryAdapter.QueryFactory<ParseObject> Clinic =
+                new ParseQueryAdapter.QueryFactory<ParseObject>() {
+                    public ParseQuery<ParseObject> create() {
+                        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Clinic");
+                        return query;}};
+
+        ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), Clinic);
+        adapter.setTextKey("name");
+        cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
+        cspinner.setAdapter(adapter);
+        cspinner.setSelection(1);
+
+
+        cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                       int arg2, long arg3) {
+                // TODO Auto-generated method stub
+
+
+                ParseQueryAdapter.QueryFactory<ParseObject> Doctor =
+                        new ParseQueryAdapter.QueryFactory<ParseObject>() {
+                            public ParseQuery<ParseObject> create() {
+                                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Doctor");
+                                return query;
+                            }
+                        };
+
+
+                ParseQueryAdapter<ParseObject> adapter1 = new ParseQueryAdapter<ParseObject>(getActivity(), Doctor);
+                adapter1.setTextKey("Name");
+                dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
+                dspinner.setAdapter(adapter1);
+                dspinner.setSelection(1);
+            }
+
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                dspinner.setAdapter(null);
             }
         });
+
+
+
+
+
+/*
+
+
+        ParseQueryAdapter.QueryFactory<ParseObject> Doctor =
+                new ParseQueryAdapter.QueryFactory<ParseObject>() {
+                    public ParseQuery<ParseObject> create() {
+                        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Doctor");
+                        query.whereEqualTo("clinic", cspinner.getSelectedItem().toString());
+
+                        return query;}};
+
+
+        ParseQueryAdapter<ParseObject> adapter1 = new ParseQueryAdapter<ParseObject>(getActivity(), Doctor);
+        adapter1.setTextKey("Name");
+        dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
+        dspinner.setAdapter(adapter1);
+        dspinner.setSelection(1);
+*/
+
+/*
+        ParseQueryAdapter.QueryFactory<ParseObject> Doctor =
+                new ParseQueryAdapter.QueryFactory<ParseObject>() {
+                    public ParseQuery<ParseObject> create() {
+                        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Doctor");
+                        query.whereEqualTo("Name", v.findViewById(R.id.doctorspinner));
+
+
+                        return query;}};
+
+        ParseQueryAdapter<ParseObject> adapter2 = new ParseQueryAdapter<ParseObject>(getActivity(), factory);
+        adapter.setTextKey("specialty");
+        mspinner = (Spinner) v.findViewById(R.id.medicalissue);
+        mspinner.setAdapter(adapter);
+        mspinner.setSelection(1);
+*/
+
+
+
+//        ParseQuery<ParseObject> query = ParseQuery.getQuery("GameScore");
+//        query.findInBackground(new FindCallback<ParseObject>() {
+//            public void done(List<ParseObject> cliniclist, ParseException e) {
+//                if (e == null) {
+//                    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+//                            getActivity(), R.array.clinics_array, android.R.layout.simple_spinner_item);
+//                    cspinner.setAdapter(adapter);
+//                    Log.d("score", "Retrieved " + cliniclist.size() + " scores");
+//                } else {
+//                    Log.d("score", "Error: " + e.getMessage());
+//                }
+//            }
+//        });
 
 
         setTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeAppointment.TimePickerFragment timePickerFragment = new changeAppointment.TimePickerFragment();
+                TimePickerFragment timePickerFragment = new TimePickerFragment();
                 timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
             }
         });
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                changeAppointment.DatePickerFragment datePicker = new changeAppointment.DatePickerFragment();
+                DatePickerFragment datePicker = new DatePickerFragment();
                 datePicker.show(getActivity().getSupportFragmentManager(), "Set Date");
             }
         });
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressBarCircular.setBackgroundColor(getResources().getColor(R.color.eventsColorPrimary));
-                progressBarCircular.setVisibility(View.VISIBLE);
+
                 create.setClickable(false);
                 addInput();
                 if (checkIfEmpty()) {
@@ -109,13 +210,28 @@ public class editAppointment extends Fragment {
     public void addInput() {
         Spinner dspinner = (Spinner)v.findViewById(R.id.doctorspinner);
         Spinner cspinner = (Spinner)v.findViewById(R.id.clinicspinner);
-        Spinner mspinner = (Spinner)v.findViewById(R.id.medicalissue);
+        CheckBox isFollowUp  = (CheckBox)v.findViewById(R.id.checkBox);
+        //ParseObject doctor = dspinner.getSelectedItem().toString();
+
+
+
+
+        //Spinner mspinner = (Spinner)v.findViewById(R.id.medicalissue);
 
 
         appointments.put(ParseTables.Appointment.PATIENT, ParseUser.getCurrentUser().getString("name"));
         appointments.put(ParseTables.Appointment.DOCTOR,  dspinner.getSelectedItem().toString());
         appointments.put(ParseTables.Appointment.CLINIC,  cspinner.getSelectedItem().toString());
-        appointments.put(ParseTables.Appointment.MEDICALISSUE,  mspinner.getSelectedItem().toString());
+        if(isFollowUp.isChecked()) {
+            String cstatus = "Yes";
+            appointments.put(ParseTables.Appointment.FOLLOWUP, cstatus);
+
+        } else {
+            String cstatus = "No";
+            appointments.put(ParseTables.Appointment.FOLLOWUP, cstatus);
+
+        }
+        //appointments.put(ParseTables.Appointment.MEDICALISSUE,  mspinner.getSelectedItem().toString());
         appointments.put(ParseTables.Appointment.NOTES, ((MaterialEditText) v.findViewById(R.id.notes)).getText() + "");
 
 
@@ -147,35 +263,11 @@ public class editAppointment extends Fragment {
     }
 
     private void pushDataToParse() {
-       /* Spinner dspinner = (Spinner)v.findViewById(R.id.doctorspinner);
-        Spinner cspinner = (Spinner)v.findViewById(R.id.clinicspinner);
-        Spinner mspinner = (Spinner)v.findViewById(R.id.medicalissue);
-
-        ParseQuery<ParseObject> queryDoctor = ParseQuery.getQuery("Doctor");
-        ParseQuery<ParseObject> queryPatient = ParseQuery.getQuery("Patient");
-        ParseQuery<ParseObject> queryClinic = ParseQuery.getQuery("Clinic");
-
-        queryDoctor.whereEqualTo("Name", dspinner);
-        queryPatient.whereEqualTo("Name", cspinner);
-        queryPatient.whereEqualTo("Name", ParseUser.getCurrentUser().getString("name"));
-        queryDoctor.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> doctorList, List<ParseObject> patientList, List<ParseObject> clinicList, ParseException e) {
-                if (e == null) {
-                    Log.d("doctor", "Retrieved " + doctorList.size() + " doctors");
-                    Log.d("patient", "Retrieved " + patientList.size() + " doctors");
-                    Log.d("clinic", "Retrieved " + clinicList.size() + " doctors");
-
-
-                    Appointment appointment = new Appointment(clinicList.get(0), patientList.get(0), doctorList.get(0),notes );
-                    appointments.put(ParseTables.Appointment.NOTES, ((MaterialEditText) v.findViewById(R.id.notes)).getText() + "");
 
 
 
-                }
 
-            }
 
-        });
             Appointment appointment = new Appointment();
 
         appointment.put(ParseTables.Appointment.DATE, appointments.get(ParseTables.Appointment.DATE));
@@ -247,20 +339,6 @@ public class editAppointment extends Fragment {
 
     }
 
-
-    public void addItemsOnSpinner2() {
-/*
-        cspinner = (Spinner) v.findViewById(R.id.clinicspinner);
-        List<String> list = new ArrayList<String>();
-        list.add("list 1");
-        list.add("list 2");
-        list.add("list 3");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(editAppointment.this,android.R.layout.simple_spinner_item, list);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(addItemsOnSpinner2.this,android.R.layout.simple_spinner_item, list);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        cspinner.setAdapter(dataAdapter);
-        */
-    }
 
 }
 
