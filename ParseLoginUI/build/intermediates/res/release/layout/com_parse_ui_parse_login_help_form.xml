@@ -10,8 +10,7 @@
         android:layout_height="wrap_content"
         style="@style/ParseLoginUI.TextView"
         android:gravity="center"
-        android:text="@string/com_parse_ui_login_help_instructions"
-        android:textColor="#ff000000" />
+        android:text="@string/com_parse_ui_login_help_instructions" />
 
     <EditText
         android:id="@+id/login_help_email_input"
@@ -25,8 +24,6 @@
         android:id="@+id/login_help_submit"
         style="@style/ParseLoginUI.Button"
         android:layout_marginTop="@dimen/com_parse_ui_xlarge_vertical_spacing"
-        android:text="@string/com_parse_ui_login_help_submit_button_label"
-        android:textColor="#ffffffff"
-        android:background="#ff2322e0" />
+        android:text="@string/com_parse_ui_login_help_submit_button_label" />
 </LinearLayout>
-<!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_help_form.xml -->
+<!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_help_form.xml -->

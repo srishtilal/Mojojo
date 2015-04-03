@@ -102,8 +102,7 @@
         android:id="@+id/create_account"
         style="@style/ParseLoginUI.Button"
         android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
-        android:text="@string/com_parse_ui_create_account_button_label"
-        android:background="#ff2322e0" />
+        android:text="@string/com_parse_ui_create_account_button_label" />
 
 </LinearLayout>
-</ScrollView><!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
+</ScrollView><!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
