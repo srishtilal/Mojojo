@@ -4,61 +4,37 @@ package main.java.cz2006project.mojojo.Boundary;
  * Created by srishti on 31/3/15.
  */
 
-        import android.app.Activity;
         import android.app.AlertDialog;
         import android.content.DialogInterface;
         import android.content.Intent;
         import android.os.Bundle;
         import android.support.v4.app.FragmentManager;
         import android.support.v4.widget.DrawerLayout;
-        import android.support.v7.app.ActionBar;
         import android.support.v7.app.ActionBarActivity;
         import android.support.v7.widget.Toolbar;
         import android.util.Log;
         import android.view.Menu;
         import android.view.MenuItem;
-        import android.widget.ListView;
 
         import com.parse.ParseUser;
 
 
         import cz2006project.mojojo.R;
         import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
-        import main.java.cz2006project.mojojo.Boundary.DoctorAppointments.ScheduledAppointmentsFragment;
+        import main.java.cz2006project.mojojo.Boundary.Appointments.ScheduledAppointmentsFragment;
         import main.java.cz2006project.mojojo.Boundary.MedicalRecords.MedicalRecordSearchFragment;
         import main.java.cz2006project.mojojo.Control.SampleApplication;
-        import main.java.cz2006project.mojojo.NavigationDrawerFragment;
 
 
 /**
  * Created by srishti on 3/4/15.
  */
-        import android.app.AlertDialog;
-        import android.content.DialogInterface;
-        import android.content.Intent;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.widget.DrawerLayout;
-        import android.support.v7.app.ActionBarActivity;
-        import android.os.Bundle;
         import android.support.v7.app.ActionBarDrawerToggle;
         import android.support.v7.widget.LinearLayoutManager;
         import android.support.v7.widget.RecyclerView;
-        import android.support.v7.widget.Toolbar;
-        import android.util.Log;
         import android.view.GestureDetector;
-        import android.view.Menu;
-        import android.view.MenuItem;
         import android.view.MotionEvent;
         import android.view.View;
-
-        import com.parse.ParseUser;
-
-        import cz2006project.mojojo.R;
-        import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
-        import main.java.cz2006project.mojojo.Boundary.Appointments.AppointmentsFragment;
-        import main.java.cz2006project.mojojo.Boundary.MyAdapter;
-        import main.java.cz2006project.mojojo.Boundary.QwikSearch.QwikSearchFragment;
-        import main.java.cz2006project.mojojo.Control.SampleApplication;
 
 
 public class DoctorActivity extends ActionBarActivity {
@@ -165,7 +141,7 @@ public class DoctorActivity extends ActionBarActivity {
                         if (DEBUG) Log.d(TAG, "appointment fragment");
                         mTitle = "Appointments";
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, ScheduledAppointmentsFragment.newInstance())
+                                .replace(R.id.container, ScheduledAppointmentsFragment.newInstance(true))
                                 .commit();
                         break;
                     case 2:

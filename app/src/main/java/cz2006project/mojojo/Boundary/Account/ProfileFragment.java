@@ -43,7 +43,7 @@ public class ProfileFragment extends Fragment {
     private static final String FB_APP_ID = "90313744064438";
     private EditText ePassword, eNewPassword, eConfirmPassword, eSpecialty, eEmail;//eInterests
     private TextView tEmail, tFullName;
-    private ImageButton editPassword, editEmail, canEditEmail, canEditPassword; //editInterest
+    private ImageButton editPassword, editEmail, canEditEmail, canEditPassword;
     private View.OnClickListener oclEdit, oclSubmit, oclCancelEdit, oclPasswordEdit, oclPasswordSubmit, oclCancelPasswordEdit;
     private View rootView;
     private LinearLayout passwordContainer;

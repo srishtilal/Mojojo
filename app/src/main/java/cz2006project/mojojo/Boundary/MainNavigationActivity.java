@@ -33,7 +33,7 @@ import main.java.cz2006project.mojojo.Control.SampleApplication;
 
 public class MainNavigationActivity extends ActionBarActivity {
 
-    public static final String TAG = "MainActivity";
+    public static final String TAG = "Appointments";
     public static final boolean DEBUG = SampleApplication.LOG_DEBUG;
     //First We Declare Titles And Icons For Our Navigation Drawer List View
     //This Icons And Titles Are holded in an Array as you can see
@@ -84,7 +84,12 @@ public class MainNavigationActivity extends ActionBarActivity {
         // And passing the titles,icons,header view name, header view email,
         // and header view profile picture
 
-        mRecyclerView.setAdapter(mAdapter);                              // Setting the adapter to RecyclerView
+
+        mRecyclerView.setAdapter(mAdapter);
+
+
+
+        // Setting the adapter to RecyclerView
 
         mLayoutManager = new LinearLayoutManager(this);                 // Creating a layout Manager
 
@@ -130,12 +135,11 @@ public class MainNavigationActivity extends ActionBarActivity {
                 switch (position) {
 
                     case 0:case 1:
-                    default:
 
                         if (DEBUG) Log.d(TAG, "appointment fragment");
                         mTitle = "Appointments";
                         fragmentManager.beginTransaction()
-                                .replace(R.id.container, AppointmentsFragment.newInstance())
+                                .replace(R.id.container, new AppointmentsFragment())
                                 .commit();
                         break;
                     case 2:

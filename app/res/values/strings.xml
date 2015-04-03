@@ -32,7 +32,7 @@
     <string name="title_activity_search__doctor">Search_Doctor</string>
     <string name="title_activity_upcomming_appointment">UpcommingAppointment</string>
     <string name="title_activity_edit__profile">Edit_Profil</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">QwikDoc</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="qwiksearch">QwikSearch</string>

@@ -31,6 +31,7 @@ import com.parse.ParseQueryAdapter;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -49,11 +50,18 @@ public class editAppointment extends Fragment {
     static View v;
     private Spinner cspinner, dspinner;
     private CheckBox isFollowUp;
-private String AppointmentNumber;
+    private String AppointmentNumber;
     private String appNo;
+    public ArrayAdapter adapter;
+    public ArrayAdapter adapter1;
+
+
     private static HashMap<String, String> appointments;
     ImageButton setDate;
     ImageButton setTime;
+    List<String> cliniclist = new ArrayList<>();
+    List<String> doctorlist = new ArrayList<>();
+
     ProgressBarCircular progressBarCircular;
 
 
@@ -80,54 +88,102 @@ private String AppointmentNumber;
         isFollowUp = (CheckBox) v.findViewById(R.id.checkBox);
         //mspinner = (Spinner) v.findViewById(R.id.medicalissue);
 
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Clinic");
+        query.whereExists("name");
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+
+                                   @Override
+                                   public void done(List<ParseObject> clinics, ParseException e) {
+                                       // The query returns a list of objects from the "questions" class
+                                       if (e == null) {
+                                           for (ParseObject clinic : clinics) {
+                                               // Get the questionTopic value from the question object
+                                               String clinicname = clinic.getString("name");
+                                               cliniclist.add(clinicname);
+                                               adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, cliniclist);
+                                               cspinner.setAdapter(adapter);
+
+                                               Log.d("clinic", "name: " + clinic.getString("name"));
+                                           }
+
+                                       } else {
+
+                                           Log.d("notretreive", "Error: " + e.getMessage());
+                                       }
+
+
+
+                                       cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                                           @Override
+                                           public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                                                      int arg2, long arg3) {
+                                               // TODO Auto-generated method stub
+
+
+                                               final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
+                                               query.whereExists("Name");
+                                               query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
+
+                                               query.findInBackground(new FindCallback<ParseObject>() {
+
+                                                   @Override
+                                                   public void done(List<ParseObject> doctors, ParseException e) {
+                                                       // The query returns a list of objects from the "questions" class
+                                                       if (e == null) {
+                                                           for (ParseObject doctor : doctors) {
+                                                               // Get the questionTopic value from the question object
+
+                                                               String doctorname = doctor.getString("Name");
+                                                               if (!(doctorlist.contains(doctorname)))
+                                                                   doctorlist.add(doctorname);
+
+
+                                                               Log.d("doctor", "name: " + doctor.getString("Name"));
+                                                               adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
+                                                               dspinner.setAdapter(adapter1);
+                                                           }
+
+                                                       } else {
+                                                           Log.d("notretreive", "Error: " + e.getMessage());
+                                                       }
+
+
+
+
+                                                   }
+                                               });
+                                           }
+
+
+
+
+                                           public void onNothingSelected(AdapterView<?> parent) {
+                                           }
+                                       });
+
+
+                                   }
+                               });
+
+/*
+
         ParseQueryAdapter.QueryFactory<ParseObject> Clinic =
                 new ParseQueryAdapter.QueryFactory<ParseObject>() {
                     public ParseQuery<ParseObject> create() {
                         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Clinic");
                         return query;}};
 
+
         ParseQueryAdapter<ParseObject> adapter = new ParseQueryAdapter<ParseObject>(getActivity(), Clinic);
         adapter.setTextKey("name");
         adapter.notifyDataSetChanged();
 
         cspinner.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
 
 
-
-        cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int arg2, long arg3) {
-                // TODO Auto-generated method stub
-
-final String clinicName = cspinner.getSelectedItem().toString();
-
-                ParseQueryAdapter.QueryFactory<ParseObject> Doctor =
-                        new ParseQueryAdapter.QueryFactory<ParseObject>() {
-                            public ParseQuery<ParseObject> create() {
-                                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Doctor");
-                                query.whereEqualTo("Clinic" ,"Evil Inc");
-
-                                //query.whereEqualTo("name", clinicName).include("doctor").include("Name");
-                                return query;
-                            }
-                        };
-
-
-                ParseQueryAdapter<ParseObject> adapter1 = new ParseQueryAdapter<ParseObject>(getActivity(), Doctor);
-                adapter1.setTextKey("Name");
-                dspinner = (Spinner) v.findViewById(R.id.doctorspinner);
-                dspinner.setAdapter(adapter1);
-
-            }
-
-
-            public void onNothingSelected(AdapterView<?> parent) {
-                dspinner.setAdapter(null);
-            }
-        });
 
 
 
@@ -206,7 +262,9 @@ final String clinicName = cspinner.getSelectedItem().toString();
 
                 create.setClickable(false);
                 addInput();
+                if (checkIfEmpty()) {
                     pushDataToParse();
+                }
 
             }
         });
@@ -223,20 +281,6 @@ final String clinicName = cspinner.getSelectedItem().toString();
 
 
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
-        query.orderByDescending("AppointmentNumber");
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject parseObject, ParseException e) {
-                //Is relationship exists?
-                AppointmentNumber = parseObject.getString("AppointmentNumber");
-                    int newAppointmentNumber = Integer.parseInt(AppointmentNumber);
-                appNo = String.valueOf(newAppointmentNumber);
-                appointments.put(ParseTables.Appointment.APPOINTMENTNUMBER, AppointmentNumber);
-
-
-            }
-        });
 
 
 
@@ -271,11 +315,11 @@ final String clinicName = cspinner.getSelectedItem().toString();
             return false;
         }
 
-        if (appointments.get(ParseTables.Appointment.APPOINTMENTNUMBER).isEmpty()) {
+       /* if (appointments.get(ParseTables.Appointment.APPOINTMENTNUMBER).isEmpty()) {
             Toast.makeText(getActivity().getApplicationContext(), "Appointment Number not generated", Toast.LENGTH_LONG).show();
             return false;
         }
-
+*/
 
 
 
@@ -298,17 +342,39 @@ final String clinicName = cspinner.getSelectedItem().toString();
 
 
 
-            Appointment appointment = new Appointment();
+        Appointment appointment = new Appointment();
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
+        //query.orderByDescending("AppointmentNumber");
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                //Is relationship exists?
+
+                if (parseObject == null) {
+                    Log.d("appNo", "The getFirst request failed.");
+                } else {
+                    Log.d("appNo", "Retrieved the object.");
+                    AppointmentNumber = parseObject.getString("AppointmentNumber");
+                    int newAppointmentNumber = Integer.parseInt(AppointmentNumber);
+                    appNo = String.valueOf(newAppointmentNumber);
+                }
 
 
-        appointment.put(ParseTables.Appointment.APPOINTMENTNUMBER, appointments.get(ParseTables.Appointment.APPOINTMENTNUMBER));
+
+            }
+        });
+
+
+
+        //appointment.put(ParseTables.Appointment.APPOINTMENTNUMBER, appNo);
         appointment.put(ParseTables.Appointment.DATE, appointments.get(ParseTables.Appointment.DATE));
         appointment.put(ParseTables.Appointment.TIME, appointments.get(ParseTables.Appointment.TIME));
         appointment.put(ParseTables.Appointment.CLINIC, appointments.get(ParseTables.Appointment.CLINIC));
         appointment.put(ParseTables.Appointment.DOCTOR, appointments.get(ParseTables.Appointment.DOCTOR));
         appointment.put(ParseTables.Appointment.FOLLOWUP, appointments.get(ParseTables.Appointment.FOLLOWUP));
         appointment.put(ParseTables.Appointment.NOTES, appointments.get(ParseTables.Appointment.NOTES));
-       appointment.put(ParseTables.Appointment.PATIENT, appointments.get(ParseTables.Appointment.PATIENT));
+        appointment.put(ParseTables.Appointment.PATIENT, appointments.get(ParseTables.Appointment.PATIENT));
 
         appointment.saveInBackground(new SaveCallback() {
             @Override

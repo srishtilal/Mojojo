@@ -1,38 +1,39 @@
-package main.java.cz2006project.mojojo.Boundary.DoctorAppointments;
+package main.java.cz2006project.mojojo.Boundary.Appointments;
 
 /**
- * Created by srishti on 31/3/15.
+ * Created by srishti on 30/3/15.
  */
 
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.widget.SwipeRefreshLayout;
-        import android.support.v7.widget.CardView;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.view.LayoutInflater;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
-        import android.widget.ScrollView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.parse.DeleteCallback;
-        import com.parse.FindCallback;
-        import com.parse.ParseException;
-        import com.parse.ParseObject;
-        import com.parse.ParseQuery;
-        import com.parse.ParseUser;
+import com.parse.DeleteCallback;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
-        import java.util.List;
+import java.util.List;
 
-        import cz2006project.mojojo.R;
-        import main.java.cz2006project.mojojo.Control.ParseTables;
+import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Control.ParseTables;
 
 
 /**
@@ -44,7 +45,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
     private boolean refresh = false;
-    //private boolean check_my_appointments=false;
+    private boolean check_my_appointments=true;
     View v;
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
@@ -53,11 +54,11 @@ public class ScheduledAppointmentsFragment extends Fragment {
 
     }
 
-    public static ScheduledAppointmentsFragment newInstance(){
+    public static ScheduledAppointmentsFragment newInstance(Boolean check){
         ScheduledAppointmentsFragment scheduledAppointmentsFragment = new ScheduledAppointmentsFragment();
-        //Bundle b = new Bundle();
-        //b.putBoolean("check", check);
-        //scheduledAppointmentsFragment.setArguments(b);
+        Bundle b = new Bundle();
+        b.putBoolean("check", check);
+        scheduledAppointmentsFragment.setArguments(b);
         return scheduledAppointmentsFragment;
     }
 
@@ -65,9 +66,9 @@ public class ScheduledAppointmentsFragment extends Fragment {
     public void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        /*if(this.getArguments() != null){
+        if(this.getArguments() != null){
             check_my_appointments = getArguments().getBoolean("check");
-        }*/
+        }
     }
 
     @Override
@@ -113,16 +114,19 @@ public class ScheduledAppointmentsFragment extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
-            holder.patient.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
+            holder.doctor.setText((String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
             holder.clinic.setText((String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
-            holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
-            holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
+            holder.appointment_creator.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
+
+            //holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
+            //holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
 
 
+            if(check_my_appointments){
                 holder.appointment_creator.setVisibility(View.GONE);
                 holder.appointment_delete.setVisibility(View.VISIBLE);
-
+            }
 
             if (position == expandedPosition) {
                 holder.expanded_area.setVisibility(View.VISIBLE);
@@ -156,8 +160,8 @@ public class ScheduledAppointmentsFragment extends Fragment {
         public class ViewHolder extends RecyclerView.ViewHolder {
             TextView appointment_number;
             TextView clinic;
-            TextView patient;
-            TextView medicalissue;
+            TextView doctor;
+            //TextView medicalissue;
             RelativeLayout expanded_area;
             TextView notes;
             TextView appointment_date;
@@ -170,14 +174,16 @@ public class ScheduledAppointmentsFragment extends Fragment {
                 super(itemView);
                 this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
-                this.patient = (TextView) itemView.findViewById(R.id.patient);
-                this.medicalissue = (TextView) itemView.findViewById(R.id.medicalissue);
+                this.doctor = (TextView) itemView.findViewById(R.id.doctor);
+                //this.medicalissue = (TextView) itemView.findViewById(R.id.medicalissue);
                 this.expanded_area = (RelativeLayout) itemView.findViewById(R.id.expanded_area);
                 this.appointment_creator = (TextView) itemView.findViewById(R.id.appointment_creator);
 
                 this.notes = (TextView) itemView.findViewById(R.id.notes);
                 this.appointment_date = (TextView) itemView.findViewById(R.id.appointment_date);
-                this.appointment_time = (Button) itemView.findViewById(R.id.appointment_time);
+                this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
+                this.appointment_delete = (Button) itemView.findViewById(R.id.appointment_delete);
+
 
                 appointment_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -203,11 +209,11 @@ public class ScheduledAppointmentsFragment extends Fragment {
 
     public void fetchData(){
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
-                "Appointments");
-        query.orderByAscending(ParseTables.Appointment.DATE);
-
-            query.whereEqualTo(ParseTables.Appointment.DOCTOR, ParseUser.getCurrentUser().getString("NAME"));
-
+                "Appointment");
+        query.orderByAscending("date");
+        if(check_my_appointments){
+            query.whereEqualTo("doctor", ParseUser.getCurrentUser().getString("name"));
+        }
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> parseObjects, ParseException e) {
@@ -223,9 +229,9 @@ public class ScheduledAppointmentsFragment extends Fragment {
             swipeRefreshLayout.setRefreshing(false);
             refresh = false;
         }
-
+        if(check_my_appointments && adapter.getItemCount() == 0){
             appointmentsMainLayout.setVisibility(View.GONE);
-
+        }
     }
 
     @Override
@@ -234,6 +240,14 @@ public class ScheduledAppointmentsFragment extends Fragment {
         inflater.inflate(R.menu.menu_search, menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
 }
