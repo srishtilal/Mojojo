@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<<<<<<< Updated upstream
 <<<<<<< HEAD
 <merger version="3"><dataSet config="main"><source path="/Users/ngshuling/Documents/Mojojo/ParseLoginUI/src/main/assets"/></dataSet><dataSet config="release"><source path="/Users/ngshuling/Documents/Mojojo/ParseLoginUI/src/release/assets"/></dataSet></merger>
 =======
 <merger version="3"><dataSet config="main"><source path="/Users/srishti/Documents/Mojojo/ParseLoginUI/src/main/assets"/></dataSet><dataSet config="release"><source path="/Users/srishti/Documents/Mojojo/ParseLoginUI/src/release/assets"/></dataSet></merger>
 >>>>>>> origin/master
-=======
-<merger version="3"><dataSet config="main"><source path="/Users/ngshuling/Documents/Mojojo/ParseLoginUI/src/main/assets"/></dataSet><dataSet config="release"><source path="/Users/ngshuling/Documents/Mojojo/ParseLoginUI/src/release/assets"/></dataSet></merger>
->>>>>>> Stashed changes

@@ -5,12 +5,8 @@
     <item android:drawable="@color/com_parse_ui_parse_login_button"/>
 
 </selector>
-<<<<<<< Updated upstream
 <<<<<<< HEAD
 <!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/drawable/com_parse_ui_parse_login_button_background_selector.xml -->
 =======
 <!-- From: file:/Users/srishti/Documents/Mojojo/ParseLoginUI/res/drawable/com_parse_ui_parse_login_button_background_selector.xml -->
 >>>>>>> origin/master
-=======
-<!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/drawable/com_parse_ui_parse_login_button_background_selector.xml -->
->>>>>>> Stashed changes

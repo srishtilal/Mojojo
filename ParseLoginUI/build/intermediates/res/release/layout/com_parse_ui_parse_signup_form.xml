@@ -106,12 +106,8 @@
         android:background="#ff2322e0" />
 
 </LinearLayout>
-<<<<<<< Updated upstream
 <<<<<<< HEAD
 </ScrollView><!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
 =======
 </ScrollView><!-- From: file:/Users/srishti/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
 >>>>>>> origin/master
-=======
-</ScrollView><!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_signup_form.xml -->
->>>>>>> Stashed changes
