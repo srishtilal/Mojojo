@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="main.java.cz2006project.mojojo.Boundary.MainActivity"
+            android:name="main.java.cz2006project.mojojo.Boundary.MainNavigationActivity"
             android:label="@string/title_activity_main"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>

@@ -10,7 +10,7 @@
         android:background="?attr/colorPrimary"
         />
 
-    <include android:id="@+id/drawer_layout" layout="@layout/activity_main"/>
+    <include android:id="@+id/drawer_layout" layout="@layout/drawerlayout"/>
 
 
 

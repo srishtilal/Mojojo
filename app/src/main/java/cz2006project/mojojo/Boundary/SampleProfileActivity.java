@@ -20,13 +20,9 @@ package main.java.cz2006project.mojojo.Boundary;
  *
  */
 
-import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -91,7 +87,7 @@ public class SampleProfileActivity extends Activity {
         currentUser = ParseUser.getCurrentUser();
         if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
 
-            Intent patientIntent = new Intent(this, MainActivity.class);
+            Intent patientIntent = new Intent(this, MainNavigationActivity.class);
             startActivity(patientIntent);
 
         }
