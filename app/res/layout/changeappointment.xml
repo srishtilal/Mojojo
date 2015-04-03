@@ -98,7 +98,11 @@
         </LinearLayout>
 
 
+    </LinearLayout>
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
         <Button
             android:id="@+id/submit_button"
@@ -106,16 +110,9 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_gravity="bottom|center"
-            android:background="@drawable/btn_sel"
+            android:background="#ff2322e0"
             android:text="submit"
             android:textColor="@android:color/white" />
-
-    </LinearLayout>
-
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
     </ScrollView>
 
 </LinearLayout>

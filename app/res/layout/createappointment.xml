@@ -48,7 +48,11 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:hint="@string/doctor_name"
-                />
+                    android:longClickable="false"
+                    android:spinnerMode="dialog"
+                    android:textSize="20sp"
+                    android:touchscreenBlocksFocus="false"
+                    android:minHeight="30dp"/>
 
 
 
@@ -162,12 +166,12 @@
 
             <Button
                 android:id="@+id/submit_button"
-                android:layout_width="match_parent"
+                android:layout_width="fill_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_gravity="bottom|center"
-                android:background="@drawable/btn_sel"
-                android:text="submit"
+                android:background="#ff2322e0"
+                android:text="Book Your Appointment Now!"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>

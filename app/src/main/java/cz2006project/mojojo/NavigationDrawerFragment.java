@@ -383,16 +383,17 @@ return mDrawerLinearLayout;
             navigationIcon.setBackgroundResource(R.drawable.ic_launcher);
 
             String s = mCategoryMap[pos];
-            if (s.equals("Feeds")) {
-                navigationIcon.setBackgroundResource(R.drawable.clock);
+            if (s.equals("Appointments")) {
+                navigationIcon.setBackgroundResource(R.drawable.ic_action_appointment);
 
-            } else if (s.equals("Notes")) {
-                navigationIcon.setBackgroundResource(R.drawable.clock);
+            } else if (s.equals("Search")) {
+                navigationIcon.setBackgroundResource(R.drawable.ic_action_search);
 
-            } else if (s.equals("People")) {
-                navigationIcon.setBackgroundResource(R.drawable.clock);
+            } else if (s.equals("My Profile")) {
+                navigationIcon.setBackgroundResource(R.drawable.ic_action_myprofile);
 
-
+            } else if (s.equals("Log Out")) {
+                navigationIcon.setBackgroundResource(R.drawable.ic_action_logout);
             }
             return rowView;
         }
