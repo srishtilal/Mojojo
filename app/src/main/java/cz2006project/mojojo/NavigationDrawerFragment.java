@@ -118,10 +118,10 @@ public class NavigationDrawerFragment extends Fragment {
                 R.layout.fragment_main_navigationdrawer, container, false);
 
 
-        mDrawerProfileName= (ListView) mDrawerLinearLayout.findViewById(R.id.ProfileName);
+     /*   mDrawerProfileName= (ListView) mDrawerLinearLayout.findViewById(R.id.ProfileName);
         mDrawerProfileName.setAdapter(new NavigationDrawerAdapter(new String[]{
                 ParseUser.getCurrentUser().getUsername(),
-        }));
+        }));*/
 
         mDrawerListView = (ListView) mDrawerLinearLayout.findViewById(R.id.main_navdrawer_list);
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -375,8 +375,8 @@ return mDrawerLinearLayout;
                 rowView = convertView;
             }
 
-            TextView ProfileName = (TextView) rowView.findViewById(R.id.ProfileName);
-            ProfileName.setText(mCategoryMap[pos]);
+           /* TextView ProfileName = (TextView) rowView.findViewById(R.id.ProfileName);
+            ProfileName.setText(mCategoryMap[pos]);*/
 
             ImageView navigationIcon = (ImageView) rowView.findViewById(R.id.icon_navigation);
             TextView navigationTitle = (TextView) rowView.findViewById(R.id.title_navigation);
