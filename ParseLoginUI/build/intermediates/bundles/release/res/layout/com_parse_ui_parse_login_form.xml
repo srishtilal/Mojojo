@@ -57,8 +57,12 @@
         android:text="@string/com_parse_ui_forgot_password_button_label"
         android:textColor="#ff2322ff" />
 </LinearLayout>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_form.xml -->
 =======
 <!-- From: file:/Users/srishti/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_form.xml -->
 >>>>>>> origin/master
+=======
+<!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_form.xml -->
+>>>>>>> Stashed changes

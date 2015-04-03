@@ -57,8 +57,12 @@
     
     </LinearLayout>
 </ScrollView>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <!-- From: file:/Users/gokhanc/src/sdkrm/out/android-sdk/facebook/res/layout/com_facebook_usersettingsfragment.xml --><!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/3.21.1/res/layout/com_facebook_usersettingsfragment.xml -->
 =======
 <!-- From: file:/Users/gokhanc/src/sdkrm/out/android-sdk/facebook/res/layout/com_facebook_usersettingsfragment.xml --><!-- From: file:/Users/srishti/Documents/Mojojo/ParseLoginUI/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/3.21.1/res/layout/com_facebook_usersettingsfragment.xml -->
 >>>>>>> origin/master
+=======
+<!-- From: file:/Users/gokhanc/src/sdkrm/out/android-sdk/facebook/res/layout/com_facebook_usersettingsfragment.xml --><!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/3.21.1/res/layout/com_facebook_usersettingsfragment.xml -->
+>>>>>>> Stashed changes
