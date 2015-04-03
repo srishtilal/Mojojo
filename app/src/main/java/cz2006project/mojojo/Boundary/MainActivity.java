@@ -14,7 +14,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParsePush;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
@@ -23,7 +27,7 @@ import main.java.cz2006project.mojojo.Boundary.Appointments.AppointmentsFragment
 import main.java.cz2006project.mojojo.Control.SampleApplication;
 import main.java.cz2006project.mojojo.NavigationDrawerFragment;
 
-/*public class MainActivity extends ActionBarActivity
+public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     public static final String TAG = "MainActivity";
@@ -36,11 +40,10 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
     Toolbar toolbar;
 
     /**
-     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-
+     * Fragment managing the behaviors, interactions and presentation of the navigation drawer.*/
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    Used to store the last screen title. For use in {@link #restoreActionBar()}.
+    /*Used to store the last screen title. For use in {@link #restoreActionBar()}.*/
 
     private CharSequence mTitle;
     private String myTitle;
@@ -50,9 +53,11 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_exp);
+        Parse.initialize(this, "f72yZAJVZUKvkYXGwQgyEEuy3bkelHxNSNpPF9ea", "1IVRftNR32YkDgIppMx84vApSCYk2iEog325aHfz");
 
         myTitle = getString(R.string.app_name);
-        if (toolbar == null) {
+        if (toolbar == null)
+        {
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             if (toolbar != null) {
                 setSupportActionBar(toolbar);
@@ -74,6 +79,19 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
 
+        ParsePush.subscribeInBackground("", new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e == null) {
+                    Log.d("com.parse.push", "successfully subscribed to the broadcast channel.");
+                } else {
+                    Log.e("com.parse.push", "failed to subscribe for push", e);
+                }
+            }
+        });
+
+
+
 
     }
 
@@ -91,12 +109,12 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
                         .commit();
                 break;
             case 1:
-                if (DEBUG) Log.d(TAG, "qwiksearch fragment");
+                /*if (DEBUG) Log.d(TAG, "qwiksearch fragment");
                 mTitle = "QwikSearch";
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, new QwikSearchFragment())
                         .commit();
-                break;
+                break;*/
             case 2:
                 if (DEBUG) Log.d(TAG, "myprofile fragment");
                 mTitle = "Profile";
@@ -106,7 +124,7 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
                 break;
             case 3:
                 if (DEBUG) Log.d(TAG, "logout");
-                new AlertDialog.Builder(this)
+                /*new AlertDialog.Builder(this)
                         .setMessage("Are you sure you want to exit?")
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -121,7 +139,7 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
                         })
                         .setNegativeButton("No", null)
                         .show();
-                break;
+                break;*/
 
 
 
@@ -176,14 +194,14 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_aboutUs) {
+        /*if (id == R.id.action_aboutUs) {
             ParseUser.logOut();
             currentUser = null;
             Intent i = new Intent(this, SampleProfileActivity.class);
             startActivity(i);
             finish();
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -198,4 +216,3 @@ import main.java.cz2006project.mojojo.NavigationDrawerFragment;
     }
 
 }
-*/
