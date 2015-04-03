@@ -25,6 +25,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.parse.ParseFacebookUtils;
@@ -116,6 +117,8 @@ public class NavigationDrawerFragment extends Fragment {
 
         mDrawerLinearLayout = (LinearLayout) inflater.inflate(
                 R.layout.fragment_main_navigationdrawer, container, false);
+
+
         mDrawerListView = (ListView) mDrawerLinearLayout.findViewById(R.id.main_navdrawer_list);
 
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,9 +128,11 @@ public class NavigationDrawerFragment extends Fragment {
             }
         });
 
+
        ParseUser currentUser =  ParseUser.getCurrentUser();
         //if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
             mDrawerListView.setAdapter(new NavigationDrawerAdapter(new String[]{
+                    ParseUser.getCurrentUser().getUsername(),
                     "Appointments",
                     "Search",
                     "My Profile",
@@ -152,12 +157,6 @@ public class NavigationDrawerFragment extends Fragment {
 
 
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
-
-
-
-
-
-
 return mDrawerLinearLayout;
 
     }
@@ -334,11 +333,14 @@ return mDrawerLinearLayout;
 
     }
 
+
+
     private class NavigationDrawerAdapter extends BaseAdapter {
 
         String[] mCategoryMap;
 
-        public NavigationDrawerAdapter(String[] mCategoryMap) {
+        public NavigationDrawerAdapter(String[] mCategoryMap)
+        {
 
             this.mCategoryMap = mCategoryMap;
         }
@@ -377,6 +379,9 @@ return mDrawerLinearLayout;
 
             ImageView navigationIcon = (ImageView) rowView.findViewById(R.id.icon_navigation);
             TextView navigationTitle = (TextView) rowView.findViewById(R.id.title_navigation);
+            TextView profilename = (TextView) rowView.findViewById(R.id.ProfileName);
+
+            profilename.setText(ParseUser.getCurrentUser().getUsername());
 
             navigationTitle.setText(mCategoryMap[pos]);
             //navigationTitle.setTextColor(Color.WHITE);
@@ -397,6 +402,9 @@ return mDrawerLinearLayout;
             }
             return rowView;
         }
+
+
     }
+
 
 }

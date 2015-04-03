@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="horizontal"
         android:layout_marginTop="8dp">
+
     <ImageView
         android:id="@+id/icon_navigation"
         android:layout_width="32dp"
@@ -35,5 +36,17 @@
         android:textSize="18sp"
         app:typeface="fonts/Gotham-Bold.ttf"
         android:paddingLeft="10dp"/>
+
+    <main.java.cz2006project.mojojo.TypeFaceTextView
+        android:id="@+id/ProfileName"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/icon_navigation"
+        android:layout_centerVertical="true"
+        android:paddingRight="30dp"
+        android:textSize="18sp"
+        android:paddingLeft="10dp"
+        android:orientation="vertical"/>
+
     </LinearLayout>
 </RelativeLayout>
