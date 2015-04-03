@@ -395,7 +395,7 @@ return mDrawerLinearLayout;
             } else if (s.equals("My Profile")) {
                 navigationIcon.setBackgroundResource(R.drawable.ic_action_myprofile);
 
-            } else if (s.equals("Log Outt")) {
+            } else if (s.equals("Log Out")) {
                 navigationIcon.setBackgroundResource(R.drawable.ic_action_logout);
             }
             return rowView;

@@ -26,7 +26,7 @@ public class ParseTables {
 
     }
     public static class Appointment {
-        public static final String APPOINTMENTNUMBER = "name";
+        public static final String APPOINTMENTNUMBER = "AppointmentNumber";
         public static final String CLINIC = "clinic";
         public static final String DATE = "date";
         public static final String DOCTOR = "doctor";

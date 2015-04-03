@@ -49,7 +49,7 @@ public class editAppointment extends Fragment {
     static View v;
     private Spinner cspinner, dspinner;
     private CheckBox isFollowUp;
-private int AppointmentNumber;
+private String AppointmentNumber;
     private String appNo;
     private static HashMap<String, String> appointments;
     ImageButton setDate;
@@ -206,9 +206,8 @@ final String clinicName = cspinner.getSelectedItem().toString();
 
                 create.setClickable(false);
                 addInput();
-                if (checkIfEmpty()) {
                     pushDataToParse();
-                }
+
             }
         });
         return v;
@@ -230,8 +229,11 @@ final String clinicName = cspinner.getSelectedItem().toString();
             @Override
             public void done(ParseObject parseObject, ParseException e) {
                 //Is relationship exists?
-                AppointmentNumber = parseObject.getInt("appN") + 1;
-                 appNo = String.valueOf(AppointmentNumber);
+                AppointmentNumber = parseObject.getString("AppointmentNumber");
+                    int newAppointmentNumber = Integer.parseInt(AppointmentNumber);
+                appNo = String.valueOf(newAppointmentNumber);
+                appointments.put(ParseTables.Appointment.APPOINTMENTNUMBER, AppointmentNumber);
+
 
             }
         });
@@ -239,8 +241,6 @@ final String clinicName = cspinner.getSelectedItem().toString();
 
 
         //Spinner mspinner = (Spinner)v.findViewById(R.id.medicalissue);
-
-        appointments.put(ParseTables.Appointment.APPOINTMENTNUMBER, appNo);
 
         appointments.put(ParseTables.Appointment.PATIENT, ParseUser.getCurrentUser().getString("name"));
         appointments.put(ParseTables.Appointment.DOCTOR,  dspinner.getSelectedItem().toString());
@@ -270,9 +270,13 @@ final String clinicName = cspinner.getSelectedItem().toString();
             Toast.makeText(getActivity().getApplicationContext(), "Please select clinic", Toast.LENGTH_LONG).show();
             return false;
         }
+
         if (appointments.get(ParseTables.Appointment.APPOINTMENTNUMBER).isEmpty()) {
+            Toast.makeText(getActivity().getApplicationContext(), "Appointment Number not generated", Toast.LENGTH_LONG).show();
             return false;
         }
+
+
 
 
         if(!appointments.containsKey(ParseTables.Appointment.DATE)){
@@ -298,7 +302,6 @@ final String clinicName = cspinner.getSelectedItem().toString();
 
 
         appointment.put(ParseTables.Appointment.APPOINTMENTNUMBER, appointments.get(ParseTables.Appointment.APPOINTMENTNUMBER));
-
         appointment.put(ParseTables.Appointment.DATE, appointments.get(ParseTables.Appointment.DATE));
         appointment.put(ParseTables.Appointment.TIME, appointments.get(ParseTables.Appointment.TIME));
         appointment.put(ParseTables.Appointment.CLINIC, appointments.get(ParseTables.Appointment.CLINIC));

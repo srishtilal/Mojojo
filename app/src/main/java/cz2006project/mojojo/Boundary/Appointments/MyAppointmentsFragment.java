@@ -117,7 +117,9 @@ public class MyAppointmentsFragment extends Fragment {
             holder.doctor.setText((String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
             holder.clinic.setText((String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
-            holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
+            holder.appointment_creator.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
+
+            //holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
             //holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
 
 
@@ -179,7 +181,9 @@ public class MyAppointmentsFragment extends Fragment {
 
                 this.notes = (TextView) itemView.findViewById(R.id.notes);
                 this.appointment_date = (TextView) itemView.findViewById(R.id.appointment_date);
-                this.appointment_time = (Button) itemView.findViewById(R.id.appointment_time);
+                this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
+                this.appointment_delete = (Button) itemView.findViewById(R.id.appointment_delete);
+
 
                 appointment_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -205,10 +209,10 @@ public class MyAppointmentsFragment extends Fragment {
 
     public void fetchData(){
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
-                "Appointments");
-        query.orderByAscending(ParseTables.Appointment.DATE);
+                "Appointment");
+        query.orderByAscending("createdAt");
         if(check_my_appointments){
-            query.whereEqualTo(ParseTables.Appointment.PATIENT, ParseUser.getCurrentUser().getString("name"));
+            query.whereEqualTo("patient", ParseUser.getCurrentUser().getString("name"));
         }
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
