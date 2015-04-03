@@ -379,6 +379,9 @@ return mDrawerLinearLayout;
 
             ImageView navigationIcon = (ImageView) rowView.findViewById(R.id.icon_navigation);
             TextView navigationTitle = (TextView) rowView.findViewById(R.id.title_navigation);
+            TextView profilename = (TextView) rowView.findViewById(R.id.ProfileName);
+
+            profilename.setText(ParseUser.getCurrentUser().getUsername());
 
             navigationTitle.setText(mCategoryMap[pos]);
             //navigationTitle.setTextColor(Color.WHITE);

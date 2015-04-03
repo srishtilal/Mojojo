@@ -41,6 +41,7 @@
         android:id="@+id/ProfileName"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_toRightOf="@id/icon_navigation"
         android:layout_centerVertical="true"
         android:paddingRight="30dp"
         android:textSize="18sp"
