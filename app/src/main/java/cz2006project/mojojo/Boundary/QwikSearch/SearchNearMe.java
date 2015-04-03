@@ -1,6 +1,6 @@
 package main.java.cz2006project.mojojo.Boundary.QwikSearch;
 
-import android.app.Dialog;
+/*import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -60,7 +60,7 @@ public class SearchNearMe extends Fragment {
     MyAdapter3 q;
     ListView listview;
     private ClinicAdapter clinicadapter;
-    private ListView listView;*/
+    private ListView listView;
    private ClinicAdapter clinicadapter;
     private ListView listView;
 

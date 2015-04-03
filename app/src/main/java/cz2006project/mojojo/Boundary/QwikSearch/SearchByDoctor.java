@@ -1,5 +1,5 @@
 package main.java.cz2006project.mojojo.Boundary.QwikSearch;
-
+/*
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -61,7 +61,7 @@ public class SearchByDoctor extends Fragment {
     MyAdapter3 q;
     ListView listview;
     private ClinicAdapter clinicadapter;
-    private ListView listView;*/
+    private ListView listView;
    private DoctorAdapter doctoradapter;
     private ListView listView;
 

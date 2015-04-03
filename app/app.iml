@@ -95,6 +95,7 @@
     <orderEntry type="library" exported="" name="androidasync-2.0.5" level="project" />
     <orderEntry type="library" exported="" name="support-v13-22.0.0" level="project" />
     <orderEntry type="module" module-name="ParseLoginUI" exported="" />
+    <orderEntry type="module" module-name="facebook" />
   </component>
 </module>
 

@@ -42,7 +42,7 @@ import cz2006project.mojojo.R;
  * Shows the user profile. This simple activity can function regardless of whether the user
  * is currently logged in.
  */
-public class SampleProfileActivity extends Activity {
+/*public class SampleProfileActivity extends Activity {
     private static final int LOGIN_REQUEST = 0;
 
     private TextView titleTextView;
@@ -72,7 +72,7 @@ public class SampleProfileActivity extends Activity {
                     ParseUser.logOut();
                     currentUser = null;
                     //showProfileLoggedOut();
-                } else {*/
+                } else {
                 // User clicked to log in.
 
                 ParseLoginBuilder loginBuilder = new ParseLoginBuilder(
@@ -100,11 +100,11 @@ public class SampleProfileActivity extends Activity {
             Intent doctorIntent = new Intent(this, DoctorActivity.class);
             startActivity(doctorIntent);
         }
-/*
+
             else if (currentUser.isAuthenticated() && currentUser.getString("type").equals("Doctor")) {
             Intent doctorIntent = new Intent(this, DoctorActivity.class);
             startActivity(doctorIntent);
-        }*/
+
 
          else {
 
@@ -125,9 +125,9 @@ public class SampleProfileActivity extends Activity {
         AppEventsLogger.activateApp(this);
     }
 
-    /**
+
      * Shows the profile of the given user.
-     */
+
     private void showDoctorProfileLoggedIn() {
         titleTextView.setText(getString(R.string.profile_title_logged_in, "doctor"));
         emailTextView.setText(currentUser.getEmail());
@@ -157,5 +157,5 @@ public class SampleProfileActivity extends Activity {
         nameTextView.setText("");
         loginOrLogoutButton.setText(R.string.profile_login_button_label);
     }
-     */
-}
+
+}*/

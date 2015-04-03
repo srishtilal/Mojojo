@@ -21,8 +21,8 @@ package main.java.cz2006project.mojojo.Boundary.QwikSearch;
 
 /**
  * A simple {@link Fragment} subclass.
- */
-public class QwikSearchFragment extends Fragment {
+
+/*public class QwikSearchFragment extends Fragment {
 
 
     ViewPager peoplePager;
@@ -88,4 +88,4 @@ public class QwikSearchFragment extends Fragment {
     }
 
 
-}
+}*/

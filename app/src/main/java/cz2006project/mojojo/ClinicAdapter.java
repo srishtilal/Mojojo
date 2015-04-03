@@ -10,13 +10,13 @@ import com.parse.ParseImageView;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-
 import cz2006project.mojojo.R;
+
 
 /**
  * Created by srishti on 3/4/15.
  */
-public class ClinicAdapter extends ParseQueryAdapter<ParseObject> {
+/*public class ClinicAdapter extends ParseQueryAdapter<ParseObject> {
 
     public ClinicAdapter(Context context) {
         // Use the QueryFactory to construct a PQA that will only show
@@ -34,6 +34,7 @@ public class ClinicAdapter extends ParseQueryAdapter<ParseObject> {
     public View getItemView(ParseObject object, View v, ViewGroup parent) {
         if (v == null) {
             v = View.inflate(getContext(), R.layout.clinic_itemview, null);
+
         }
 
         super.getItemView(object, v, parent);
@@ -63,4 +64,4 @@ public class ClinicAdapter extends ParseQueryAdapter<ParseObject> {
         return v;
     }
 
-}
+}*/

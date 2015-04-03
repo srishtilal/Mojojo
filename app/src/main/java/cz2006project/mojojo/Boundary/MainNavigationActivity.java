@@ -26,12 +26,12 @@ import com.parse.ParseUser;
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
 import main.java.cz2006project.mojojo.Boundary.Appointments.AppointmentsFragment;
-import main.java.cz2006project.mojojo.Boundary.MyAdapter;
+/*import main.java.cz2006project.mojojo.Boundary.MyAdapter;
 import main.java.cz2006project.mojojo.Boundary.QwikSearch.QwikSearchFragment;
 import main.java.cz2006project.mojojo.Control.SampleApplication;
 
 
-public class MainNavigationActivity extends ActionBarActivity {
+/*public class MainNavigationActivity extends ActionBarActivity {
 
     public static final String TAG = "MainActivity";
     public static final boolean DEBUG = SampleApplication.LOG_DEBUG;
@@ -73,7 +73,7 @@ public class MainNavigationActivity extends ActionBarActivity {
     and setting the the Action bar to our toolbar
      *//*
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);*/
+        setSupportActionBar(toolbar);
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
@@ -235,4 +235,4 @@ public class MainNavigationActivity extends ActionBarActivity {
 
 
 
-}
+}*/

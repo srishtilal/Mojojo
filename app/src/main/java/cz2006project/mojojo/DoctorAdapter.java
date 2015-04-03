@@ -16,7 +16,7 @@ import cz2006project.mojojo.R;
 /**
  * Created by srishti on 3/4/15.
  */
-public class DoctorAdapter extends ParseQueryAdapter<ParseObject> {
+/*public class DoctorAdapter extends ParseQueryAdapter<ParseObject> {
 
     public DoctorAdapter(Context context) {
         // Use the QueryFactory to construct a PQA that will only show
@@ -67,4 +67,4 @@ public class DoctorAdapter extends ParseQueryAdapter<ParseObject> {
         return v;
     }
 
-}
+}*/

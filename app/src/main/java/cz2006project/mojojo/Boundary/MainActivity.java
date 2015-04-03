@@ -19,11 +19,11 @@ import com.parse.ParseUser;
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
 import main.java.cz2006project.mojojo.Boundary.Appointments.AppointmentsFragment;
-import main.java.cz2006project.mojojo.Boundary.QwikSearch.QwikSearchFragment;
+//import main.java.cz2006project.mojojo.Boundary.QwikSearch.QwikSearchFragment;
 import main.java.cz2006project.mojojo.Control.SampleApplication;
 import main.java.cz2006project.mojojo.NavigationDrawerFragment;
 
-public class MainActivity extends ActionBarActivity
+/*public class MainActivity extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     public static final String TAG = "MainActivity";
@@ -37,13 +37,10 @@ public class MainActivity extends ActionBarActivity
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
-     */
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-    /**
-     * Used to store the last screen title. For use in {@link #restoreActionBar()}.
-     */
+    Used to store the last screen title. For use in {@link #restoreActionBar()}.
 
     private CharSequence mTitle;
     private String myTitle;
@@ -179,14 +176,14 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-     /*   if (id == R.id.action_aboutUs) {
+        if (id == R.id.action_aboutUs) {
             ParseUser.logOut();
             currentUser = null;
             Intent i = new Intent(this, SampleProfileActivity.class);
             startActivity(i);
             finish();
             return true;
-        }*/
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -201,3 +198,4 @@ public class MainActivity extends ActionBarActivity
     }
 
 }
+*/

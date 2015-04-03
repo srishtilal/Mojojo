@@ -16,8 +16,8 @@ import main.java.cz2006project.mojojo.CircularImageView;
 
 /**
  * A simple {@link android.support.v4.app.Fragment} subclass.
- */
-public class ViewDoctor extends Fragment {
+
+/*public class ViewDoctor extends Fragment {
 
     TextView name, clinic, area, qualifications;
     String dname, dclinic, darea, dqualifications;
@@ -66,4 +66,4 @@ public class ViewDoctor extends Fragment {
     }
 
 
-}
+}*/

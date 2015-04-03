@@ -18,12 +18,4 @@
         android:text="@string/com_parse_ui_twitter_login_button_label"
         android:visibility="gone" />
 </merge>
-<<<<<<< HEAD
-<!-- From: file:/Users/srishti/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_third_party_section.xml -->
-=======
-<<<<<<< HEAD
 <!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_third_party_section.xml -->
-=======
-<!-- From: file:/Users/srishti/Documents/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_third_party_section.xml -->
->>>>>>> origin/master
->>>>>>> origin/master

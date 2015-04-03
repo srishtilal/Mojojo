@@ -56,12 +56,12 @@ package main.java.cz2006project.mojojo.Boundary;
         import cz2006project.mojojo.R;
         import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
         import main.java.cz2006project.mojojo.Boundary.Appointments.AppointmentsFragment;
-        import main.java.cz2006project.mojojo.Boundary.MyAdapter;
+        /*import main.java.cz2006project.mojojo.Boundary.MyAdapter;
         import main.java.cz2006project.mojojo.Boundary.QwikSearch.QwikSearchFragment;
         import main.java.cz2006project.mojojo.Control.SampleApplication;
 
 
-public class DoctorActivity extends ActionBarActivity {
+/*public class DoctorActivity extends ActionBarActivity {
 
     public static final String TAG = "MainActivity";
     public static final boolean DEBUG = SampleApplication.LOG_DEBUG;
@@ -94,16 +94,16 @@ public class DoctorActivity extends ActionBarActivity {
 
 
 
-    @Override
+    /*@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_exp);
 
-    /* Assinging the toolbar object ot the view
+    Assinging the toolbar object ot the view
     and setting the the Action bar to our toolbar
-     *//*
+
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        setSupportActionBar(toolbar);*/
+        setSupportActionBar(toolbar);
 
 
         mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
@@ -265,4 +265,4 @@ public class DoctorActivity extends ActionBarActivity {
 
 
 
-}
+}*/
