@@ -58,11 +58,6 @@ public class SampleProfileActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_sample_profile);
-        titleTextView = (TextView) findViewById(R.id.profile_title);
-        emailTextView = (TextView) findViewById(R.id.profile_email);
-        nameTextView = (TextView) findViewById(R.id.profile_name);
-        loginOrLogoutButton = (Button) findViewById(R.id.login_or_logout_button);
-        titleTextView.setText(R.string.profile_title_logged_in);
 
         loginOrLogoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +84,15 @@ public class SampleProfileActivity extends Activity {
         super.onStart();
 
         currentUser = ParseUser.getCurrentUser();
-        if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
+
+
+        if (currentUser != null && currentUser.getString("type").equals("Patient") ) {
 
             Intent patientIntent = new Intent(this, MainNavigationActivity.class);
             startActivity(patientIntent);
 
         }
-        if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Doctor") ) {
+        if (currentUser != null && currentUser.getString("type").equals("Doctor") ) {
 
             Intent doctorIntent = new Intent(this, DoctorActivity.class);
             startActivity(doctorIntent);
@@ -121,6 +118,8 @@ public class SampleProfileActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+
+
         // Logs 'install' and 'app activate' App Events.
         AppEventsLogger.activateApp(this);
     }
@@ -128,25 +127,6 @@ public class SampleProfileActivity extends Activity {
     /**
      * Shows the profile of the given user.
      */
-    private void showDoctorProfileLoggedIn() {
-        titleTextView.setText(getString(R.string.profile_title_logged_in, "doctor"));
-        emailTextView.setText(currentUser.getEmail());
-        String fullName = currentUser.getString("name");
-        if (fullName != null) {
-            nameTextView.setText(fullName);
-        }
-        loginOrLogoutButton.setText(R.string.profile_logout_button_label);
-    }
-
-    private void showPatientProfileLoggedIn() {
-        titleTextView.setText(getString(R.string.profile_title_logged_in, "patient"));
-        emailTextView.setText(currentUser.getEmail());
-        String fullName = currentUser.getString("name");
-        if (fullName != null) {
-            nameTextView.setText(fullName);
-        }
-        loginOrLogoutButton.setText(R.string.profile_logout_button_label);
-    }
 
     /**
      * Show a message asking the user to log in, toggle login/logout button text.
