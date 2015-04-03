@@ -69,9 +69,10 @@ public class NavigationDrawerFragment extends Fragment {
 
     private DrawerLayout mDrawerLayout;
     private LinearLayout mDrawerLinearLayout;
-    private ListView mDrawerProfileName;
     private ListView mDrawerListView;
     private View mFragmentContainerView;
+
+
     private ParseImageView mCoverPic;
 
     private int mCurrentSelectedPosition = 0;
@@ -118,24 +119,25 @@ public class NavigationDrawerFragment extends Fragment {
                 R.layout.fragment_main_navigationdrawer, container, false);
 
 
-        mDrawerProfileName= (ListView) mDrawerLinearLayout.findViewById(R.id.ProfileName);
-        mDrawerProfileName.setAdapter(new NavigationDrawerAdapter(new String[]{
-                ParseUser.getCurrentUser().getUsername(),
-        }));
-
         mDrawerListView = (ListView) mDrawerLinearLayout.findViewById(R.id.main_navdrawer_list);
+
         mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectItem(position);}
+                selectItem(position);
+            }
         });
+
+
        ParseUser currentUser =  ParseUser.getCurrentUser();
         //if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
             mDrawerListView.setAdapter(new NavigationDrawerAdapter(new String[]{
+                    ParseUser.getCurrentUser().getUsername(),
                     "Appointments",
                     "Search",
                     "My Profile",
                     "Log Out"
+
             }));
        // }
 
@@ -375,11 +377,11 @@ return mDrawerLinearLayout;
                 rowView = convertView;
             }
 
-            TextView ProfileName = (TextView) rowView.findViewById(R.id.ProfileName);
-            ProfileName.setText(mCategoryMap[pos]);
-
             ImageView navigationIcon = (ImageView) rowView.findViewById(R.id.icon_navigation);
             TextView navigationTitle = (TextView) rowView.findViewById(R.id.title_navigation);
+            TextView profilename = (TextView) rowView.findViewById(R.id.ProfileName);
+
+            profilename.setText(ParseUser.getCurrentUser().getUsername());
 
             navigationTitle.setText(mCategoryMap[pos]);
             //navigationTitle.setTextColor(Color.WHITE);

@@ -42,7 +42,7 @@ import main.java.cz2006project.mojojo.ProgressBarCircular;
 
 public class SearchByClinic extends Fragment {
 
-   /* ProgressBarCircular progressBar;
+    ProgressBarCircular progressBar;
     Dialog dialogPeople;
 
     String currentuseremail = "";
@@ -451,6 +451,4 @@ public class SearchByClinic extends Fragment {
     }
 
 
-}
-*/
 }
