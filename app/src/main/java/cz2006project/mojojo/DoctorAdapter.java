@@ -16,14 +16,14 @@ import cz2006project.mojojo.R;
 /**
  * Created by srishti on 3/4/15.
  */
-public class ClinicAdapter extends ParseQueryAdapter<ParseObject> {
+public class DoctorAdapter extends ParseQueryAdapter<ParseObject> {
 
-    public ClinicAdapter(Context context) {
+    public DoctorAdapter(Context context) {
         // Use the QueryFactory to construct a PQA that will only show
         // Todos marked as high-pri
         super(context, new ParseQueryAdapter.QueryFactory<ParseObject>() {
             public ParseQuery create() {
-                ParseQuery query = new ParseQuery("Clinic");
+                ParseQuery query = new ParseQuery("Doctor");
                 return query;
             }
         });
@@ -48,16 +48,20 @@ public class ClinicAdapter extends ParseQueryAdapter<ParseObject> {
 
         // Add the title view
         TextView titleTextView = (TextView) v.findViewById(R.id.text1);
-        titleTextView.setText(object.getString("name"));
+        titleTextView.setText(object.getString("Name"));
 
         TextView locationTextView = (TextView) v.findViewById(R.id.text2);
-        locationTextView.setText(object.getString("Location"));
+        locationTextView.setText(object.getString("Clinic"));
 
-        TextView doctorsTextView = (TextView) v.findViewById(R.id.text3);
-        doctorsTextView.setText(object.getString("doctors"));
+
+        TextView specialtyTextView = (TextView) v.findViewById(R.id.text3);
+        specialtyTextView.setText(object.getString("specialty"));
+
 
         TextView contactnumberTextView = (TextView) v.findViewById(R.id.text4);
         contactnumberTextView.setText(object.getString("contactnumber"));
+
+
 
 
         return v;

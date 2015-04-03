@@ -43,7 +43,7 @@ import main.java.cz2006project.mojojo.ProgressBarCircular;
 
 public class SearchNearMe extends Fragment {
 
-    ProgressBarCircular progressBar;
+   /* ProgressBarCircular progressBar;
     Dialog dialogPeople;
 
     String currentuseremail = "";
@@ -55,11 +55,13 @@ public class SearchNearMe extends Fragment {
 
     EditText search;
 
- /*   ArrayList<EachRow3> list3 = new ArrayList<EachRow3>();
+    ArrayList<EachRow3> list3 = new ArrayList<EachRow3>();
     EachRow3 each;
-    MyAdapter3 q;*/
+    MyAdapter3 q;
     ListView listview;
     private ClinicAdapter clinicadapter;
+    private ListView listView;*/
+   private ClinicAdapter clinicadapter;
     private ListView listView;
 
 
