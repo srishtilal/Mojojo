@@ -42,7 +42,7 @@ import main.java.cz2006project.mojojo.ProgressBarCircular;
 
 public class SearchByDoctor extends Fragment {
 
-    ProgressBarCircular progressBar;
+    /*ProgressBarCircular progressBar;
     Dialog dialogPeople;
 
     String currentuseremail = "";
@@ -70,12 +70,11 @@ public class SearchByDoctor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_searchnearby, container, false);
-        progressBar = (ProgressBarCircular) view.findViewById(R.id.progressbar_people);
-        progressBar.setBackgroundColor(getResources().getColor(R.color.peopleColorPrimaryDark));
+
 
         search = (EditText) view.findViewById(R.id.people_search);
 
-        lv = (ListView) view.findViewById(R.id.listviewpeople);
+        lv = (ListView) view.findViewById(R.id.listView);
 
         loaddata();
 
@@ -451,4 +450,6 @@ public class SearchByDoctor extends Fragment {
     }
 
 
+}
+*/
 }

@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.ClinicAdapter;
 import main.java.cz2006project.mojojo.Control.ParseTables;
 import main.java.cz2006project.mojojo.ParseCircularImageView;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
@@ -54,10 +55,12 @@ public class SearchNearMe extends Fragment {
 
     EditText search;
 
-    ArrayList<EachRow3> list3 = new ArrayList<EachRow3>();
+ /*   ArrayList<EachRow3> list3 = new ArrayList<EachRow3>();
     EachRow3 each;
-    MyAdapter3 q;
-    ListView lv;
+    MyAdapter3 q;*/
+    ListView listview;
+    private ClinicAdapter clinicadapter;
+    private ListView listView;
 
 
     public SearchNearMe() {
@@ -70,14 +73,23 @@ public class SearchNearMe extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_searchnearby, container, false);
-        progressBar = (ProgressBarCircular) view.findViewById(R.id.progressbar_people);
-        progressBar.setBackgroundColor(getResources().getColor(R.color.peopleColorPrimaryDark));
 
-        search = (EditText) view.findViewById(R.id.people_search);
 
-        lv = (ListView) view.findViewById(R.id.listviewpeople);
+            // Initialize the subclass of ParseQueryAdapter
+            clinicadapter = new ClinicAdapter(getActivity());
 
-        loaddata();
+            // Initialize ListView and set initial view to mainAdapter
+            listView = (ListView) view.findViewById(R.id.list);
+            listView.setAdapter(clinicadapter);
+            clinicadapter.loadObjects();
+
+        return view;
+
+
+        }
+
+    }
+/*
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -452,3 +464,4 @@ public class SearchNearMe extends Fragment {
 
 
 }
+*/
