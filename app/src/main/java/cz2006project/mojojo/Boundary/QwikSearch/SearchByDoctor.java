@@ -35,14 +35,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.ClinicAdapter;
 import main.java.cz2006project.mojojo.Control.ParseTables;
+import main.java.cz2006project.mojojo.DoctorAdapter;
 import main.java.cz2006project.mojojo.ParseCircularImageView;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
 
 
 public class SearchByDoctor extends Fragment {
 
-    ProgressBarCircular progressBar;
+   /* ProgressBarCircular progressBar;
     Dialog dialogPeople;
 
     String currentuseremail = "";
@@ -57,7 +59,12 @@ public class SearchByDoctor extends Fragment {
     ArrayList<EachRow3> list3 = new ArrayList<EachRow3>();
     EachRow3 each;
     MyAdapter3 q;
-    ListView lv;
+    ListView listview;
+    private ClinicAdapter clinicadapter;
+    private ListView listView;*/
+   private DoctorAdapter doctoradapter;
+    private ListView listView;
+
 
 
     public SearchByDoctor() {
@@ -70,14 +77,23 @@ public class SearchByDoctor extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_searchnearby, container, false);
-        progressBar = (ProgressBarCircular) view.findViewById(R.id.progressbar_people);
-        progressBar.setBackgroundColor(getResources().getColor(R.color.peopleColorPrimaryDark));
 
-        search = (EditText) view.findViewById(R.id.people_search);
 
-        lv = (ListView) view.findViewById(R.id.listviewpeople);
+        // Initialize the subclass of ParseQueryAdapter
+        doctoradapter = new DoctorAdapter(getActivity());
 
-        loaddata();
+        // Initialize ListView and set initial view to mainAdapter
+        listView = (ListView) view.findViewById(R.id.list);
+        listView.setAdapter(doctoradapter);
+        doctoradapter.loadObjects();
+
+        return view;
+
+
+    }
+
+}
+/*
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -223,8 +239,8 @@ public class SearchByDoctor extends Fragment {
                                         e1.printStackTrace();
                                     }
                                 }
-                                stringBuilder.setLength(stringBuilder.length() - 2);
-                                each.doctorqualifications = stringBuilder.toString();
+                                    stringBuilder.setLength(stringBuilder.length() - 2);
+                                    each.doctorqualifications = stringBuilder.toString();
                             }
 
                             each.doctorqualifications = pu.getString(ParseTables.Doctor.SPECIALTY);
@@ -278,7 +294,7 @@ public class SearchByDoctor extends Fragment {
         // DUMMY DATA SO THAT IT DISPLAYS SOMETHING
         if (userlocation==null ||  userlocation.getLatitude() == 0)
         {
-            userlocation = new ParseGeoPoint(28.7434552 , 77.1205612);
+           userlocation = new ParseGeoPoint(28.7434552 , 77.1205612);
         }
 
 
@@ -452,3 +468,4 @@ public class SearchByDoctor extends Fragment {
 
 
 }
+*/

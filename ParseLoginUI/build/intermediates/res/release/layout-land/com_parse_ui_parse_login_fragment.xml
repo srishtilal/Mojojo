@@ -25,4 +25,8 @@
         <include layout="@layout/com_parse_ui_parse_login_third_party_section" />
     </LinearLayout>
 </LinearLayout>
+<<<<<<< HEAD
 <!-- From: file:/Users/ngshuling/Documents/Mojojo/ParseLoginUI/res/layout-land/com_parse_ui_parse_login_fragment.xml -->
+=======
+<!-- From: file:/Users/srishti/Documents/Mojojo/ParseLoginUI/res/layout-land/com_parse_ui_parse_login_fragment.xml -->
+>>>>>>> origin/master
