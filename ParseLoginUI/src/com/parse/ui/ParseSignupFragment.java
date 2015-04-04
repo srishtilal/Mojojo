@@ -37,6 +37,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -86,7 +87,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     public ArrayAdapter<String> adapter_specialty, adapter_branch;
     private DatePicker dp;
     private List<String> specialtylist = new ArrayList();
-
+    private List<String> cliniclist = new ArrayList();
     private String[] Specialty={"ENT", "Dentistry","Orthopedics"};
     private String[] Branch={"Joo Koon", "Pasir Ris","Pioneer"};
     ParseUser user = new ParseUser();
@@ -151,24 +152,169 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         });
 
 
-        adapter_specialty = new ArrayAdapter(getActivity(),  android.R.layout.simple_spinner_item, Specialty);
-        adapter_specialty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        doctor_specialty.setAdapter(adapter_specialty);
-        adapter_branch = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, Branch);
-        adapter_branch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        doctor_branch.setAdapter(adapter_branch);
 
-        doctor_specialty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Specialty");
+
+
+        query.findInBackground(new FindCallback<ParseObject>() {
 
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                       int arg2, long arg3) {
-                // TODO Auto-generated method stub
-            }
+            public void done(List<ParseObject> clinics, ParseException e) {
+                // The query returns a list of objects from the "questions" class
+                if (e == null) {
+                    for (ParseObject clinic : clinics) {
+                        // Get the questionTopic value from the question object
+                        String clinicname = clinic.getString("specialtyName");
+                        specialtylist.add(clinicname);
+                        adapter_specialty = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, specialtylist);
+                        adapter_specialty.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        doctor_specialty.setAdapter(adapter_specialty);
 
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
+                        Log.d("clinic", "name: " + clinic.getString("specialtyName"));
+                    }
 
+                } else {
+
+                    Log.d("notretreive", "Error: " + e.getMessage());
+                }
+
+
+
+                doctor_specialty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                               int arg2, long arg3) {
+                        // TODO Auto-generated method stub
+
+
+                      /* final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
+                        query.whereExists("Name");
+                        query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
+
+                        query.findInBackground(new FindCallback<ParseObject>() {
+
+                            @Override
+                            public void done(List<ParseObject> doctors, ParseException e) {
+                                // The query returns a list of objects from the "questions" class
+                                if (e == null) {
+                                    for (ParseObject doctor : doctors) {
+                                        // Get the questionTopic value from the question object
+
+                                        String doctorname = doctor.getString("Name");
+                                        if (!(doctorlist.contains(doctorname)))
+                                            doctorlist.add(doctorname);
+
+
+                                        Log.d("doctor", "name: " + doctor.getString("Name"));
+                                        adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
+                                        dspinner.setAdapter(adapter1);
+                                    }
+
+                                } else {
+                                    Log.d("notretreive", "Error: " + e.getMessage());
+                                }
+
+
+
+
+                            }
+                        });*/
+                    }
+
+
+
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+
+            }
+        });
+
+
+
+
+        final ParseQuery<ParseObject> query1 = ParseQuery.getQuery("Clinic");
+
+
+        query1.findInBackground(new FindCallback<ParseObject>() {
+
+            @Override
+            public void done(List<ParseObject> area, ParseException e) {
+                // The query returns a list of objects from the "questions" class
+                if (e == null) {
+                    for (ParseObject areaName : area) {
+                        // Get the questionTopic value from the question object
+                        String location = areaName.getString("Location");
+                        cliniclist.add(location);
+                        adapter_branch = new ArrayAdapter(getActivity(), android.R.layout.simple_spinner_item, cliniclist);
+                        adapter_branch.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        doctor_branch.setAdapter(adapter_branch);
+
+                        Log.d("clinic", "name: " + areaName.getString("Location"));
+                    }
+
+                } else {
+
+                    Log.d("notretreive", "Error: " + e.getMessage());
+                }
+
+
+
+                doctor_branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                               int arg2, long arg3) {
+                        // TODO Auto-generated method stub
+
+
+                      /* final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
+                        query.whereExists("Name");
+                        query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
+
+                        query.findInBackground(new FindCallback<ParseObject>() {
+
+                            @Override
+                            public void done(List<ParseObject> doctors, ParseException e) {
+                                // The query returns a list of objects from the "questions" class
+                                if (e == null) {
+                                    for (ParseObject doctor : doctors) {
+                                        // Get the questionTopic value from the question object
+
+                                        String doctorname = doctor.getString("Name");
+                                        if (!(doctorlist.contains(doctorname)))
+                                            doctorlist.add(doctorname);
+
+
+                                        Log.d("doctor", "name: " + doctor.getString("Name"));
+                                        adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
+                                        dspinner.setAdapter(adapter1);
+                                    }
+
+                                } else {
+                                    Log.d("notretreive", "Error: " + e.getMessage());
+                                }
+
+
+
+
+                            }
+                        });*/
+                    }
+
+
+
+
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+
+            }
         });
 
         doctor_branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -198,7 +344,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         String password =  args.getString(PASSWORD);
 
 
-        ImageView appLogo = (ImageView) v.findViewById(R.id.app_logo);
+        ImageView appLogo = (ImageView) v.findViewById(R.id.qwikdoc);
         usernameField = (EditText) v.findViewById(R.id.signup_username_input);
         passwordField = (EditText) v.findViewById(R.id.signup_password_input);
         confirmPasswordField = (EditText) v.findViewById(R.id.signup_confirm_password_input);
@@ -360,18 +506,6 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         return v;
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
-        doctor_specialty.setSelection(position);
-        String selState = (String) doctor_specialty.getSelectedItem();
-
-    }
-
-
-    public void onNothingSelected(AdapterView<?> arg0) {
-        // TODO Auto-generated method stub
-
-    }
 
 
     /*public void addInput() {
@@ -639,11 +773,11 @@ ParseUser user= new ParseUser();
         if (checkedId == R.id.patient) {
             doctor_specialty.setVisibility(View.INVISIBLE);
             doctor_branch.setVisibility(View.INVISIBLE);
-            actv(true);
+            actv(false);
         } else if (checkedId == R.id.doctor) {
             doctor_specialty.setVisibility(View.VISIBLE);
             doctor_branch.setVisibility(View.VISIBLE);
-            actv(false);
+            actv(true);
         }
     }
 
