@@ -167,6 +167,8 @@ public class MyAppointmentsFragment extends Fragment {
             TextView appointment_date;
             TextView appointment_time;
             Button appointment_delete;
+            Button appointment_change;
+
             TextView appointment_creator;
 
 
@@ -183,6 +185,8 @@ public class MyAppointmentsFragment extends Fragment {
                 this.appointment_date = (TextView) itemView.findViewById(R.id.appointment_date);
                 this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
                 this.appointment_delete = (Button) itemView.findViewById(R.id.appointment_delete);
+                this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
+
 
 
                 appointment_delete.setOnClickListener(new View.OnClickListener() {
@@ -243,10 +247,7 @@ public class MyAppointmentsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.appintment_add:
-                AppointmentsFragment eFragment = (AppointmentsFragment) getParentFragment();
-                eFragment.goToOtherFragment(1);
-                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

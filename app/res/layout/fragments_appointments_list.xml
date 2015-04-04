@@ -118,8 +118,8 @@
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
                     android:padding="15dp"
-                    android:text="Book an appointment now!"
-                    android:textSize="12sp"
+                    android:text="No scheduled appointments for you today :)"
+                    android:textSize="15sp"
                     app:typeface="fonts/Gotham-MediumItalic.ttf" />
 
             </LinearLayout>

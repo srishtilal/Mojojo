@@ -4,6 +4,9 @@ package main.java.cz2006project.mojojo.Boundary.Appointments;
  * Created by srishti on 30/3/15.
  */
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -33,6 +36,7 @@ import com.parse.ParseUser;
 import java.util.List;
 
 import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Boundary.SampleProfileActivity;
 import main.java.cz2006project.mojojo.Control.ParseTables;
 
 
@@ -49,6 +53,8 @@ public class ScheduledAppointmentsFragment extends Fragment {
     View v;
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
+    String Name = ParseUser.getCurrentUser().getString("Name");
+
 
     public ScheduledAppointmentsFragment(){
 
@@ -74,6 +80,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         v = inflater.inflate(R.layout.fragments_appointments_list, container, false);
         appointmentsList = (RecyclerView) v.findViewById(R.id.listviewappointments);
         appointmentsMainLayout = (LinearLayout) v.findViewById(R.id.appointments_main_list);
@@ -113,7 +120,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
+            //holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
             holder.doctor.setText((String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
             holder.clinic.setText((String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
@@ -123,7 +130,9 @@ public class ScheduledAppointmentsFragment extends Fragment {
             //holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
 
 
-            if(check_my_appointments){
+            if(check_my_appointments) {
+
+
                 holder.appointment_creator.setVisibility(View.GONE);
                 holder.appointment_delete.setVisibility(View.VISIBLE);
             }
@@ -172,7 +181,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
+                //this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
                 this.doctor = (TextView) itemView.findViewById(R.id.doctor);
                 //this.medicalissue = (TextView) itemView.findViewById(R.id.medicalissue);
@@ -183,6 +192,27 @@ public class ScheduledAppointmentsFragment extends Fragment {
                 this.appointment_date = (TextView) itemView.findViewById(R.id.appointment_date);
                 this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
                 this.appointment_delete = (Button) itemView.findViewById(R.id.appointment_delete);
+                this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
+
+
+
+                appointment_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ParseObject appt = appointments.get(getPosition());
+                        appt.deleteInBackground(new DeleteCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e == null){
+                                    fetchData();
+                                }
+                                else{
+                                    Toast.makeText(getActivity().getApplicationContext(), "Internet Connection Problem", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
 
 
                 appointment_delete.setOnClickListener(new View.OnClickListener() {
@@ -212,7 +242,8 @@ public class ScheduledAppointmentsFragment extends Fragment {
                 "Appointment");
         query.orderByAscending("date");
         if(check_my_appointments){
-            query.whereEqualTo("doctor", ParseUser.getCurrentUser().getString("name"));
+            String Name = ParseUser.getCurrentUser().getString("name");
+            query.whereEqualTo("doctor", Name);
         }
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override

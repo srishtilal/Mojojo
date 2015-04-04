@@ -34,6 +34,33 @@ import main.java.cz2006project.mojojo.Control.SampleApplication;
 import main.java.cz2006project.mojojo.MaterialEditText;
 
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.StrictMode;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.LogInCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseImageView;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.HashMap;
+
+
 public class ProfileFragment extends Fragment {
 
     private static final String USER_UID = "USERNAME";
@@ -41,13 +68,14 @@ public class ProfileFragment extends Fragment {
     private static final String USER_QUALIFICATIONS = "QUALIFICATIONS";
     private static final String USER_AUTH = "authData";
     private static final String FB_APP_ID = "90313744064438";
-    private EditText ePassword, eNewPassword, eConfirmPassword, eSpecialty, eEmail;//eInterests
+    private EditText ePassword, eEmail, eNewPassword, eConfirmPassword;//eInterests
     private TextView tEmail, tFullName;
-    private ImageButton editPassword, editEmail, canEditEmail, canEditPassword;
+    private ImageButton editPassword, editEmail, canEditEmail, canEditPassword; //editInterest
     private View.OnClickListener oclEdit, oclSubmit, oclCancelEdit, oclPasswordEdit, oclPasswordSubmit, oclCancelPasswordEdit;
     private View rootView;
     private LinearLayout passwordContainer;
     private View newpassFormContainer;
+    private ParseImageView imageProfile;
     private Bundle fbParams;
     private HashMap<String, String> userInfo;
 
@@ -118,7 +146,12 @@ public class ProfileFragment extends Fragment {
             //TODO: handle errors if any generated
         }
 
-
+        ParseFile profileFile = null;
+        if (currentUser != null) {
+            profileFile = currentUser.getParseFile(ParseTables.Users.IMAGE);
+        }
+        imageProfile.setParseFile(profileFile);
+        imageProfile.loadInBackground();
     }
 
     private void init() {
@@ -129,6 +162,9 @@ public class ProfileFragment extends Fragment {
         ePassword = (MaterialEditText) rootView.findViewById(R.id.account_info_password);
         editPassword = (ImageButton) rootView.findViewById(R.id.edit_password_button);
 
+        eEmail = (MaterialEditText) rootView.findViewById(R.id.account_info_emailid);
+        editEmail = (ImageButton) rootView.findViewById(R.id.edit_email_button);
+
 
         newpassFormContainer = rootView.findViewById(R.id.new_password_form_container);
 
@@ -138,13 +174,77 @@ public class ProfileFragment extends Fragment {
 
         passwordContainer = (LinearLayout) rootView.findViewById(R.id.account_info_container_password);
 
+        canEditEmail = (ImageButton) rootView.findViewById(R.id.cancel_edit_email_button);
         canEditPassword = (ImageButton) rootView.findViewById(R.id.cancel_edit_password_button);
 
         ePassword.setEnabled(false);
+        eEmail.setEnabled(false);
         eNewPassword.setEnabled(false);
         eConfirmPassword.setEnabled(false);
 
+        imageProfile = (ParseImageView) rootView.findViewById(R.id.account_info_picture);
 
+        oclEdit = new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (v.getId()) {
+                    case R.id.edit_email_button:
+                        eEmail.setSelected(true);
+                        eEmail.setSelection(0, eEmail.getText().length());
+                        eEmail.setFocusable(true);
+                        eEmail.setEnabled(true);
+                        eEmail.setFocusableInTouchMode(true);
+                        canEditEmail.setVisibility(View.VISIBLE);
+                        break;
+
+                }
+
+
+                //v.setBackground();
+                ((ImageButton) v).setImageResource(R.drawable.tick);
+
+                v.setOnClickListener(oclSubmit);
+            }
+        };
+
+        oclSubmit = new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                switch (v.getId()) {
+                    case R.id.edit_email_button:
+                        changeAttribute(eEmail, ParseTables.Users.USERNAME);
+                        canEditEmail.setVisibility(View.INVISIBLE);
+                        break;
+
+                }
+
+                //v.setBackground
+                ((ImageButton) v).setImageResource(R.drawable.pencil);
+
+                v.setOnClickListener(oclEdit);
+            }
+        };
+
+        oclCancelEdit = new ImageButton.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setVisibility(View.INVISIBLE);
+                switch (v.getId()) {
+                    case R.id.cancel_edit_email_button:
+                        editEmail.setImageResource(R.drawable.pencil);
+                        editEmail.setOnClickListener(oclEdit);
+                        editEmail.setEnabled(false);
+                        editEmail.setFocusable(false);
+                        break;
+
+                }
+            }
+        };
+
+
+        editEmail.setOnClickListener(oclEdit);
+        canEditEmail.setOnClickListener(oclCancelEdit);
 
         oclPasswordEdit = new View.OnClickListener() {
             @Override
@@ -210,6 +310,24 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void changeAttribute(EditText e, final String attr) {
+        if (attr.equals(ParseTables.Users.USERNAME) || attr.equals(ParseTables.Users.NAME)) {
+            if (e.getText().toString().isEmpty())
+                Toast.makeText(getActivity(), attr + "cannot be empty", Toast.LENGTH_LONG).show();
+        }
+
+        ParseUser cu = ParseUser.getCurrentUser();
+        cu.put(attr, e.getText().toString());
+        cu.saveEventually(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                Toast.makeText(getActivity(), "Updated " + attr.toLowerCase() + " successfully.", Toast.LENGTH_LONG).show();
+
+            }
+        });
+        e.setEnabled(false);
+        e.setFocusable(false);
+    }
 
     private boolean changePassword() {
         String oldPassword, newPassword, confirmPassword;

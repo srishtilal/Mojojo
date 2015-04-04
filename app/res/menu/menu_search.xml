@@ -3,12 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <item
-        android:id="@+id/appintment_add"
-        android:title="Add Appointment"
-        app:showAsAction="ifRoom"
 
-        />
 
 
 </menu>

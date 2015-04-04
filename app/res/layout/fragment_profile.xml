@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="20">
+        android:weightSum="20"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
 
         <LinearLayout
             android:id="@+id/account_info_container_uid"
@@ -23,6 +25,18 @@
             android:background="@color/accountColorPrimary"
             android:elevation="10dp">
 
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <main.java.cz2006project.mojojo.ParseCircularImageView
+                    android:id="@+id/account_info_picture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/image_default" />
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -41,6 +55,7 @@
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     app:typeface="fonts/Gotham-Book.ttf"/>
+
                 <main.java.cz2006project.mojojo.TypeFaceTextView
                     android:id="@+id/account_info_email"
                     android:layout_width="match_parent"
@@ -59,152 +74,189 @@
 
         </LinearLayout>
 
-
-        </LinearLayout>
-        
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="19"
             android:background="@drawable/abc_menu_hardkey_panel_mtrl_mult">
 
-
-
-        <LinearLayout
-            android:id="@+id/account_info_container_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <main.java.cz2006project.mojojo.MaterialEditText
-                android:id="@+id/account_info_password"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="@dimen/fragment_sign_up_edit_text_margin"
-                android:layout_weight="4"
-                android:descendantFocusability="beforeDescendants"
-                android:focusable="false"
-                android:hint="@string/user_password"
-                android:inputType="textPassword"
-                android:textCursorDrawable="@drawable/text_cursor_cyan"
-                app:baseColor="@color/search_color"
-                app:primaryColor="@color/colorPrimaryDark" />
-
-            <ImageButton
-                android:id="@+id/cancel_edit_password_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"
-                android:src="@drawable/cross"
-                android:visibility="invisible" />
-
-            <ImageButton
-                android:id="@+id/edit_password_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:scaleType="centerInside"
-                android:src="@drawable/pencil" />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:id="@+id/new_password_form_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/account_info_container_password"
-            android:visibility="gone">
-
             <LinearLayout
-                android:id="@+id/account_info_container_new_password"
+                android:id="@+id/account_info_container_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/account_info_container_uid"
                 android:animateLayoutChanges="true"
+                android:layout_weight="0"
                 android:orientation="horizontal">
 
                 <main.java.cz2006project.mojojo.MaterialEditText
-                    android:id="@+id/account_info_new_password"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:id="@+id/account_info_emailid"
+                    android:layout_width="222dp"
+                    android:layout_height="64dp"
                     android:layout_margin="@dimen/fragment_sign_up_edit_text_margin"
-                    android:layout_weight="4"
                     android:descendantFocusability="beforeDescendants"
-                    android:focusableInTouchMode="true"
-                    android:hint="@string/new_password"
-                    android:inputType="textPassword"
+                    android:focusable="false"
+                    android:hint="@string/email"
                     android:textCursorDrawable="@drawable/text_cursor_cyan"
-                    app:baseColor="@color/search_color"
-                    app:primaryColor="@color/colorPrimaryDark" />
+                    app:baseColor="@color/black"
+                    app:primaryColor="@color/colorPrimaryDark"
+                    android:textStyle="bold"
+                    android:textSize="15dp" />
 
-                <FrameLayout
-                    android:id="@+id/empty_button_new_password"
+
+                <ImageButton
+                    android:id="@+id/cancel_edit_email_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/cross"
+                    android:visibility="invisible" />
 
-                <FrameLayout
-                    android:id="@+id/empty_button_new_password_2"
+                <ImageButton
+                    android:id="@+id/edit_email_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/pencil"
                     android:layout_weight="1" />
 
 
             </LinearLayout>
 
+
             <LinearLayout
-                android:id="@+id/account_info_container_confirm_password"
+                android:id="@+id/account_info_container_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/account_info_container_new_password"
+                android:layout_height="84dp"
+                android:layout_below="@id/account_info_container_email"
                 android:animateLayoutChanges="true"
                 android:orientation="horizontal">
 
                 <main.java.cz2006project.mojojo.MaterialEditText
-                    android:id="@+id/account_info_confirm_password"
-                    android:layout_width="0dp"
+                    android:id="@+id/account_info_password"
+                    android:layout_width="209dp"
                     android:layout_height="match_parent"
                     android:layout_margin="@dimen/fragment_sign_up_edit_text_margin"
-                    android:layout_weight="4"
                     android:descendantFocusability="beforeDescendants"
-                    android:focusableInTouchMode="true"
-                    android:hint="@string/confirm_password"
+                    android:focusable="false"
+                    android:hint="@string/user_password"
                     android:inputType="textPassword"
                     android:textCursorDrawable="@drawable/text_cursor_cyan"
-                    app:baseColor="@color/search_color"
-                    app:primaryColor="@color/colorPrimaryDark" />
+                    app:baseColor="@color/black"
+                    app:primaryColor="@color/colorPrimaryDark"
+                    android:layout_weight="0.13"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:textIsSelectable="false" />
 
-                <FrameLayout
-                    android:id="@+id/empty_button_confirm_password"
+                <ImageButton
+                    android:id="@+id/cancel_edit_password_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/cross"
+                    android:visibility="invisible" />
 
-                <FrameLayout
-                    android:id="@+id/empty_button_confirm_password_2"
+                <ImageButton
+                    android:id="@+id/edit_password_button"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1" />
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/pencil"
+                    android:layout_weight="1"
+                    android:visibility="visible" />
 
             </LinearLayout>
-        </RelativeLayout>
 
-        <LinearLayout
-            android:layout_below="@id/new_password_form_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1">
+            <RelativeLayout
+                android:id="@+id/new_password_form_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/account_info_container_password"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/account_info_container_new_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="horizontal">
+
+                    <main.java.cz2006project.mojojo.MaterialEditText
+                        android:id="@+id/account_info_new_password"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/fragment_sign_up_edit_text_margin"
+                        android:layout_weight="4"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusableInTouchMode="true"
+                        android:hint="@string/new_password"
+                        android:inputType="textPassword"
+                        android:textCursorDrawable="@drawable/text_cursor_cyan"
+                        app:baseColor="@color/black"
+                        app:primaryColor="@color/colorPrimaryDark" />
+
+                    <FrameLayout
+                        android:id="@+id/empty_button_new_password"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <FrameLayout
+                        android:id="@+id/empty_button_new_password_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/account_info_container_confirm_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/account_info_container_new_password"
+                    android:animateLayoutChanges="true"
+                    android:orientation="horizontal">
+
+                    <main.java.cz2006project.mojojo.MaterialEditText
+                        android:id="@+id/account_info_confirm_password"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/fragment_sign_up_edit_text_margin"
+                        android:layout_weight="4"
+                        android:descendantFocusability="beforeDescendants"
+                        android:focusableInTouchMode="true"
+                        android:hint="@string/confirm_password"
+                        android:inputType="textPassword"
+                        android:textCursorDrawable="@drawable/text_cursor_cyan"
+                        app:baseColor="@color/black"
+                        app:primaryColor="@color/colorPrimaryDark" />
+
+                    <FrameLayout
+                        android:id="@+id/empty_button_confirm_password"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                    <FrameLayout
+                        android:id="@+id/empty_button_confirm_password_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
-        </LinearLayout>
 
+    </LinearLayout>
 
 </RelativeLayout>
