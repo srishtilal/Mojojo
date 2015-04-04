@@ -6,8 +6,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical"    >
+        android:orientation="vertical"
+        android:weightSum="1">
 
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_weight="1" />
 
         <RadioGroup
             android:id="@+id/signup_radio_type"
@@ -82,12 +89,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+                <EditText
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/signup_DOB"
-                android:hint="The Date"
+                android:hint="Enter the Date of Birth"
                 android:layout_margin="10dp"
                 android:editable="false"
                 />
@@ -112,7 +119,7 @@
             <Spinner
                 android:id="@+id/doctor_specialty"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
                 />
 
@@ -121,7 +128,7 @@
 
                 android:id="@+id/doctor_branch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
                 />
 
@@ -132,7 +139,9 @@
             android:id="@+id/create_account"
             style="@style/ParseLoginUI.Button"
             android:layout_marginTop="@dimen/com_parse_ui_small_vertical_spacing"
-            android:text="@string/com_parse_ui_create_account_button_label" />
+            android:text="@string/com_parse_ui_create_account_button_label"
+            android:textColor="#ffffffff"
+            android:background="#ff2322e0"/>
 
     </LinearLayout>
 </ScrollView>
