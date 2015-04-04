@@ -96,7 +96,14 @@
                 android:id="@+id/appointment_delete"
                 android:layout_below="@+id/appointment_time"
                 android:visibility="gone"
-                android:gravity="center_horizontal"/>
+                android:gravity="center_horizontal"
+                android:text="Delete" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Change"
+                android:id="@+id/appointment_change" />
 
 
         </RelativeLayout>
