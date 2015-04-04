@@ -91,7 +91,7 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
 
     View v = inflater.inflate(R.layout.com_parse_ui_parse_login_fragment,
         parent, false);
-    ImageView appLogo = (ImageView) v.findViewById(R.id.app_logo);
+    ImageView appLogo = (ImageView) v.findViewById(R.id.qwikdoc);
     parseLogin = v.findViewById(R.id.parse_login);
     usernameField = (EditText) v.findViewById(R.id.login_username_input);
     passwordField = (EditText) v.findViewById(R.id.login_password_input);

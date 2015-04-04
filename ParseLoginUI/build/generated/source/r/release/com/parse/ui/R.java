@@ -328,7 +328,6 @@ containing a value of this type.
         public static int date=0x7f020036;
     }
     public static final class id {
-        public static int app_logo=0x7f0a0026;
         public static int bottom=0x7f0a0003;
         public static int box_count=0x7f0a0000;
         public static int button=0x7f0a0001;
@@ -379,6 +378,7 @@ containing a value of this type.
         public static int parse_signup_button=0x7f0a002c;
         public static int patient=0x7f0a0034;
         public static int picker_subtitle=0x7f0a001b;
+        public static int qwikdoc=0x7f0a0026;
         public static int right=0x7f0a0008;
         public static int signup_confirm_password_input=0x7f0a0038;
         public static int signup_email_input=0x7f0a0039;
