@@ -81,7 +81,7 @@ public class SampleProfileActivity extends Activity {
 
         if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
 
-            Intent patientIntent = new Intent(this, MainNavigationActivity.class);
+            Intent patientIntent = new Intent(this, MainActivity.class);
             startActivity(patientIntent);
             finish();
 
