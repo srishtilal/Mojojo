@@ -364,7 +364,7 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
     }
 
     if (usernameField == null) {
-      debugLog(R.string.com_parse_ui_login_warning_layout_missing_username_field);
+      debugLog(R.string.com_parse_ui_login_warning_layout_missing_password_field);
     }
     if (passwordField == null) {
       debugLog(R.string.com_parse_ui_login_warning_layout_missing_password_field);

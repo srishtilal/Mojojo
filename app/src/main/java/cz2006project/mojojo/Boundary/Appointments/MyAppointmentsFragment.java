@@ -185,7 +185,7 @@ public class MyAppointmentsFragment extends Fragment {
                 this.appointment_date = (TextView) itemView.findViewById(R.id.appointment_date);
                 this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
                 this.appointment_delete = (Button) itemView.findViewById(R.id.appointment_delete);
-                this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
+                //this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
 
 
 
