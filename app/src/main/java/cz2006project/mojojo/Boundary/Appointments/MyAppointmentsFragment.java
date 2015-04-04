@@ -207,6 +207,24 @@ public class MyAppointmentsFragment extends Fragment {
                     }
                 });
 
+                appointment_change.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ParseObject appt = appointments.get(getPosition());
+                        appt.deleteInBackground(new DeleteCallback() {
+                            @Override
+                            public void done(ParseException e) {
+                                if(e == null){
+                                    fetchData();
+                                }
+                                else{
+                                    Toast.makeText(getActivity().getApplicationContext(), "Internet Connection Problem", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }
+                });
+
             }
         }
     }
