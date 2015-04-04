@@ -178,6 +178,7 @@ public class ParseLoginFragment extends ParseLoginFragmentBase {
           ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
+
               if (isActivityDestroyed()) {
                 return;
               }
