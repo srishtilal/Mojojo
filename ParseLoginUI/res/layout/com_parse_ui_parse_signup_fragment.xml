@@ -82,12 +82,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <EditText
+                <EditText
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:id="@+id/signup_DOB"
-                android:hint="The Date"
+                android:hint="Enter the Date of Birth"
                 android:layout_margin="10dp"
                 android:editable="false"
                 />

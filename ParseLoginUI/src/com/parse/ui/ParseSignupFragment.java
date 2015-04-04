@@ -1,24 +1,3 @@
-/*
- *  Copyright (c) 2014, Parse, LLC. All rights reserved.
- *
- *  You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
- *  copy, modify, and distribute this software in source code or binary form for use
- *  in connection with the web services and APIs provided by Parse.
- *
- *  As with any software that integrates with the Parse platform, your use of
- *  this software is subject to the Parse Terms of Service
- *  [https://www.parse.com/about/terms]. This copyright notice shall be
- *  included in all copies or substantial portions of the software.
- *
- *  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- *  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
- *  FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
- *  COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
- *  IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
- *  CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- */
-
 package com.parse.ui;
 
 
@@ -70,7 +49,7 @@ import java.util.List;
 public class ParseSignupFragment extends ParseLoginFragmentBase implements OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemLongClickListener {
     public static final String USERNAME = "com.parse.ui.ParseSignupFragment.USERNAME";
     public static final String PASSWORD = "com.parse.ui.ParseSignupFragment.PASSWORD";
-
+    static View v;
     private EditText usernameField;
     private EditText passwordField;
     private EditText confirmPasswordField;
@@ -88,8 +67,6 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     private DatePicker dp;
     private List<String> specialtylist = new ArrayList();
     private List<String> cliniclist = new ArrayList();
-    private String[] Specialty={"ENT", "Dentistry","Orthopedics"};
-    private String[] Branch={"Joo Koon", "Pasir Ris","Pioneer"};
     ParseUser user = new ParseUser();
 
 
@@ -121,7 +98,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.com_parse_ui_parse_signup_fragment,
+         v = inflater.inflate(R.layout.com_parse_ui_parse_signup_fragment,
                 parent, false);
 
 
@@ -130,6 +107,8 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         doctor_specialty = (Spinner) v.findViewById(R.id.doctor_specialty);
         doctor_branch = (Spinner) v.findViewById(R.id.doctor_branch);
         actv(false);
+
+
 
         doctor_specialty.setVisibility(View.INVISIBLE);
         doctor_branch.setVisibility(View.INVISIBLE);
@@ -187,47 +166,10 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                     public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                int arg2, long arg3) {
                         // TODO Auto-generated method stub
-
-
-                      /* final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-                        query.whereExists("Name");
-                        query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
-
-                        query.findInBackground(new FindCallback<ParseObject>() {
-
-                            @Override
-                            public void done(List<ParseObject> doctors, ParseException e) {
-                                // The query returns a list of objects from the "questions" class
-                                if (e == null) {
-                                    for (ParseObject doctor : doctors) {
-                                        // Get the questionTopic value from the question object
-
-                                        String doctorname = doctor.getString("Name");
-                                        if (!(doctorlist.contains(doctorname)))
-                                            doctorlist.add(doctorname);
-
-
-                                        Log.d("doctor", "name: " + doctor.getString("Name"));
-                                        adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
-                                        dspinner.setAdapter(adapter1);
-                                    }
-
-                                } else {
-                                    Log.d("notretreive", "Error: " + e.getMessage());
-                                }
-
-
-
-
-                            }
-                        });*/
                     }
+                        public void onNothingSelected (AdapterView < ? > parent){
+                        }
 
-
-
-
-                    public void onNothingSelected(AdapterView<?> parent) {
-                    }
                 });
 
 
@@ -270,44 +212,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                     public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                int arg2, long arg3) {
                         // TODO Auto-generated method stub
-
-
-                      /* final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-                        query.whereExists("Name");
-                        query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
-
-                        query.findInBackground(new FindCallback<ParseObject>() {
-
-                            @Override
-                            public void done(List<ParseObject> doctors, ParseException e) {
-                                // The query returns a list of objects from the "questions" class
-                                if (e == null) {
-                                    for (ParseObject doctor : doctors) {
-                                        // Get the questionTopic value from the question object
-
-                                        String doctorname = doctor.getString("Name");
-                                        if (!(doctorlist.contains(doctorname)))
-                                            doctorlist.add(doctorname);
-
-
-                                        Log.d("doctor", "name: " + doctor.getString("Name"));
-                                        adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
-                                        dspinner.setAdapter(adapter1);
-                                    }
-
-                                } else {
-                                    Log.d("notretreive", "Error: " + e.getMessage());
-                                }
-
-
-
-
-                            }
-                        });*/
                     }
-
-
-
 
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
@@ -320,10 +225,6 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         doctor_branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position!=0)
-
-                    Toast.makeText(getActivity(), Branch[position], Toast.LENGTH_SHORT).show();
-
 
             }
 
@@ -487,127 +388,17 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                 }
 
             }
-
-
-
-
-
-          /*@Override*/
-         /* public void onClick(View v) {
-              addInput();
-              if (checkIfEmpty()) {
-                  pushDataToParse();
-              }
-
-          }*/
         });
 
 
         return v;
     }
 
-
-
-    /*public void addInput() {
-
-
-
-
-        users.put(ParseTables.Users.USERNAME,  usernameField.getText()+"");
-        users.put(ParseTables.Users.PASSWORD,  passwordField.getText()+"");
-
-        users.put(ParseTables.Users.NAME, nameField.getText() + "");
-
-        if(userType.getCheckedRadioButtonId()== R.id.patient)
-        {
-            users.put(ParseTables.Users.TYPE, "Patient");
-
-        }
-        else {
-            users.put(ParseTables.Users.TYPE, "Doctor");
-            users.put(ParseTables.Users.CLINIC, doctor_branch.getSelectedItem().toString());
-            users.put(ParseTables.Users.SPECIALTY, doctor_specialty.getSelectedItem().toString());
-        }
-
-    }
-
-
-
-    private void pushDataToParse() {
-
-ParseUser user= new ParseUser();
-        user.put(ParseTables.Users.USERNAME, users.get(ParseTables.Users.USERNAME));
-        Toast.makeText(getActivity().getApplicationContext(), users.get(ParseTables.Users.USERNAME), Toast.LENGTH_LONG).show();
-        user.put(ParseTables.Users.PASSWORD, users.get(ParseTables.Users.PASSWORD));
-        Toast.makeText(getActivity().getApplicationContext(), users.get(ParseTables.Users.PASSWORD), Toast.LENGTH_LONG).show();
-        user.put(ParseTables.Users.NAME, users.get(ParseTables.Users.NAME));
-        Toast.makeText(getActivity().getApplicationContext(), users.get(ParseTables.Users.NAME), Toast.LENGTH_LONG).show();
-        user.put(ParseTables.Users.TYPE, users.get(ParseTables.Users.TYPE));
-        Toast.makeText(getActivity().getApplicationContext(), users.get(ParseTables.Users.TYPE), Toast.LENGTH_LONG).show();
-        user.put(ParseTables.Users.DOB, users.get(ParseTables.Users.DOB));
-        Toast.makeText(getActivity().getApplicationContext(), users.get(ParseTables.Users.DOB), Toast.LENGTH_LONG).show();
-
-        if(userType.getCheckedRadioButtonId()== R.id.patient)
-        {
-
-        }
-        else {
-            user.put(ParseTables.Users.CLINIC, users.get(ParseTables.Users.CLINIC));
-            user.put(ParseTables.Users.SPECIALTY, users.get(ParseTables.Users.SPECIALTY));
-            }
-
-        user.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                createAccountButton.setClickable(true);
-                Toast.makeText(getActivity().getApplicationContext(),
-                        getString(R.string.User_Registered), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
-
-    private boolean checkIfEmpty() {
-        if (users.get(ParseTables.Users.USERNAME).isEmpty()) {
-            Toast.makeText(getActivity().getApplicationContext(), "Please select Valid Username", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if (users.get(ParseTables.Users.NAME).isEmpty()) {
-            Toast.makeText(getActivity().getApplicationContext(), "Please specify your Name", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-
-        if(!users.containsKey(ParseTables.Users.DOB)){
-            Toast.makeText(getActivity().getApplicationContext(), "Please enter date of Birth", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if(!users.containsKey(ParseTables.Users.PASSWORD)){
-            Toast.makeText(getActivity().getApplicationContext(), "Please enter valid password", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
-        if(userType.getCheckedRadioButtonId()== R.id.doctor)
-        {
-            if (users.get(ParseTables.Users.CLINIC).isEmpty()) {
-                Toast.makeText(getActivity().getApplicationContext(), "Please select a CLINIC", Toast.LENGTH_LONG).show();
-                return false;
-            }
-            if (users.get(ParseTables.Users.SPECIALTY).isEmpty()) {
-                Toast.makeText(getActivity().getApplicationContext(), "Please select your SPECIALTY", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        }
-
-
-        return true;
-    }*/
-
     @Override
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         return false;
     }
+
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -616,6 +407,7 @@ ParseUser user= new ParseUser();
             monthOfYear++;
             String date = String.valueOf(dayOfMonth) + "/" + monthOfYear + "/" + year;
 
+            ((EditText) v.findViewById(R.id.signup_DOB)).setText(date);
         }
 
         @Override
