@@ -198,7 +198,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         String password =  args.getString(PASSWORD);
 
 
-        ImageView appLogo = (ImageView) v.findViewById(R.id.app_logo);
+        ImageView appLogo = (ImageView) v.findViewById(R.id.qwikdoc);
         usernameField = (EditText) v.findViewById(R.id.signup_username_input);
         passwordField = (EditText) v.findViewById(R.id.signup_password_input);
         confirmPasswordField = (EditText) v.findViewById(R.id.signup_confirm_password_input);

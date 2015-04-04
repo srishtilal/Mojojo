@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -108,7 +109,6 @@ public class editAppointment extends Fragment {
                                            }
 
                                        } else {
-
                                            Log.d("notretreive", "Error: " + e.getMessage());
                                        }
 
@@ -126,6 +126,7 @@ public class editAppointment extends Fragment {
                                                query.whereExists("Name");
                                                query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
 
+
                                                query.findInBackground(new FindCallback<ParseObject>() {
 
                                                    @Override
@@ -134,28 +135,37 @@ public class editAppointment extends Fragment {
                                                        if (e == null) {
                                                            for (ParseObject doctor : doctors) {
                                                                // Get the questionTopic value from the question object
+                                                            String initial = cspinner.getSelectedItem().toString();
 
                                                                String doctorname = doctor.getString("Name");
-                                                               if (!(doctorlist.contains(doctorname)))
-                                                                   doctorlist.add(doctorname);
-
+                                                               doctorlist.add(doctorname);
 
                                                                Log.d("doctor", "name: " + doctor.getString("Name"));
                                                                adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
                                                                dspinner.setAdapter(adapter1);
+                                                               doctorlist.clear();
+
+                                                               //new AdapterHelper().update( new ArrayList (doctorlist));
+                                                               //adapter1.notifyDataSetChanged();
+
                                                            }
 
                                                        } else {
                                                            Log.d("notretreive", "Error: " + e.getMessage());
                                                        }
-
-
-
-
                                                    }
                                                });
                                            }
-
+                                           /*public class AdapterHelper {
+                                               @SuppressWarnings({ "rawtypes", "unchecked" })
+                                               public void update(ArrayList<String> doctorlist){
+                                                   doctorlist.clear();
+                                                   for (Object doctorname : doctorlist){
+                                                       adapter1.add(doctorname);
+                                                   }
+                                               }
+                                           }
+*/
 
 
 
@@ -425,6 +435,8 @@ public class editAppointment extends Fragment {
 
     }
 
+
+
     public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
 
         @Override
@@ -458,7 +470,5 @@ public class editAppointment extends Fragment {
         }
 
     }
-
-
 }
 
