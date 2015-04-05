@@ -124,7 +124,6 @@ public class editAppointment extends Fragment {
 
                 cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-<<<<<<< HEAD
                     @Override
                     public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                int arg2, long arg3) {
@@ -134,18 +133,10 @@ public class editAppointment extends Fragment {
                         final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
                         query.whereExists("Name");
                         query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
-=======
-                                           @Override
-                                           public void onItemSelected(AdapterView<?> arg0, View arg1,
-                                                                      int arg2, long arg3) {
+
 
 
                                                 doctorlist.clear();
-                                               final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-
-                                               query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
->>>>>>> origin/master
-
 
                         query.findInBackground(new FindCallback<ParseObject>() {
 
@@ -160,17 +151,14 @@ public class editAppointment extends Fragment {
                                         String doctorname = doctor.getString("Name");
                                         doctorlist.add(doctorname);
 
-<<<<<<< HEAD
                                         Log.d("doctor", "name: " + doctor.getString("Name"));
                                         ArrayAdapter adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
                                         dspinner.setAdapter(adapter1);
-=======
                                                                Log.d("doctor", "name: " + doctor.getString("Name"));
                                                                adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
                                                                dspinner.setAdapter(adapter1);
 
 
->>>>>>> origin/master
 
                                         //new AdapterHelper().update( new ArrayList (doctorlist));
                                         //adapter1.notifyDataSetChanged();
@@ -367,7 +355,7 @@ public class editAppointment extends Fragment {
             ((MaterialEditText)v.findViewById(R.id.appointment_date)).setText(date);
 
             Calendar calendar = Calendar.getInstance();
-            calendar.set(year, monthOfYear, dayOfMonth);
+            calendar.set(year, monthOfYear - 1, dayOfMonth);
             appointments.put(ParseTables.Appointment.DATE, calendar.getTime());
 
 
@@ -414,9 +402,11 @@ public class editAppointment extends Fragment {
 
             String time;
             String min = Integer.toString(minute);
-            if(minute < 10){
-                min = "0" +Integer.toString(minute);
+            if(minute == 0){
+                min = "00";
             }
+            else
+            min = "30";
             if(hourOfDay > 12){
                 hourOfDay = hourOfDay - 12;
                 time = String.valueOf(hourOfDay) + ":" + min + " pm";
