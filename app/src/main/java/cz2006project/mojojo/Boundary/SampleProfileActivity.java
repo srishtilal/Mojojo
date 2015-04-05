@@ -107,6 +107,8 @@ public class SampleProfileActivity extends Activity {
         AppEventsLogger.activateApp(this);
     }
 
+
+
     /**
      * Shows the profile of the given user.
      */

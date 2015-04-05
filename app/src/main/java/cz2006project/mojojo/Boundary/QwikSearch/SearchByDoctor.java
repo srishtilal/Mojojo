@@ -37,7 +37,6 @@ import java.util.List;
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.ClinicAdapter;
 import main.java.cz2006project.mojojo.Control.ParseTables;
-import main.java.cz2006project.mojojo.DoctorAdapter;
 import main.java.cz2006project.mojojo.ParseCircularImageView;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
 
@@ -62,9 +61,8 @@ public class SearchByDoctor extends Fragment {
     ListView listview;
     private ClinicAdapter clinicadapter;
     private ListView listView;*/
-   private DoctorAdapter doctoradapter;
+   private ClinicAdapter clinicadapter;
     private ListView listView;
-
 
 
     public SearchByDoctor() {
@@ -79,20 +77,20 @@ public class SearchByDoctor extends Fragment {
         View view = inflater.inflate(R.layout.fragment_searchnearby, container, false);
 
 
-        // Initialize the subclass of ParseQueryAdapter
-        doctoradapter = new DoctorAdapter(getActivity());
+            // Initialize the subclass of ParseQueryAdapter
+            clinicadapter = new ClinicAdapter(getActivity());
 
-        // Initialize ListView and set initial view to mainAdapter
-        listView = (ListView) view.findViewById(R.id.list);
-        listView.setAdapter(doctoradapter);
-        doctoradapter.loadObjects();
+            // Initialize ListView and set initial view to mainAdapter
+            listView = (ListView) view.findViewById(R.id.list);
+            listView.setAdapter(clinicadapter);
+            clinicadapter.loadObjects();
 
         return view;
 
 
-    }
+        }
 
-}
+    }
 /*
 
         search.addTextChangedListener(new TextWatcher() {

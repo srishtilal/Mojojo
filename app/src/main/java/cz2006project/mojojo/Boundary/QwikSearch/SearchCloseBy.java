@@ -37,11 +37,12 @@ import java.util.List;
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.ClinicAdapter;
 import main.java.cz2006project.mojojo.Control.ParseTables;
+import main.java.cz2006project.mojojo.DoctorAdapter;
 import main.java.cz2006project.mojojo.ParseCircularImageView;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
 
 
-public class SearchNearMe extends Fragment {
+public class SearchCloseBy extends Fragment {
 
    /* ProgressBarCircular progressBar;
     Dialog dialogPeople;
@@ -61,11 +62,12 @@ public class SearchNearMe extends Fragment {
     ListView listview;
     private ClinicAdapter clinicadapter;
     private ListView listView;*/
-   private ClinicAdapter clinicadapter;
+   private DoctorAdapter doctoradapter;
     private ListView listView;
 
 
-    public SearchNearMe() {
+
+    public SearchCloseBy() {
         // Required empty public constructor
     }
 
@@ -77,20 +79,20 @@ public class SearchNearMe extends Fragment {
         View view = inflater.inflate(R.layout.fragment_searchnearby, container, false);
 
 
-            // Initialize the subclass of ParseQueryAdapter
-            clinicadapter = new ClinicAdapter(getActivity());
+        // Initialize the subclass of ParseQueryAdapter
+        doctoradapter = new DoctorAdapter(getActivity());
 
-            // Initialize ListView and set initial view to mainAdapter
-            listView = (ListView) view.findViewById(R.id.list);
-            listView.setAdapter(clinicadapter);
-            clinicadapter.loadObjects();
+        // Initialize ListView and set initial view to mainAdapter
+        listView = (ListView) view.findViewById(R.id.list);
+        listView.setAdapter(doctoradapter);
+        doctoradapter.loadObjects();
 
         return view;
 
 
-        }
-
     }
+
+}
 /*
 
         search.addTextChangedListener(new TextWatcher() {

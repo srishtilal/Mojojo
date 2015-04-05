@@ -51,10 +51,8 @@ public class QwikSearchFragment extends Fragment {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return (new SearchNearMe());
-                    case 1:
                         return (new SearchByDoctor());
-                    case 2:
+                    case 1:
                         return (new SearchByClinic());
 
                 }
@@ -65,11 +63,10 @@ public class QwikSearchFragment extends Fragment {
             public CharSequence getPageTitle(int position) {
                 switch (position) {
                     case 0:
-                        return "Near Me";
-                    case 1:
                         return "Search By Doctor";
-                    case 2:
-                        return "Search by Clinic";
+                    case 1:
+                        return "Search By Clinic";
+
                 }
 
                 return null;
@@ -77,7 +74,7 @@ public class QwikSearchFragment extends Fragment {
 
             @Override
             public int getCount() {
-                return 3;
+                return 2;
             }
         };
 
