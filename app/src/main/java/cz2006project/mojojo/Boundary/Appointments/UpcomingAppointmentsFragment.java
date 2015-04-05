@@ -326,26 +326,94 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
     public void sendMail() {
         ParseUser user = ParseUser.getCurrentUser();
+    public void sendMail(View v)
+    {
+        
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+        query.whereEqualTo("username",ParseUser.getCurrentUser().getUsername());
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
 
-
+            @Override
+            public void done(List<ParseObject> users, ParseException e) {
+                // The query returns a list of objects from the "questions" class
+                if (e == null) {
+                    for (ParseObject user : users) {
                         // Get the questionTopic value from the question object
-                        Map<String, String> params = new HashMap<>();
-                        params.put("text", "Sample mail body");
-                        params.put("subject", "Test Parse Push");
-                        params.put("fromEmail", "srishti_lal@hotmail.com");
-                        params.put("fromName", "Source User");
-                        params.put("toEmail", user.getEmail());
-                        params.put("toName", "Desss");
-                        ParseCloud.callFunctionInBackground("sendMail", params, new FunctionCallback<Object>() {
-                            @Override
-                            public void done(Object response, ParseException exc) {
-                                Log.e("cloud code example", "response: " + response);
+                        final String userName = user.getString("name");
+                        final String email = user.getString("email");
+                        nameList.add(userName);
+                        emailList.add(email);
+
+                        final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Appointment");
+                        query2.whereContainedIn("patient", nameList);
+                        query2.findInBackground(new FindCallback<ParseObject>() {
+                            public void done(List<ParseObject> Appointment, ParseException e) {
+
+                                if (e == null) {
+                                    for (ParseObject Appt : Appointment) {
+                                        int i = 0;
+                                        Date date = Appt.getDate("date");
+                                        String time = Appt.getString("time");
+                                        for (String name : nameList) {
+                                            int j = 0;
+                                            if (name == Appt.getString("patient")) {
+                                                List innerList = (List) totalTemp.get(i);
+                                                String temp = Appt.getString("patient") + '/' + emailList.get(i) + '/' + time;
+                                                tempList.add(temp);
+                                                dateList.add(date);
+                                                innerList.add(date);
+                                                innerList.add(temp);
+                                            }
+                                            j++;
+                                        }
+                                        i++;
+                                    }
+                                } else {
+                                    Log.d("notretreive", "Error: " + e.getMessage());
+                                }
                             }
                         });
-                        Log.d("user", "name: " + user.getString("name"));
+
+//                        Log.d("patient", "name: " + user.getString("name"));
                     }
 
+                } else {
+
+                    Log.d("notretreive", "Error: " + e.getMessage());
                 }
+
+                for (int i = 0; i < totalTemp.size(); i++)
+                {
+                    List innerList = (List)totalTemp.get(i);
+                    Date date = (Date) innerList.get(0);
+                    Date currentDate = new Date();
+                    String temp = (String)innerList.get(1);
+                    String[] random = temp.split("/");
+
+                    if(date.compareTo(currentDate) > 3 || date.compareTo(currentDate) == 0) {
+                        params.put("Reminder: ", "Your Appointment is on the " + date.toString() + "Please come punctually.");
+                        params.put("subject", "Reminder");
+                        params.put("from qwikdoc", "qwikDoc@gmail.com");
+                        /*params.put("fromName", "Source User");*/
+                        params.put("toEmail", random[1]);
+                        params.put("toName", random[0]);
+                    }
+
+                    ParseCloud.callFunctionInBackground("sendMail", params, new FunctionCallback<Object>() {
+                        @Override
+                        public void done(Object response, ParseException exc) {
+                            Log.e("cloud code example", "response: " + response);
+                        }
+                    });
+                }
+            }
+        });
+    }
+}
+
+
+
 
 
 
