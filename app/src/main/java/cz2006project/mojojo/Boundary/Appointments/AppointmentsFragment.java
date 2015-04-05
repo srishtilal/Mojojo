@@ -57,11 +57,11 @@ public class AppointmentsFragment extends Fragment {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return (new editAppointment());
-                    case 1:
-                        return (new changeAppointment());
-                    case 2:
                         return MyAppointmentsFragment.newInstance(true);
+                    case 1:
+                        return new editAppointment();
+                    case 2:
+                        return PastAppointments.newInstance(true);
 
                 }
                 return new MyAppointmentsFragment();
@@ -71,11 +71,11 @@ public class AppointmentsFragment extends Fragment {
             public CharSequence getPageTitle(int position) {
                 switch (position) {
                     case 0:
-                        return "Create Appointment";
+                        return "Upcoming Appointments";
                     case 1:
-                        return "Change Appointment";
+                        return "Book new Appointment";
                     case 2:
-                        return "My Appointments";
+                        return "Past Appointments";
                 }
 
                 return null;

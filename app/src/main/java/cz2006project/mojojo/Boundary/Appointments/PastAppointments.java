@@ -1,6 +1,44 @@
 package main.java.cz2006project.mojojo.Boundary.Appointments;
 
 /**
+ * Created by srishti on 5/4/15.
+ */
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.parse.DeleteCallback;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Control.ParseTables;
+
+
+/**
  * Created by srishti on 30/3/15.
  */
 
@@ -32,10 +70,8 @@ import com.parse.ParseUser;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 import cz2006project.mojojo.R;
@@ -43,9 +79,9 @@ import main.java.cz2006project.mojojo.Control.ParseTables;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link android.support.v4.app.Fragment} subclass.
  */
-public class MyAppointmentsFragment extends Fragment {
+public class PastAppointments extends Fragment {
 
     RecyclerView appointmentsList;
     RecyclerView.Adapter adapter;
@@ -56,16 +92,16 @@ public class MyAppointmentsFragment extends Fragment {
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
 
-    public MyAppointmentsFragment(){
+    public PastAppointments(){
 
     }
 
-    public static MyAppointmentsFragment newInstance(Boolean check){
-        MyAppointmentsFragment myAppointmentsFragment = new MyAppointmentsFragment();
+    public static PastAppointments newInstance(Boolean check){
+        PastAppointments pastAppointments = new PastAppointments();
         Bundle b = new Bundle();
         b.putBoolean("check", check);
-        myAppointmentsFragment.setArguments(b);
-        return myAppointmentsFragment;
+        pastAppointments.setArguments(b);
+        return pastAppointments;
     }
 
     @Override
@@ -242,7 +278,7 @@ public class MyAppointmentsFragment extends Fragment {
             query.whereEqualTo("patient", ParseUser.getCurrentUser().getString("name"));
             Calendar currentDate = Calendar.getInstance();
             Date current = currentDate.getTime();
-            query.whereGreaterThanOrEqualTo("Date", current);
+            query.whereLessThan("Date", current);
         }
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
