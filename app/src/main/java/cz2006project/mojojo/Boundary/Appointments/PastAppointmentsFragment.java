@@ -305,6 +305,9 @@ public class PastAppointmentsFragment extends Fragment {
         appointment.put(ParseTables.Appointment.FOLLOWUP, appt.getString("followup"));
         appointment.put(ParseTables.Appointment.NOTES, appt.getString("notes"));
         appointment.put(ParseTables.Appointment.PATIENT, appt.getString("patient"));
+        Toast.makeText(getActivity().getApplicationContext(),
+                "Is it working", Toast.LENGTH_SHORT).show();
+
 
         appointment.saveInBackground(new SaveCallback() {
             @Override
