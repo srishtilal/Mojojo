@@ -83,7 +83,7 @@ public class SearchByDoctor extends Fragment {
         doctoradapter = new DoctorAdapter(getActivity());
 
         // Initialize ListView and set initial view to mainAdapter
-        listView = (ListView) view.findViewById(R.id.list);
+        listView = (ListView) view.findViewById(R.id.listviewpeople);
         listView.setAdapter(doctoradapter);
         doctoradapter.loadObjects();
 

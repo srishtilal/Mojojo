@@ -39,6 +39,49 @@ import main.java.cz2006project.mojojo.ClinicAdapter;
 import main.java.cz2006project.mojojo.Control.ParseTables;
 import main.java.cz2006project.mojojo.ParseCircularImageView;
 import main.java.cz2006project.mojojo.ProgressBarCircular;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.DatePicker;
+import android.widget.ImageButton;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.Parse;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseQueryAdapter;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
+
+import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Control.ParseTables;
+import main.java.cz2006project.mojojo.CustomTimePicker;
+import main.java.cz2006project.mojojo.Entity.Appointment;
+import main.java.cz2006project.mojojo.MaterialEditText;
+import main.java.cz2006project.mojojo.ProgressBarCircular;
 
 
 public class SearchNearMe extends Fragment {
@@ -61,8 +104,12 @@ public class SearchNearMe extends Fragment {
     ListView listview;
     private ClinicAdapter clinicadapter;
     private ListView listView;*/
-   private ClinicAdapter clinicadapter;
+    private ClinicAdapter clinicadapter;
     private ListView listView;
+    private Spinner Lspinner, cspinner;
+
+    List<String> locationlist = new ArrayList();
+    List<String> cliniclist = new ArrayList();
 
 
     public SearchNearMe() {
@@ -74,23 +121,101 @@ public class SearchNearMe extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_searchnearby, container, false);
+        final View view = inflater.inflate(R.layout.fragment_searchnearby, container, false);
 
 
             // Initialize the subclass of ParseQueryAdapter
             clinicadapter = new ClinicAdapter(getActivity());
+            Lspinner = (Spinner) view.findViewById(R.id.locationspinner);
+            cspinner = (Spinner) view.findViewById(R.id.clinicspinner);
 
             // Initialize ListView and set initial view to mainAdapter
-            listView = (ListView) view.findViewById(R.id.list);
+            listView = (ListView) view.findViewById(R.id.listviewpeople);
             listView.setAdapter(clinicadapter);
             clinicadapter.loadObjects();
 
-        return view;
+        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(getActivity(),
+                R.array.appointment_type_array, android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Clinic");
+        query.whereExists("name");
+
+        query.findInBackground(new FindCallback<ParseObject>() {
+
+            @Override
+            public void done(List<ParseObject> locations, ParseException e) {
+                // The query returns a list of objects from the "questions" class
+                if (e == null) {
+                    for (ParseObject location : locations) {
+                        // Get the questionTopic value from the question object
+                        String locationname = location.getString("Location");
+                        locationlist.add(locationname);
+                        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, locationlist);
+                        Lspinner.setAdapter(adapter);
+
+                        Log.d("clinic", "location: " + location.getString("Location"));
+                    }
+
+                } else {
+                    Log.d("notretreive", "Error: " + e.getMessage());
+                }
 
 
-        }
+                cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                               int arg2, long arg3) {
+                        // TODO Auto-generated method stub
+
+
+                        final ParseQuery<ParseObject> query = ParseQuery.getQuery("Clinic");
+                        query.whereExists("Name");
+                        query.whereEqualTo("Clinic", Lspinner.getSelectedItem().toString());
+
+
+                        cliniclist.clear();
+
+                        query.findInBackground(new FindCallback<ParseObject>() {
+
+                            @Override
+                            public void done(List<ParseObject> clinics, ParseException e) {
+                                // The query returns a list of objects from the "questions" class
+                                if (e == null) {
+                                    for (ParseObject clinic : clinics) {
+                                        // Get the questionTopic value from the question object
+                                        String initial = cspinner.getSelectedItem().toString();
+
+                                        String clinicname = clinic.getString("Name");
+                                        cliniclist.add(clinicname);
+
+                                        Log.d("doctor", "name: " + clinic.getString("Name"));
+                                        ArrayAdapter adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, cliniclist);
+                                        cspinner.setAdapter(adapter1);
+                                        Log.d("doctor", "name: " + clinic.getString("Name"));
+                                        adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, cliniclist);
+                                        cspinner.setAdapter(adapter1);
+                                    }
+
+                                } else {
+                                    Log.d("notretreive", "Error: " + e.getMessage());
+                                }
+                            }
+                        });
+                    }
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                });
+
+            }
+        });
+    return view;
     }
+}
+
+
+
 /*
 
         search.addTextChangedListener(new TextWatcher() {

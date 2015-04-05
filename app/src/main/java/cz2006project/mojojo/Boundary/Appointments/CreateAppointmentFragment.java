@@ -186,8 +186,6 @@ public class CreateAppointmentFragment extends Fragment {
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
-
-
             }
         });
 
