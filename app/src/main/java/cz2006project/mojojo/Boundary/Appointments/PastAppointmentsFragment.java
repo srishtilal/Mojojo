@@ -267,11 +267,7 @@ public class PastAppointmentsFragment extends Fragment {
 
     private void pushDataToParse() {
 
-
-
-
-
-        Appointment appointment = new Appointment();
+        ParseObject appointment = new ParseObject("Appointment");
 /*
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
         //query.orderByDescending("AppointmentNumber");
@@ -300,15 +296,15 @@ public class PastAppointmentsFragment extends Fragment {
 
         calendar.set(yeartest, monthtest, daytest, hourtest, minutetest);
         appt.put(ParseTables.Appointment.DATE, calendar.getTime());
-        appointment.put(ParseTables.Appointment.DATE,appt.get(ParseTables.Appointment.DATE));
-        appointment.put(ParseTables.Appointment.TIME, appt.get(ParseTables.Appointment.TIME));
-        appointment.put(ParseTables.Appointment.CLINIC, appt.get(ParseTables.Appointment.CLINIC));
-        appointment.put(ParseTables.Appointment.DOCTOR, appt.get(ParseTables.Appointment.DOCTOR));
-        appointment.put(ParseTables.Appointment.TYPE, appt.get(ParseTables.Appointment.TYPE));
+        appointment.put("Date",appt.getDate("Date"));
+        appointment.put("time", appt.getString("time"));
+        appointment.put("clinic", appt.getString("clinic"));
+        appointment.put(ParseTables.Appointment.DOCTOR, appt.getString("doctor"));
+        appointment.put(ParseTables.Appointment.TYPE, appt.getString("type"));
 
-        appointment.put(ParseTables.Appointment.FOLLOWUP, appt.get(ParseTables.Appointment.FOLLOWUP));
-        appointment.put(ParseTables.Appointment.NOTES, appt.get(ParseTables.Appointment.NOTES));
-        appointment.put(ParseTables.Appointment.PATIENT, appt.get(ParseTables.Appointment.PATIENT));
+        appointment.put(ParseTables.Appointment.FOLLOWUP, appt.getString("followup"));
+        appointment.put(ParseTables.Appointment.NOTES, appt.getString("notes"));
+        appointment.put(ParseTables.Appointment.PATIENT, appt.getString("patient"));
 
         appointment.saveInBackground(new SaveCallback() {
             @Override
