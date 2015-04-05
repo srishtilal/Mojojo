@@ -15,7 +15,7 @@ package main.java.cz2006project.mojojo.Boundary.QwikSearch;
         import android.view.ViewGroup;
 
         import cz2006project.mojojo.R;
-        import main.java.cz2006project.mojojo.Boundary.Appointments.editAppointment;
+        import main.java.cz2006project.mojojo.Boundary.Appointments.CreateAppointmentFragment;
         import main.java.cz2006project.mojojo.Control.SampleApplication;
 
 
@@ -58,7 +58,7 @@ public class QwikSearchFragment extends Fragment {
                         return (new SearchByClinic());
 
                 }
-                return new editAppointment();
+                return new CreateAppointmentFragment();
             }
 
             @Override

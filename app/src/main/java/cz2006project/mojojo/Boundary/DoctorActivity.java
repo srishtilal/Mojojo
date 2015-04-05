@@ -21,7 +21,6 @@ package main.java.cz2006project.mojojo.Boundary;
 
         import cz2006project.mojojo.R;
         import main.java.cz2006project.mojojo.Boundary.Account.ProfileFragment;
-        import main.java.cz2006project.mojojo.Boundary.Appointments.MyAppointmentsFragment;
         import main.java.cz2006project.mojojo.Boundary.Appointments.ScheduledAppointmentsFragment;
         import main.java.cz2006project.mojojo.Boundary.MedicalRecords.MedicalRecordSearchFragment;
         import main.java.cz2006project.mojojo.Control.SampleApplication;

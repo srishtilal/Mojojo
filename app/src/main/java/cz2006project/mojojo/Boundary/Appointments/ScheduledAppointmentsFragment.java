@@ -4,9 +4,6 @@ package main.java.cz2006project.mojojo.Boundary.Appointments;
  * Created by srishti on 30/3/15.
  */
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -33,10 +30,11 @@ import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import cz2006project.mojojo.R;
-import main.java.cz2006project.mojojo.Boundary.SampleProfileActivity;
 import main.java.cz2006project.mojojo.Control.ParseTables;
 
 
@@ -53,8 +51,6 @@ public class ScheduledAppointmentsFragment extends Fragment {
     View v;
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
-    String Name = ParseUser.getCurrentUser().getString("Name");
-
 
     public ScheduledAppointmentsFragment(){
 
@@ -80,8 +76,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        v = inflater.inflate(R.layout.fragments_appointments_list, container, false);
+        v = inflater.inflate(R.layout.fragments_upcoming_appointments_list, container, false);
         appointmentsList = (RecyclerView) v.findViewById(R.id.listviewappointments);
         appointmentsMainLayout = (LinearLayout) v.findViewById(R.id.appointments_main_list);
         emptyAppointment = (ScrollView) v.findViewById(R.id.empty_appointments);
@@ -120,7 +115,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            //holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
+            holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
             holder.doctor.setText((String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
             holder.clinic.setText((String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
@@ -130,9 +125,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
             //holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
 
 
-            if(check_my_appointments) {
-
-
+            if(check_my_appointments){
                 holder.appointment_creator.setVisibility(View.GONE);
                 holder.appointment_delete.setVisibility(View.VISIBLE);
             }
@@ -170,21 +163,22 @@ public class ScheduledAppointmentsFragment extends Fragment {
             TextView appointment_number;
             TextView clinic;
             TextView doctor;
-            //TextView medicalissue;
             RelativeLayout expanded_area;
             TextView notes;
             TextView appointment_date;
             TextView appointment_time;
             Button appointment_delete;
+            Button appointment_change;
+
+
             TextView appointment_creator;
 
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                //this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
+                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
                 this.doctor = (TextView) itemView.findViewById(R.id.doctor);
-                //this.medicalissue = (TextView) itemView.findViewById(R.id.medicalissue);
                 this.expanded_area = (RelativeLayout) itemView.findViewById(R.id.expanded_area);
                 this.appointment_creator = (TextView) itemView.findViewById(R.id.appointment_creator);
 
@@ -214,8 +208,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
                     }
                 });
 
-
-                appointment_delete.setOnClickListener(new View.OnClickListener() {
+                /*appointment_change.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ParseObject appt = appointments.get(getPosition());
@@ -231,7 +224,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
                             }
                         });
                     }
-                });
+                });*/
 
             }
         }
@@ -240,10 +233,12 @@ public class ScheduledAppointmentsFragment extends Fragment {
     public void fetchData(){
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "Appointment");
-        query.orderByAscending("date");
+
         if(check_my_appointments){
-            String Name = ParseUser.getCurrentUser().getString("name");
-            query.whereEqualTo("doctor", Name);
+            query.whereEqualTo("doctor", ParseUser.getCurrentUser().getString("name"));
+            Calendar currentDate = Calendar.getInstance();
+            Date current = currentDate.getTime();
+            query.whereGreaterThanOrEqualTo("Date", current);
         }
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
@@ -251,6 +246,8 @@ public class ScheduledAppointmentsFragment extends Fragment {
                 doneFetching(parseObjects);
             }
         });
+
+
     }
 
     public void doneFetching(List<ParseObject> appointments){
@@ -279,6 +276,9 @@ public class ScheduledAppointmentsFragment extends Fragment {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
 
 
 }

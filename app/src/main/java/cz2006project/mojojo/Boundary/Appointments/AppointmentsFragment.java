@@ -57,14 +57,14 @@ public class AppointmentsFragment extends Fragment {
             public Fragment getItem(int position) {
                 switch (position) {
                     case 0:
-                        return MyAppointmentsFragment.newInstance(true);
+                        return UpcomingAppointmentsFragment.newInstance(true);
                     case 1:
-                        return new editAppointment();
+                        return new CreateAppointmentFragment();
                     case 2:
-                        return PastAppointments.newInstance(true);
+                        return PastAppointmentsFragment.newInstance(true);
 
                 }
-                return new MyAppointmentsFragment();
+                return new UpcomingAppointmentsFragment();
             }
 
             @Override
