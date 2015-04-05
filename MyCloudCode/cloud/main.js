@@ -7,7 +7,7 @@ Parse.Cloud.define("hello", function(request, response) {
 
 Parse.Cloud.define("sendMail", function(request, response){
 var Mandrill = require('mandrill');
-Mandrill.initialize('myAPIKey');
+Mandrill.initialize('lDczO1OtFL3YOJ0y3kBHcQ');
 
 Mandrill.sendEmail({
   message: {
