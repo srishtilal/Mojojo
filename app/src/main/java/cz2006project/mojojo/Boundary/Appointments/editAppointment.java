@@ -61,7 +61,8 @@ public class editAppointment extends Fragment {
     ImageButton setDate;
     ImageButton setTime;
     List<String> cliniclist = new ArrayList<>();
-    List<String> doctorlist = new ArrayList<>();
+    List<String> doctorlist = new ArrayList();
+
 
     ProgressBarCircular progressBarCircular;
 
@@ -119,11 +120,11 @@ public class editAppointment extends Fragment {
                                            @Override
                                            public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                                       int arg2, long arg3) {
-                                               // TODO Auto-generated method stub
 
 
+                                                doctorlist.clear();
                                                final ParseQuery<ParseObject> query = ParseQuery.getQuery("Doctor");
-                                               query.whereExists("Name");
+
                                                query.whereEqualTo("Clinic", cspinner.getSelectedItem().toString());
 
 
@@ -143,7 +144,8 @@ public class editAppointment extends Fragment {
                                                                Log.d("doctor", "name: " + doctor.getString("Name"));
                                                                adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
                                                                dspinner.setAdapter(adapter1);
-                                                               doctorlist.clear();
+
+
 
                                                                //new AdapterHelper().update( new ArrayList (doctorlist));
                                                                //adapter1.notifyDataSetChanged();
