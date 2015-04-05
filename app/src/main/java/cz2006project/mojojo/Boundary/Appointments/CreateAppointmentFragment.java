@@ -53,8 +53,7 @@ public class CreateAppointmentFragment extends Fragment {
     private CheckBox isFollowUp;
     private String AppointmentNumber;
     private String appNo;
-    public static int hourTest, minuteTest, yearTest, monthTest, dayTest;
-    public static Calendar calendar;
+
 
 
 
@@ -327,10 +326,7 @@ public class CreateAppointmentFragment extends Fragment {
 
 
         //appointment.put(ParseTables.Appointment.APPOINTMENTNUMBER, appNo);
-        calendar.set(yearTest, monthTest, dayTest, hourTest, minuteTest);
-
-        appointments.put(ParseTables.Appointment.DATE, calendar.getTime());
-        appointment.put(ParseTables.Appointment.DATE,appointments.get(ParseTables.Appointment.DATE));
+        appointment.put(ParseTables.Appointment.DATE, appointments.get(ParseTables.Appointment.DATE));
         appointment.put(ParseTables.Appointment.TIME, appointments.get(ParseTables.Appointment.TIME));
         appointment.put(ParseTables.Appointment.CLINIC, appointments.get(ParseTables.Appointment.CLINIC));
         appointment.put(ParseTables.Appointment.DOCTOR, appointments.get(ParseTables.Appointment.DOCTOR));
@@ -358,11 +354,8 @@ public class CreateAppointmentFragment extends Fragment {
             String date = String.valueOf(dayOfMonth) + "/" + monthOfYear + "/" + year;
             ((MaterialEditText)v.findViewById(R.id.appointment_date)).setText(date);
 
-            yearTest=year;
-            monthTest=monthOfYear-1;
-            dayTest=dayOfMonth;
-            calendar = Calendar.getInstance();
-            calendar.set(yearTest, monthTest, dayTest, hourTest, minuteTest);
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, monthOfYear - 1, dayOfMonth);
             appointments.put(ParseTables.Appointment.DATE, calendar.getTime());
 
 
@@ -411,19 +404,14 @@ public class CreateAppointmentFragment extends Fragment {
             String min = Integer.toString(minute);
             if(minute == 0){
                 min = "00";
-                minuteTest=00;
             }
-            else{
+            else
             min = "30";
-            minuteTest=30;}
-
             if(hourOfDay > 12){
                 hourOfDay = hourOfDay - 12;
-                time = String.valueOf(hourTest) + ":" + String.valueOf(minuteTest) + " pm";
-                hourTest=hourOfDay;
+                time = String.valueOf(hourOfDay) + ":" + min + " pm";
             }else {
-                time = String.valueOf(hourTest) + ":" + String.valueOf(minuteTest) + " am";
-                hourTest=hourOfDay;
+                time = String.valueOf(hourOfDay) + ":" + min + " am";
             }
             appointments.put(ParseTables.Appointment.TIME, time);
             ((MaterialEditText)v.findViewById(R.id.appointment_time)).setText(time);
