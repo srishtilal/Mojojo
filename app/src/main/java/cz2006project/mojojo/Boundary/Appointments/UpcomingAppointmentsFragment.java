@@ -55,16 +55,24 @@ public class UpcomingAppointmentsFragment extends Fragment {
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
     private boolean refresh = false;
-    private boolean check_my_appointments=true;
+    private boolean check_my_appointments = true;
     View v;
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
+    private List<String> nameList = null;
+    private List<String> tempList = null;
+    private List<String> emailList = null;
+    private List<List<Object>> totalTemp = null;
+    private List<Date> dateList = null;
+    ParseUser user = null;
+    HashMap params = new HashMap();
 
-    public UpcomingAppointmentsFragment(){
+
+    public UpcomingAppointmentsFragment() {
 
     }
 
-    public static UpcomingAppointmentsFragment newInstance(Boolean check){
+    public static UpcomingAppointmentsFragment newInstance(Boolean check) {
         UpcomingAppointmentsFragment upcomingAppointmentsFragment = new UpcomingAppointmentsFragment();
         Bundle b = new Bundle();
         b.putBoolean("check", check);
@@ -73,10 +81,10 @@ public class UpcomingAppointmentsFragment extends Fragment {
     }
 
     @Override
-    public void onCreate (Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        if(this.getArguments() != null){
+        if (this.getArguments() != null) {
             check_my_appointments = getArguments().getBoolean("check");
         }
     }
@@ -123,16 +131,16 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
-            holder.doctor.setText("Doctor: " + (String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
-            holder.clinic.setText("Clinic: " + (String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
-            holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
-            holder.appointment_creator.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
+            holder.appointment_number.setText((String) appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
+            holder.doctor.setText("Doctor: " + (String) appointments.get(position).get(ParseTables.Appointment.DOCTOR));
+            holder.clinic.setText("Clinic: " + (String) appointments.get(position).get(ParseTables.Appointment.CLINIC));
+            holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE) + " " + appointments.get(position).get(ParseTables.Appointment.TIME));
+            holder.appointment_creator.setText((String) appointments.get(position).get(ParseTables.Appointment.PATIENT));
             //holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
             //holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
 
 
-            if(check_my_appointments){
+            if (check_my_appointments) {
                 holder.appointment_creator.setVisibility(View.GONE);
                 holder.appointment_delete.setVisibility(View.VISIBLE);
                 holder.appointment_changedatetime.setVisibility(View.VISIBLE);
@@ -200,12 +208,10 @@ public class UpcomingAppointmentsFragment extends Fragment {
                 //this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
 
 
-
-
-
                 appointment_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    public void onClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                         sendMail();
                         builder.setTitle("Confirm");
                         builder.setMessage("Are you sure you want to cancel this appointment?");
@@ -220,7 +226,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
                                 int day = calendar.get(Calendar.DATE);
                                 calendar.set(year, month, day, 0, 0, 0);
                                 Date BegginingOfToday = calendar.getTime();
-                               if (appt.getDate("Date").after(BegginingOfToday)) {
+                                if (appt.getDate("Date").after(BegginingOfToday)) {
                                     appt.deleteInBackground(new DeleteCallback() {
                                         @Override
                                         public void done(ParseException e) {
@@ -277,11 +283,11 @@ public class UpcomingAppointmentsFragment extends Fragment {
         }
     }
 
-    public void fetchData(){
+    public void fetchData() {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "Appointment");
 
-        if(check_my_appointments){
+        if (check_my_appointments) {
             query.whereEqualTo("patient", ParseUser.getCurrentUser().getString("name"));
             Calendar currentDate = Calendar.getInstance();
             Date current = currentDate.getTime();
@@ -297,14 +303,14 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
     }
 
-    public void doneFetching(List<ParseObject> appointments){
+    public void doneFetching(List<ParseObject> appointments) {
         adapter = new AppointmentsAdapter(appointments);
         appointmentsList.setAdapter(adapter);
         if (refresh == true) {
             swipeRefreshLayout.setRefreshing(false);
             refresh = false;
         }
-        if(check_my_appointments && adapter.getItemCount() == 0){
+        if (check_my_appointments && adapter.getItemCount() == 0) {
             appointmentsMainLayout.setVisibility(View.GONE);
         }
     }
@@ -325,92 +331,93 @@ public class UpcomingAppointmentsFragment extends Fragment {
     }
 
     public void sendMail() {
-        ParseUser user = ParseUser.getCurrentUser();
-    public void sendMail(View v)
-    {
-        
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-        query.whereEqualTo("username",ParseUser.getCurrentUser().getUsername());
-        query.findInBackground(new FindCallback<ParseObject>()
         {
+            user = ParseUser.getCurrentUser();
+            final ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
+            query.whereEqualTo("username", ParseUser.getCurrentUser().getUsername());
+            query.findInBackground(new FindCallback<ParseObject>() {
 
-            @Override
-            public void done(List<ParseObject> users, ParseException e) {
-                // The query returns a list of objects from the "questions" class
-                if (e == null) {
-                    for (ParseObject user : users) {
-                        // Get the questionTopic value from the question object
-                        final String userName = user.getString("name");
-                        final String email = user.getString("email");
-                        nameList.add(userName);
-                        emailList.add(email);
+                @Override
+                public void done(List<ParseObject> users, ParseException e) {
+                    // The query returns a list of objects from the "questions" class
+                    if (e == null) {
+                        for (ParseObject user : users) {
+                            // Get the questionTopic value from the question object
+                            final String userName = user.getString("name");
+                            final String email = user.getString("email");
+                            nameList.add(userName);
+                            emailList.add(email);
 
-                        final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Appointment");
-                        query2.whereContainedIn("patient", nameList);
-                        query2.findInBackground(new FindCallback<ParseObject>() {
-                            public void done(List<ParseObject> Appointment, ParseException e) {
+                            final ParseQuery<ParseObject> query2 = ParseQuery.getQuery("Appointment");
+                            query2.whereContainedIn("patient", nameList);
+                            query2.findInBackground(new FindCallback<ParseObject>() {
+                                public void done(List<ParseObject> Appointment, ParseException e) {
 
-                                if (e == null) {
-                                    for (ParseObject Appt : Appointment) {
-                                        int i = 0;
-                                        Date date = Appt.getDate("date");
-                                        String time = Appt.getString("time");
-                                        for (String name : nameList) {
-                                            int j = 0;
-                                            if (name == Appt.getString("patient")) {
-                                                List innerList = (List) totalTemp.get(i);
-                                                String temp = Appt.getString("patient") + '/' + emailList.get(i) + '/' + time;
-                                                tempList.add(temp);
-                                                dateList.add(date);
-                                                innerList.add(date);
-                                                innerList.add(temp);
+                                    if (e == null) {
+                                        for (ParseObject Appt : Appointment) {
+                                            int i = 0;
+                                            Date date = Appt.getDate("date");
+                                            String time = Appt.getString("time");
+                                            for (String name : nameList) {
+                                                int j = 0;
+                                                if (name == Appt.getString("patient")) {
+                                                    List innerList = (List) totalTemp.get(i);
+                                                    String temp = Appt.getString("patient") + '/' + emailList.get(i) + '/' + time;
+                                                    tempList.add(temp);
+                                                    dateList.add(date);
+                                                    innerList.add(date);
+                                                    innerList.add(temp);
+                                                }
+                                                j++;
                                             }
-                                            j++;
+                                            i++;
                                         }
-                                        i++;
+                                    } else {
+                                        Log.d("notretreive", "Error: " + e.getMessage());
                                     }
-                                } else {
-                                    Log.d("notretreive", "Error: " + e.getMessage());
                                 }
-                            }
-                        });
+                            });
 
 //                        Log.d("patient", "name: " + user.getString("name"));
-                    }
-
-                } else {
-
-                    Log.d("notretreive", "Error: " + e.getMessage());
-                }
-
-                for (int i = 0; i < totalTemp.size(); i++)
-                {
-                    List innerList = (List)totalTemp.get(i);
-                    Date date = (Date) innerList.get(0);
-                    Date currentDate = new Date();
-                    String temp = (String)innerList.get(1);
-                    String[] random = temp.split("/");
-
-                    if(date.compareTo(currentDate) > 3 || date.compareTo(currentDate) == 0) {
-                        params.put("Reminder: ", "Your Appointment is on the " + date.toString() + "Please come punctually.");
-                        params.put("subject", "Reminder");
-                        params.put("from qwikdoc", "qwikDoc@gmail.com");
-                        /*params.put("fromName", "Source User");*/
-                        params.put("toEmail", random[1]);
-                        params.put("toName", random[0]);
-                    }
-
-                    ParseCloud.callFunctionInBackground("sendMail", params, new FunctionCallback<Object>() {
-                        @Override
-                        public void done(Object response, ParseException exc) {
-                            Log.e("cloud code example", "response: " + response);
                         }
-                    });
+
+                    } else {
+
+                        Log.d("notretreive", "Error: " + e.getMessage());
+                    }
+
+                    for (int i = 0; i < totalTemp.size(); i++) {
+                        List innerList = (List) totalTemp.get(i);
+                        Date date = (Date) innerList.get(0);
+                        Date currentDate = new Date();
+                        String temp = (String) innerList.get(1);
+                        String[] random = temp.split("/");
+
+                        if (date.compareTo(currentDate) > 3 || date.compareTo(currentDate) == 0) {
+                            params.put("Reminder: ", "Your Appointment is on the " + date.toString() + "Please come punctually.");
+                            params.put("subject", "Reminder");
+                            params.put("from qwikdoc", "qwikDoc@gmail.com");
+                        /*params.put("fromName", "Source User");*/
+                            params.put("toEmail", random[1]);
+                            params.put("toName", random[0]);
+                        }
+
+                        ParseCloud.callFunctionInBackground("sendMail", params, new FunctionCallback<Object>() {
+                            @Override
+                            public void done(Object response, ParseException exc) {
+                                Log.e("cloud code example", "response: " + response);
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
+        }
+        ;
     }
+
+    ;
 }
+
 
 
 
