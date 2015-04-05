@@ -12,12 +12,14 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +29,8 @@ import android.widget.Toast;
 
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
+import com.parse.FunctionCallback;
+import com.parse.ParseCloud;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -34,7 +38,9 @@ import com.parse.ParseUser;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
@@ -195,10 +201,12 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
 
 
+
+
                 appointment_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-
+                        sendMail();
                         builder.setTitle("Confirm");
                         builder.setMessage("Are you sure you want to cancel this appointment?");
 
@@ -316,9 +324,32 @@ public class UpcomingAppointmentsFragment extends Fragment {
         }
     }
 
+    public void sendMail() {
+        ParseUser user = ParseUser.getCurrentUser();
+
+
+                        // Get the questionTopic value from the question object
+                        Map<String, String> params = new HashMap<>();
+                        params.put("text", "Sample mail body");
+                        params.put("subject", "Test Parse Push");
+                        params.put("fromEmail", "srishti_lal@hotmail.com");
+                        params.put("fromName", "Source User");
+                        params.put("toEmail", user.getEmail());
+                        params.put("toName", "Desss");
+                        ParseCloud.callFunctionInBackground("sendMail", params, new FunctionCallback<Object>() {
+                            @Override
+                            public void done(Object response, ParseException exc) {
+                                Log.e("cloud code example", "response: " + response);
+                            }
+                        });
+                        Log.d("user", "name: " + user.getString("name"));
+                    }
+
+                }
 
 
 
 
-}
+
+
 

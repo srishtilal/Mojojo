@@ -5,7 +5,8 @@
     android:gravity="center"
     android:id="@+id/parse_login"
     android:visibility="gone"
-    android:background="#fff0f3e6">
+    android:background="#fff0f3e6"
+    android:clickable="false">
 
 
     <EditText
@@ -57,4 +58,4 @@
         android:text="@string/com_parse_ui_forgot_password_button_label"
         android:textColor="#ff2322ff" />
 </LinearLayout>
-<!-- From: file:/C:/Users/Lee.SAIMUN-PC/Documents/GitHub/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_form.xml -->
+<!-- From: file:/Users/srishti/Downloads/Mojojo/ParseLoginUI/res/layout/com_parse_ui_parse_login_form.xml -->
