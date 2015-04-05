@@ -155,9 +155,9 @@ public class CreateAppointmentFragment extends Fragment {
                                         Log.d("doctor", "name: " + doctor.getString("Name"));
                                         ArrayAdapter adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
                                         dspinner.setAdapter(adapter1);
-                                                               Log.d("doctor", "name: " + doctor.getString("Name"));
-                                                               adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
-                                                               dspinner.setAdapter(adapter1);
+                                        Log.d("doctor", "name: " + doctor.getString("Name"));
+                                        adapter1 = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, doctorlist);
+                                        dspinner.setAdapter(adapter1);
 
 
 
@@ -349,6 +349,8 @@ public class CreateAppointmentFragment extends Fragment {
             }
         });
     }
+
+
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
 

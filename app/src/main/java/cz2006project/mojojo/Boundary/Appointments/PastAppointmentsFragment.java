@@ -4,36 +4,48 @@ package main.java.cz2006project.mojojo.Boundary.Appointments;
  * Created by srishti on 5/4/15.
  */
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import cz2006project.mojojo.R;
 import main.java.cz2006project.mojojo.Control.ParseTables;
+import main.java.cz2006project.mojojo.CustomTimePicker;
+import main.java.cz2006project.mojojo.Entity.Appointment;
 
 
 /**
@@ -54,6 +66,9 @@ public class PastAppointmentsFragment extends Fragment {
     View v;
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
+    public static ParseObject appt;
+    public static int yeartest, monthtest, daytest, hourtest, minutetest;
+    public static Calendar calendar;
 
     public PastAppointmentsFragment(){
 
@@ -94,6 +109,7 @@ public class PastAppointmentsFragment extends Fragment {
             }
         });
         fetchData();
+
 
         return v;
     }
@@ -190,6 +206,23 @@ public class PastAppointmentsFragment extends Fragment {
                 this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
                 this.appointment_followup = (Button) itemView.findViewById(R.id.appointment_followup);
                 //this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
+                appointment_followup.setOnClickListener(new View.OnClickListener() {
+                    ParseTables.Appointment appointment= new ParseTables.Appointment();
+
+                    @Override
+                    public void onClick(View v) {
+                        appt = appointments.get(getPosition());
+                        DatePickerFragment datePicker = new DatePickerFragment();
+                        datePicker.show(getActivity().getSupportFragmentManager(), "Set Date");
+                        TimePickerFragment timePickerFragment = new TimePickerFragment();
+                        timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
+
+
+
+                  
+                            }
+
+                });
 
                /* appointment_followup.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -227,9 +260,141 @@ public class PastAppointmentsFragment extends Fragment {
                     }
                 });*/
 
+
             }
         }
     }
+
+    private void pushDataToParse() {
+
+
+
+
+
+        Appointment appointment = new Appointment();
+/*
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
+        //query.orderByDescending("AppointmentNumber");
+        query.getFirstInBackground(new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject parseObject, ParseException e) {
+                //Is relationship exists?
+
+                if (parseObject == null) {
+                    Log.d("appNo", "The getFirst request failed.");
+                } else {
+                    Log.d("appNo", "Retrieved the object.");
+                    AppointmentNumber = parseObject.getString("AppointmentNumber");
+                    int newAppointmentNumber = Integer.parseInt(AppointmentNumber);
+                    appNo = String.valueOf(newAppointmentNumber);
+                }
+
+
+
+            }
+        });*/
+
+
+
+        //appointment.put(ParseTables.Appointment.APPOINTMENTNUMBER, appNo);
+
+        calendar.set(yeartest, monthtest, daytest, hourtest, minutetest);
+        appt.put(ParseTables.Appointment.DATE, calendar.getTime());
+        appointment.put(ParseTables.Appointment.DATE,appt.get(ParseTables.Appointment.DATE));
+        appointment.put(ParseTables.Appointment.TIME, appt.get(ParseTables.Appointment.TIME));
+        appointment.put(ParseTables.Appointment.CLINIC, appt.get(ParseTables.Appointment.CLINIC));
+        appointment.put(ParseTables.Appointment.DOCTOR, appt.get(ParseTables.Appointment.DOCTOR));
+        appointment.put(ParseTables.Appointment.TYPE, appt.get(ParseTables.Appointment.TYPE));
+
+        appointment.put(ParseTables.Appointment.FOLLOWUP, appt.get(ParseTables.Appointment.FOLLOWUP));
+        appointment.put(ParseTables.Appointment.NOTES, appt.get(ParseTables.Appointment.NOTES));
+        appointment.put(ParseTables.Appointment.PATIENT, appt.get(ParseTables.Appointment.PATIENT));
+
+        appointment.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+
+
+                Toast.makeText(getActivity().getApplicationContext(),
+                        getString(R.string.appointment_created), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        return false;
+    }
+
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            yeartest=year;
+            monthtest=monthOfYear;
+            daytest=dayOfMonth;
+
+
+
+
+
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+    }
+
+    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            String time;
+            String min = Integer.toString(minute);
+            if (minute < 10) {
+                min = "0" + Integer.toString(minute);
+                minutetest=00;
+            }
+            else {
+                min = "30";
+                minutetest=30;
+                }
+            if (hourOfDay > 12) {
+                hourOfDay = hourOfDay - 12;
+                time = String.valueOf(hourOfDay) + ":" + min + " pm";
+                hourtest=hourOfDay;
+            } else {
+                time = String.valueOf(hourOfDay) + ":" + min + " am";
+                hourtest=hourOfDay;
+            }
+
+
+
+
+            appt.put("time", time);
+
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int hour = 9;
+            int minute = 0;
+            CustomTimePicker cusTimePicker = new CustomTimePicker(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
+
+
+            return cusTimePicker;
+        }
+
+    }
+
 
     public void fetchData(){
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(

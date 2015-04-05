@@ -48,6 +48,7 @@ import com.parse.ParseUser;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -66,25 +67,26 @@ public class UpcomingAppointmentsFragment extends Fragment {
     RecyclerView.Adapter adapter;
     SwipeRefreshLayout swipeRefreshLayout;
     private boolean refresh = false;
-    private boolean check_my_appointments=true;
+    private boolean check_my_appointments = true;
     View v;
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
-        private List<String> nameList = null;
+    private List<String> nameList = null;
     private List<Date> dateList = null;
     private List<List<Object>> totalTemp = null;
     private List<String> emailList = null;
-    private List<String>tempList = null;
-    private HashMap<> params = null;
+    private List<String> tempList = null;
+    private HashMap params = null;
 
 
     public static ParseObject appt;
     public static int yeartest, monthtest, daytest, hourtest, minutetest;
-    public UpcomingAppointmentsFragment(){
+
+    public UpcomingAppointmentsFragment() {
 
     }
 
-    public static UpcomingAppointmentsFragment newInstance(Boolean check){
+    public static UpcomingAppointmentsFragment newInstance(Boolean check) {
         UpcomingAppointmentsFragment upcomingAppointmentsFragment = new UpcomingAppointmentsFragment();
         Bundle b = new Bundle();
         b.putBoolean("check", check);
@@ -93,11 +95,10 @@ public class UpcomingAppointmentsFragment extends Fragment {
     }
 
     @Override
-    public void onCreate (Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        if(this.getArguments() != null)
-        {
+        if (this.getArguments() != null) {
             check_my_appointments = getArguments().getBoolean("check");
         }
         sendMail();
@@ -145,16 +146,16 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
-            holder.doctor.setText("Doctor: " + (String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
-            holder.clinic.setText("Clinic: " + (String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
-            holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
-            holder.appointment_creator.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
+            holder.appointment_number.setText((String) appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
+            holder.doctor.setText("Doctor: " + (String) appointments.get(position).get(ParseTables.Appointment.DOCTOR));
+            holder.clinic.setText("Clinic: " + (String) appointments.get(position).get(ParseTables.Appointment.CLINIC));
+            holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE) + " " + appointments.get(position).get(ParseTables.Appointment.TIME));
+            holder.appointment_creator.setText((String) appointments.get(position).get(ParseTables.Appointment.PATIENT));
             //holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
             //holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
 
 
-            if(check_my_appointments){
+            if (check_my_appointments) {
                 holder.appointment_creator.setVisibility(View.GONE);
                 holder.appointment_delete.setVisibility(View.VISIBLE);
                 holder.appointment_changedate.setVisibility(View.VISIBLE);
@@ -220,15 +221,14 @@ public class UpcomingAppointmentsFragment extends Fragment {
                 this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
                 this.appointment_delete = (Button) itemView.findViewById(R.id.appointment_delete);
                 this.appointment_changedate = (Button) itemView.findViewById(R.id.appointment_changedate);
-                this.appointment_changetime=(Button) itemView.findViewById(R.id.appointment_changetime);
+                this.appointment_changetime = (Button) itemView.findViewById(R.id.appointment_changetime);
                 //this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
-
-
 
 
                 appointment_delete.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v) {AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    public void onClick(View v) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
                         builder.setTitle("Confirm");
                         builder.setMessage("Are you sure you want to cancel this appointment?");
@@ -243,7 +243,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
                                 int day = calendar.get(Calendar.DATE);
                                 calendar.set(year, month, day, 0, 0, 0);
                                 Date BegginingOfToday = calendar.getTime();
-                               if (appt.getDate("Date").after(BegginingOfToday)) {
+                                if (appt.getDate("Date").after(BegginingOfToday)) {
                                     appt.deleteInBackground(new DeleteCallback() {
                                         @Override
                                         public void done(ParseException e) {
@@ -281,7 +281,6 @@ public class UpcomingAppointmentsFragment extends Fragment {
                 appointment_changedate.setOnClickListener(new View.OnClickListener() {
 
 
-
                     @Override
                     public void onClick(View v) {
                         appt = appointments.get(getPosition());
@@ -306,11 +305,11 @@ public class UpcomingAppointmentsFragment extends Fragment {
         }
     }
 
-    public void fetchData(){
+    public void fetchData() {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "Appointment");
 
-        if(check_my_appointments){
+        if (check_my_appointments) {
             query.whereEqualTo("patient", ParseUser.getCurrentUser().getString("name"));
             Calendar currentDate = Calendar.getInstance();
             Date current = currentDate.getTime();
@@ -326,14 +325,14 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
     }
 
-    public void doneFetching(List<ParseObject> appointments){
+    public void doneFetching(List<ParseObject> appointments) {
         adapter = new AppointmentsAdapter(appointments);
         appointmentsList.setAdapter(adapter);
         if (refresh == true) {
             swipeRefreshLayout.setRefreshing(false);
             refresh = false;
         }
-        if(check_my_appointments && adapter.getItemCount() == 0){
+        if (check_my_appointments && adapter.getItemCount() == 0) {
             appointmentsMainLayout.setVisibility(View.GONE);
         }
     }
@@ -364,16 +363,16 @@ public class UpcomingAppointmentsFragment extends Fragment {
         @Override
         public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-            Date date2=  appt.getDate("Date");
-            Calendar calendar= GregorianCalendar.getInstance();
+            Date date2 = appt.getDate("Date");
+            Calendar calendar = GregorianCalendar.getInstance();
 
             calendar.setTime(date2);
-            hourtest=calendar.get(Calendar.HOUR_OF_DAY);
-            minutetest=calendar.get(Calendar.MINUTE);
+            hourtest = calendar.get(Calendar.HOUR_OF_DAY);
+            minutetest = calendar.get(Calendar.MINUTE);
 
             calendar.set(year, monthOfYear, dayOfMonth, hourtest, minutetest);
 
-            appt.put("Date",calendar.getTime() );
+            appt.put("Date", calendar.getTime());
             appt.saveInBackground();
         }
 
@@ -387,34 +386,35 @@ public class UpcomingAppointmentsFragment extends Fragment {
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
     }
-    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+
+    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             String time;
             String min = Integer.toString(minute);
-            if(minute < 10){
-                min = "0" +Integer.toString(minute);
+            if (minute < 10) {
+                min = "0" + Integer.toString(minute);
             }
-            if(hourOfDay > 12){
+            if (hourOfDay > 12) {
                 hourOfDay = hourOfDay - 12;
                 time = String.valueOf(hourOfDay) + ":" + min + " pm";
-            }else {
+            } else {
                 time = String.valueOf(hourOfDay) + ":" + min + " am";
             }
 
 
-            Date date2=  appt.getDate("Date");
-            Calendar calendar= GregorianCalendar.getInstance();
+            Date date2 = appt.getDate("Date");
+            Calendar calendar = GregorianCalendar.getInstance();
 
             calendar.setTime(date2);
-            yeartest=calendar.get(Calendar.YEAR);
-            monthtest=calendar.get(Calendar.MONTH);
-            daytest=calendar.get(Calendar.DAY_OF_MONTH);
+            yeartest = calendar.get(Calendar.YEAR);
+            monthtest = calendar.get(Calendar.MONTH);
+            daytest = calendar.get(Calendar.DAY_OF_MONTH);
             calendar.set(yeartest, monthtest, daytest, hourOfDay, minute);
 
-            appt.put("Date",calendar.getTime() );
-            appt.put("time",time);
+            appt.put("Date", calendar.getTime());
+            appt.put("time", time);
             appt.saveInBackground();
         }
 
@@ -423,15 +423,16 @@ public class UpcomingAppointmentsFragment extends Fragment {
             final Calendar c = Calendar.getInstance();
             int hour = 9;
             int minute = 0;
-            CustomTimePicker cusTimePicker = new CustomTimePicker(getActivity(), this, hour, minute , DateFormat.is24HourFormat(getActivity()));
+            CustomTimePicker cusTimePicker = new CustomTimePicker(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
 
 
             return cusTimePicker;
         }
 
     }
+
     public void sendMail() {
-        ParseUser user = ParseUser.getCurrentUser();
+       /* ParseUser user = ParseUser.getCurrentUser();
 
             @Override
             public void done(List<ParseObject> users, ParseException e) {
@@ -509,7 +510,8 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
             }
         });
-    };
+    };*/
+    }
 }
 
 
