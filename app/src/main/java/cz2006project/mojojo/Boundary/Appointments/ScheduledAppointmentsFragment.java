@@ -176,7 +176,7 @@ public class ScheduledAppointmentsFragment extends Fragment {
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
+                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_type);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
                 this.doctor = (TextView) itemView.findViewById(R.id.doctor);
                 this.expanded_area = (RelativeLayout) itemView.findViewById(R.id.expanded_area);

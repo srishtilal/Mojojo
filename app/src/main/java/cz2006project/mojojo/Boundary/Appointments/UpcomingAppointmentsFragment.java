@@ -118,8 +118,8 @@ public class UpcomingAppointmentsFragment extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
-            holder.doctor.setText((String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
-            holder.clinic.setText((String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
+            holder.doctor.setText("Doctor: " + (String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
+            holder.clinic.setText("Clinic: " + (String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
             holder.appointment_creator.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
             //holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
@@ -179,7 +179,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
+                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_type);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
                 this.doctor = (TextView) itemView.findViewById(R.id.doctor);
                 this.expanded_area = (RelativeLayout) itemView.findViewById(R.id.expanded_area);

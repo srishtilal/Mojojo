@@ -21,9 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
@@ -120,9 +118,9 @@ public class PastAppointmentsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.appointment_number.setText((String)appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
-            holder.doctor.setText((String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
-            holder.clinic.setText((String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
+            holder.appointment_type.setText("Appointment Type: " + (String)appointments.get(position).get(ParseTables.Appointment.TYPE));
+            holder.doctor.setText("Doctor: " + (String)appointments.get(position).get(ParseTables.Appointment.DOCTOR));
+            holder.clinic.setText("Clinic: " + (String)appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE)+" "+appointments.get(position).get(ParseTables.Appointment.TIME));
             holder.appointment_creator.setText((String)appointments.get(position).get(ParseTables.Appointment.PATIENT));
 
@@ -165,7 +163,7 @@ public class PastAppointmentsFragment extends Fragment {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            TextView appointment_number;
+            TextView appointment_type;
             TextView clinic;
             TextView doctor;
             RelativeLayout expanded_area;
@@ -181,7 +179,7 @@ public class PastAppointmentsFragment extends Fragment {
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_number);
+                this.appointment_type = (TextView) itemView.findViewById(R.id.appointment_type);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
                 this.doctor = (TextView) itemView.findViewById(R.id.doctor);
                 this.expanded_area = (RelativeLayout) itemView.findViewById(R.id.expanded_area);
