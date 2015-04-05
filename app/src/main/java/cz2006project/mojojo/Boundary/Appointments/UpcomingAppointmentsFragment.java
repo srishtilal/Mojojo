@@ -71,13 +71,19 @@ public class UpcomingAppointmentsFragment extends Fragment {
     LinearLayout appointmentsMainLayout;
     ScrollView emptyAppointment;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/master
         private List<String> nameList = null;
     private List<Date> dateList = null;
     private List<List<Object>> totalTemp = null;
     private List<String> emailList = null;
     private List<String>tempList = null;
     private HashMap<> params = null;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 
 
@@ -292,6 +298,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
                     }
                 });
 
+<<<<<<< HEAD
 
                 appointment_changetime.setOnClickListener(new View.OnClickListener() {
 
@@ -301,6 +308,17 @@ public class UpcomingAppointmentsFragment extends Fragment {
                         TimePickerFragment timePickerFragment = new TimePickerFragment();
                         timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
 
+=======
+
+                appointment_changetime.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        appt = appointments.get(getPosition());
+                        TimePickerFragment timePickerFragment = new TimePickerFragment();
+                        timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
+
+>>>>>>> origin/master
                     }
                 });
             }
@@ -355,6 +373,86 @@ public class UpcomingAppointmentsFragment extends Fragment {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        return false;
+    }
+
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            Date date2=  appt.getDate("Date");
+            Calendar calendar= GregorianCalendar.getInstance();
+
+            calendar.setTime(date2);
+            hourtest=calendar.get(Calendar.HOUR_OF_DAY);
+            minutetest=calendar.get(Calendar.MINUTE);
+
+            calendar.set(year, monthOfYear, dayOfMonth, hourtest, minutetest);
+
+            appt.put("Date",calendar.getTime() );
+            appt.saveInBackground();
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+    }
+    public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            String time;
+            String min = Integer.toString(minute);
+            if(minute < 10){
+                min = "0" +Integer.toString(minute);
+            }
+            if(hourOfDay > 12){
+                hourOfDay = hourOfDay - 12;
+                time = String.valueOf(hourOfDay) + ":" + min + " pm";
+            }else {
+                time = String.valueOf(hourOfDay) + ":" + min + " am";
+            }
+
+
+            Date date2=  appt.getDate("Date");
+            Calendar calendar= GregorianCalendar.getInstance();
+
+            calendar.setTime(date2);
+            yeartest=calendar.get(Calendar.YEAR);
+            monthtest=calendar.get(Calendar.MONTH);
+            daytest=calendar.get(Calendar.DAY_OF_MONTH);
+            calendar.set(yeartest, monthtest, daytest, hourOfDay, minute);
+
+            appt.put("Date",calendar.getTime() );
+            appt.put("time",time);
+            appt.saveInBackground();
+        }
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            final Calendar c = Calendar.getInstance();
+            int hour = 9;
+            int minute = 0;
+            CustomTimePicker cusTimePicker = new CustomTimePicker(getActivity(), this, hour, minute , DateFormat.is24HourFormat(getActivity()));
+
+
+            return cusTimePicker;
+        }
+
+    }
+>>>>>>> origin/master
     public void sendMail() {
         ParseUser user = ParseUser.getCurrentUser();
 
