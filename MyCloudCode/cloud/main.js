@@ -18,7 +18,7 @@ Mandrill.sendEmail({
     to: [
       {
         email: request.params.toEmail,
-		  name: reuest.params.toName
+		  name: request.params.toName
       }
     ]
   },
