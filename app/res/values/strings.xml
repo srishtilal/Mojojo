@@ -71,10 +71,22 @@
 
     <string name="appointment_created">Your appointment has been booked!</string>
     <string name="clinic_name">Name of Clinic</string>
+    <string name="appointment_type">Type of Appointment</string>
+
     <string name="doctor_name">Name of Doctor</string>
     <string name="medical_issue">Medical Issue</string>
     <string name="notes">notes</string>
     <string name="title_activity_patient_home_screen">PatientHomeScreen</string>
+
+    <string-array name="appointment_type_array">
+    <item>Consultation</item>
+    <item>Pre-Assessment Test</item>
+
+</string-array>
+
+
+    <string name="tab_date">Set Date</string>
+    <string name="tab_time">Set Time</string>
 
 
 

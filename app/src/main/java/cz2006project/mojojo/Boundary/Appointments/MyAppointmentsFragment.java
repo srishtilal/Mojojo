@@ -2,38 +2,42 @@ package main.java.cz2006project.mojojo.Boundary.Appointments;
 
 /**
  * Created by srishti on 30/3/15.
-*/
+ */
 
-        import android.os.Bundle;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.widget.SwipeRefreshLayout;
-        import android.support.v7.widget.CardView;
-        import android.support.v7.widget.LinearLayoutManager;
-        import android.support.v7.widget.RecyclerView;
-        import android.view.LayoutInflater;
-        import android.view.Menu;
-        import android.view.MenuInflater;
-        import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.Button;
-        import android.widget.LinearLayout;
-        import android.widget.RelativeLayout;
-        import android.widget.ScrollView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import com.parse.DeleteCallback;
-        import com.parse.FindCallback;
-        import com.parse.ParseException;
-        import com.parse.ParseObject;
-        import com.parse.ParseQuery;
-        import com.parse.ParseUser;
+import com.parse.DeleteCallback;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
-        import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
-        import cz2006project.mojojo.R;
-        import main.java.cz2006project.mojojo.Control.ParseTables;
+import cz2006project.mojojo.R;
+import main.java.cz2006project.mojojo.Control.ParseTables;
 
 
 /**
@@ -186,7 +190,7 @@ public class MyAppointmentsFragment extends Fragment {
                 this.appointment_date = (TextView) itemView.findViewById(R.id.appointment_date);
                 this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
                 this.appointment_delete = (Button) itemView.findViewById(R.id.appointment_delete);
-                this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
+                //this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
 
 
 
@@ -234,15 +238,12 @@ public class MyAppointmentsFragment extends Fragment {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
                 "Appointment");
         query.orderByAscending("createdAt");
+
+        query.whereGreaterThanOrEqualTo("date", 50);
         if(check_my_appointments){
             query.whereEqualTo("patient", ParseUser.getCurrentUser().getString("name"));
         }
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> parseObjects, ParseException e) {
-                doneFetching(parseObjects);
-            }
-        });
+
     }
 
     public void doneFetching(List<ParseObject> appointments){
@@ -273,5 +274,8 @@ public class MyAppointmentsFragment extends Fragment {
     }
 
 
-    }
+
+
+
+}
 

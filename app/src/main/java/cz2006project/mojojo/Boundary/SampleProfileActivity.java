@@ -79,7 +79,7 @@ public class SampleProfileActivity extends Activity {
         }
 
 
-        if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Patient") ) {
+        if (currentUser != null && currentUser.getString("type").equals("Patient") ) {
 
             Intent patientIntent = new Intent(this, MainActivity.class);
             startActivity(patientIntent);
@@ -87,7 +87,7 @@ public class SampleProfileActivity extends Activity {
 
 
         }
-        if (currentUser.getSessionToken() != null && currentUser.getString("type").equals("Doctor") ) {
+        if (currentUser != null && currentUser.getString("type").equals("Doctor") ) {
 
             Intent doctorIntent = new Intent(this, DoctorActivity.class);
             startActivity(doctorIntent);
