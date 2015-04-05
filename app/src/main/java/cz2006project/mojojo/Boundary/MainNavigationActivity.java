@@ -31,7 +31,7 @@ import main.java.cz2006project.mojojo.Boundary.QwikSearch.QwikSearchFragment;
 import main.java.cz2006project.mojojo.Control.SampleApplication;
 
 
-public class MainNavigationActivity extends ActionBarActivity {
+public class MainNavigationActivity extends ActionBarActivity  {
 
     public static final String TAG = "Appointments";
     public static final boolean DEBUG = SampleApplication.LOG_DEBUG;

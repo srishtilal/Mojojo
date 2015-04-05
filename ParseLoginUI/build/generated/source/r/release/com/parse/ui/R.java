@@ -358,11 +358,12 @@ containing a value of this type.
         public static int com_facebook_usersettingsfragment_logo_image=0x7f0a0023;
         public static int com_facebook_usersettingsfragment_profile_name=0x7f0a0024;
         public static int create_account=0x7f0a003d;
-        public static int date_picker=0x7f0a003f;
+        public static int date_picker=0x7f0a0040;
         public static int doctor=0x7f0a0035;
         public static int doctor_branch=0x7f0a003c;
         public static int doctor_specialty=0x7f0a003b;
         public static int facebook_login=0x7f0a0031;
+        public static int imageView=0x7f0a003e;
         public static int inline=0x7f0a0004;
         public static int large=0x7f0a0009;
         public static int left=0x7f0a0007;
@@ -381,7 +382,7 @@ containing a value of this type.
         public static int picker_subtitle=0x7f0a001b;
         public static int qwikdoc=0x7f0a0026;
         public static int right=0x7f0a0008;
-        public static int signup_DOB=0x7f0a003e;
+        public static int signup_DOB=0x7f0a003f;
         public static int signup_confirm_password_input=0x7f0a0038;
         public static int signup_email_input=0x7f0a0039;
         public static int signup_name_input=0x7f0a003a;

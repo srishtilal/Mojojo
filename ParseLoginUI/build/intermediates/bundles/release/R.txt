@@ -169,11 +169,12 @@ int id com_facebook_usersettingsfragment_login_button 0x7f0a0025
 int id com_facebook_usersettingsfragment_logo_image 0x7f0a0023
 int id com_facebook_usersettingsfragment_profile_name 0x7f0a0024
 int id create_account 0x7f0a003d
-int id date_picker 0x7f0a003f
+int id date_picker 0x7f0a0040
 int id doctor 0x7f0a0035
 int id doctor_branch 0x7f0a003c
 int id doctor_specialty 0x7f0a003b
 int id facebook_login 0x7f0a0031
+int id imageView 0x7f0a003e
 int id inline 0x7f0a0004
 int id large 0x7f0a0009
 int id left 0x7f0a0007
@@ -192,7 +193,7 @@ int id patient 0x7f0a0034
 int id picker_subtitle 0x7f0a001b
 int id qwikdoc 0x7f0a0026
 int id right 0x7f0a0008
-int id signup_DOB 0x7f0a003e
+int id signup_DOB 0x7f0a003f
 int id signup_confirm_password_input 0x7f0a0038
 int id signup_email_input 0x7f0a0039
 int id signup_name_input 0x7f0a003a
