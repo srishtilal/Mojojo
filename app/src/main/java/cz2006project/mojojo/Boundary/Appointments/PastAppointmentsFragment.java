@@ -197,6 +197,7 @@ public class PastAppointmentsFragment extends Fragment {
 
             public ViewHolder(View itemView) {
                 super(itemView);
+
                 this.appointment_type = (TextView) itemView.findViewById(R.id.appointment_type);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
                 this.doctor = (TextView) itemView.findViewById(R.id.doctor);
@@ -206,19 +207,28 @@ public class PastAppointmentsFragment extends Fragment {
                 this.notes = (TextView) itemView.findViewById(R.id.notes);
                 this.appointment_date = (TextView) itemView.findViewById(R.id.appointment_date);
                 this.appointment_time = (TextView) itemView.findViewById(R.id.appointment_time);
+
+
                 this.appointment_followup = (Button) itemView.findViewById(R.id.appointment_followup);
                 //this.appointment_change = (Button) itemView.findViewById(R.id.appointment_change);
                 appointment_followup.setOnClickListener(new View.OnClickListener() {
                     ParseTables.Appointment appointment= new ParseTables.Appointment();
-
+                    
                     @Override
                     public void onClick(View v) {
                         appt = appointments.get(getPosition());
-                        DatePickerFragment datePicker = new DatePickerFragment();
-                        datePicker.show(getActivity().getSupportFragmentManager(), "Set Date");
-                        TimePickerFragment timePickerFragment = new TimePickerFragment();
-                        timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
 
+                        String str= appt.getString("type");
+
+                        if(str=="Consultation"){
+                            DatePickerFragment datePicker = new DatePickerFragment();
+                            datePicker.show(getActivity().getSupportFragmentManager(), "Set Date");
+                            TimePickerFragment timePickerFragment = new TimePickerFragment();
+                            timePickerFragment.show(getActivity().getSupportFragmentManager(), "Set Time");
+                        }
+
+                        else
+                            Toast.makeText(getActivity().getApplicationContext(), "Pre-Assessment cant be followed up", Toast.LENGTH_SHORT).show();
 
 
 
