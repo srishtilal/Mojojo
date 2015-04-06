@@ -33,7 +33,8 @@
             android:layout_below="@+id/appointment_creator"
             android:layout_margin="10dp"
             android:text="Date"
-            android:textColor="#000000" />
+            android:textColor="#000000"
+            android:textSize="17dp" />
 
 
         <RelativeLayout
