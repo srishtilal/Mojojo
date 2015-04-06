@@ -55,6 +55,7 @@ public class CreateAppointmentFragment extends Fragment {
     private String appNo;
     public static int hourTest, minuteTest, yearTest, monthTest, dayTest;
     public static Calendar calendar;
+    private ArrayAdapter adapter;
 
 
 
@@ -72,8 +73,8 @@ public class CreateAppointmentFragment extends Fragment {
         // Required empty public constructor
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+
+    public void onCereate(Bundle savedInstanceState) {
         appointments = new HashMap<>();
         super.onCreate(savedInstanceState);
     }
@@ -112,7 +113,7 @@ public class CreateAppointmentFragment extends Fragment {
                         // Get the questionTopic value from the question object
                         String clinicname = clinic.getString("name");
                         cliniclist.add(clinicname);
-                        ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, cliniclist);
+                        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, cliniclist);
                         cspinner.setAdapter(adapter);
 
                         Log.d("clinic", "name: " + clinic.getString("name"));
