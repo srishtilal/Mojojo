@@ -15,6 +15,7 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,8 +69,9 @@ public class PastAppointmentsFragment extends Fragment {
     ScrollView emptyAppointment;
     public static ParseObject appt;
     public static int yeartest, monthtest, daytest, hourtest, minutetest;
-    public static Calendar calendar;
-
+    public static Calendar calendar = GregorianCalendar.getInstance();
+   static ParseObject obj= ParseObject.create("Appointment");
+   static Date date;
     public PastAppointmentsFragment(){
 
     }
@@ -265,57 +267,6 @@ public class PastAppointmentsFragment extends Fragment {
         }
     }
 
-    private void pushDataToParse() {
-
-        ParseObject appointment = new ParseObject("Appointment");
-/*
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Appointment");
-        //query.orderByDescending("AppointmentNumber");
-        query.getFirstInBackground(new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject parseObject, ParseException e) {
-                //Is relationship exists?
-
-                if (parseObject == null) {
-                    Log.d("appNo", "The getFirst request failed.");
-                } else {
-                    Log.d("appNo", "Retrieved the object.");
-                    AppointmentNumber = parseObject.getString("AppointmentNumber");
-                    int newAppointmentNumber = Integer.parseInt(AppointmentNumber);
-                    appNo = String.valueOf(newAppointmentNumber);
-                }
-
-
-
-            }
-        });*/
-
-
-
-        //appointment.put(ParseTables.Appointment.APPOINTMENTNUMBER, appNo);
-
-        calendar.set(yeartest, monthtest, daytest, hourtest, minutetest);
-        appt.put(ParseTables.Appointment.DATE, calendar.getTime());
-        appointment.put("Date",appt.getDate("Date"));
-        appointment.put("time", appt.getString("time"));
-        appointment.put("clinic", appt.getString("clinic"));
-        appointment.put(ParseTables.Appointment.DOCTOR, appt.getString("doctor"));
-        appointment.put(ParseTables.Appointment.TYPE, appt.getString("type"));
-
-        appointment.put(ParseTables.Appointment.FOLLOWUP, appt.getString("followup"));
-        appointment.put(ParseTables.Appointment.NOTES, appt.getString("notes"));
-        appointment.put(ParseTables.Appointment.PATIENT, appt.getString("patient"));
-
-        appointment.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-
-
-                Toast.makeText(getActivity().getApplicationContext(),
-                        getString(R.string.appointment_created), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
         return false;
@@ -331,9 +282,22 @@ public class PastAppointmentsFragment extends Fragment {
             monthtest=monthOfYear;
             daytest=dayOfMonth;
 
+            calendar.set(Calendar.YEAR,yeartest);
+            calendar.set(Calendar.MONTH, monthtest);
+            calendar.set(Calendar.DAY_OF_MONTH, daytest);
+            calendar.set(Calendar.HOUR_OF_DAY, hourtest);
+            calendar.set(Calendar.MINUTE, minutetest);
+            appt.put("Date", calendar.getTime());
+            obj.put("Date",appt.getDate("Date"));
+            obj.put("time", appt.getString("time"));
+            obj.put("clinic", appt.getString("clinic"));
+            obj.put("doctor", appt.getString("doctor"));
+            obj.put("type", appt.getString("type"));
 
-
-
+            obj.put("followup","Yes");
+            obj.put("notes", appt.getString("notes"));
+            obj.put("patient", appt.getString("patient"));
+            obj.saveInBackground();
 
         }
 
