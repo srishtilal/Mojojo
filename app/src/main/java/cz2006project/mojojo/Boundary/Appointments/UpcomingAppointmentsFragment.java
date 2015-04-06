@@ -149,7 +149,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
             holder.appointment_type.setText("Appointment Type: " + (String) appointments.get(position).get(ParseTables.Appointment.TYPE));
             holder.doctor.setText("Doctor: " + (String) appointments.get(position).get(ParseTables.Appointment.DOCTOR));
             holder.clinic.setText("Clinic: " + (String) appointments.get(position).get(ParseTables.Appointment.CLINIC));
-            holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE) + " " + appointments.get(position).get(ParseTables.Appointment.TIME));
+            holder.appointment_date.setText("Appointment Date: " + appointments.get(position).get(ParseTables.Appointment.DATE));
             holder.appointment_creator.setText((String) appointments.get(position).get(ParseTables.Appointment.PATIENT));
             //holder.notes.setText((String)appointments.get(position).get(ParseTables.Appointment.NOTES));
             //holder.medicalissue.setText((String)appointments.get(position).get(ParseTables.Appointment.MEDICALISSUE));
