@@ -146,7 +146,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.appointment_number.setText((String) appointments.get(position).get(ParseTables.Appointment.APPOINTMENTNUMBER));
+            holder.appointment_type.setText("Appointment Type: " + (String) appointments.get(position).get(ParseTables.Appointment.TYPE));
             holder.doctor.setText("Doctor: " + (String) appointments.get(position).get(ParseTables.Appointment.DOCTOR));
             holder.clinic.setText("Clinic: " + (String) appointments.get(position).get(ParseTables.Appointment.CLINIC));
             holder.appointment_date.setText(appointments.get(position).get(ParseTables.Appointment.DATE) + " " + appointments.get(position).get(ParseTables.Appointment.TIME));
@@ -193,7 +193,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder {
-            TextView appointment_number;
+            TextView appointment_type;
             TextView clinic;
             TextView doctor;
             RelativeLayout expanded_area;
@@ -210,7 +210,7 @@ public class UpcomingAppointmentsFragment extends Fragment {
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                this.appointment_number = (TextView) itemView.findViewById(R.id.appointment_type);
+                this.appointment_type = (TextView) itemView.findViewById(R.id.appointment_type);
                 this.clinic = (TextView) itemView.findViewById(R.id.clinic);
                 this.doctor = (TextView) itemView.findViewById(R.id.doctor);
                 this.expanded_area = (RelativeLayout) itemView.findViewById(R.id.expanded_area);
