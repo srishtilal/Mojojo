@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,6 +26,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -55,9 +57,14 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     private EditText confirmPasswordField;
     private EditText emailField;
     private EditText nameField;
+    private EditText contactnumberField;
     private Spinner doctor_specialty;
     private Spinner doctor_branch;
     private Button createAccountButton;
+    private CheckBox reminderBySMS;
+    private CheckBox reminderByEmail;
+    private TextView reminderText;
+
     private static HashMap<String, String> users;
     private ParseOnLoginSuccessListener onLoginSuccessListener;
     private RadioGroup userType;
@@ -84,6 +91,8 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     private static final int DEFAULT_MIN_PASSWORD_LENGTH = 6;
     private static final String USER_OBJECT_NAME_FIELD = "name";
     private static final String USER_OBJECT_TYPE_FIELD = "type";
+    private static final String USER_CN_TYPE_FIELD = "contactnumber";
+
 
 
     public static ParseSignupFragment newInstance(Bundle configOptions, String username, String password) {
@@ -110,6 +119,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
 
 
 
+
         doctor_specialty.setVisibility(View.INVISIBLE);
         doctor_branch.setVisibility(View.INVISIBLE);
 
@@ -122,7 +132,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         setDate=  (ImageButton) v.findViewById(R.id.date_picker);
         signup_DOB= (EditText) v.findViewById(R.id.signup_DOB);
 
-        setDate.setOnClickListener(new View.OnClickListener() {
+        setDate.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerFragment datePicker = new DatePickerFragment();
@@ -250,10 +260,15 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         passwordField = (EditText) v.findViewById(R.id.signup_password_input);
         confirmPasswordField = (EditText) v.findViewById(R.id.signup_confirm_password_input);
         emailField = (EditText) v.findViewById(R.id.signup_email_input);
+        contactnumberField = (EditText) v.findViewById(R.id.signup_contactnumber_input);
+
         nameField = (EditText) v.findViewById(R.id.signup_name_input);
         userType = (RadioGroup) v.findViewById(R.id.signup_radio_type);
         patient = (RadioButton) v.findViewById(R.id.patient);
         doctor = (RadioButton) v.findViewById(R.id.doctor);
+        reminderByEmail = (CheckBox) v.findViewById(R.id.Email);
+        reminderBySMS = (CheckBox) v.findViewById(R.id.SMS);
+        reminderText = (TextView) v.findViewById(R.id.remindertext);
 
 
         createAccountButton = (Button) v.findViewById(R.id.create_account);
@@ -277,7 +292,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
             createAccountButton.setText(config.getParseSignupSubmitButtonText());
         }
 
-        createAccountButton.setOnClickListener(new View.OnClickListener() {
+        createAccountButton.setOnClickListener(new OnClickListener() {
 
 
             @Override
@@ -297,6 +312,11 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                 if (nameField != null) {
                     name = nameField.getText().toString();
                 }
+
+                String contactnumer = null;
+                if (contactnumberField != null) {
+                    contactnumer = contactnumberField.getText().toString();
+                }
                 String type = null;
                 int selectedId = userType.getCheckedRadioButtonId();
                 if (selectedId == patient.getId()) {
@@ -315,7 +335,9 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                     }
                 } else if (password.length() == 0) {
                     showToast(R.string.com_parse_ui_no_password_toast);
-                } else if (password.length() < minPasswordLength) {
+                } else if (contactnumer.length() == 0) {
+                    showToast(R.string.com_parse_ui_no_contactnumber_toast);
+                }else if (password.length() < minPasswordLength) {
                     showToast(getResources().getQuantityString(
                             R.plurals.com_parse_ui_password_too_short_toast,
                             minPasswordLength, minPasswordLength));
@@ -342,6 +364,10 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                     // Set additional custom fields only if the user filled it out
                     if (name.length() != 0) {
                         user.put(USER_OBJECT_NAME_FIELD, name);
+                    }
+
+                    if (contactnumer.length() != 0) {
+                        user.put(USER_OBJECT_NAME_FIELD, contactnumer);
                     }
                     if (userType != null) {
                         user.put(USER_OBJECT_TYPE_FIELD, type);
@@ -403,7 +429,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
-        public void onDateSet(android.widget.DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             monthOfYear++;
             String date = String.valueOf(dayOfMonth) + "/" + monthOfYear + "/" + year;
 
@@ -467,6 +493,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         }
 
 
+
         if (username.length() == 0) {
             if (config.isParseLoginEmailAsUsername()) {
                 showToast(R.string.com_parse_ui_no_email_toast);
@@ -499,17 +526,33 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
             user.setEmail(email);
 
 
+
+
+
+
             // Set additional custom fields only if the user filled it out
             if (name.length() != 0) {
                 user.put(USER_OBJECT_NAME_FIELD, name);
+
+            }
+
+            if (contactnumberField.length() != 0) {
+                user.put(USER_OBJECT_NAME_FIELD, name);
+
             }
             if (userType != null) {
                 user.put(USER_OBJECT_TYPE_FIELD, type);
+
+
+            }
             }
             if (userType.getCheckedRadioButtonId() == R.id.doctor) {
                 user.put("Specialty", doctor_specialty);
                 user.put("CLINIC", doctor_branch);
             }
+
+
+
 
             loadingStart();
             user.signUpInBackground(new SignUpCallback() {
@@ -547,7 +590,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
             });
         }
 
-    }
+
 
 
     @Override
@@ -565,10 +608,18 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
         if (checkedId == R.id.patient) {
             doctor_specialty.setVisibility(View.INVISIBLE);
             doctor_branch.setVisibility(View.INVISIBLE);
+            reminderByEmail.setVisibility(View.VISIBLE);
+            reminderBySMS.setVisibility(View.VISIBLE);
+            reminderText.setVisibility(View.VISIBLE);
+
             actv(false);
         } else if (checkedId == R.id.doctor) {
             doctor_specialty.setVisibility(View.VISIBLE);
             doctor_branch.setVisibility(View.VISIBLE);
+            reminderByEmail.setVisibility(View.INVISIBLE);
+            reminderBySMS.setVisibility(View.INVISIBLE);
+            reminderText.setVisibility(View.INVISIBLE);
+
             actv(true);
         }
     }
@@ -580,6 +631,54 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
             doctor_specialty.requestFocus();
             doctor_branch.requestFocus();
         }
+    }
+
+    public void addListenerOnChkSMS() {
+
+
+        reminderBySMS.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //is chkIos checked?
+                if (((CheckBox) v).isChecked()) {
+                    if (reminderBySMS.isChecked()) {
+
+                        user.put("SMSReminder", 1);
+
+                    } else
+                        user.put("SMSReminder", 0);
+
+
+                }
+
+            }
+        });
+
+    }
+
+    public void addListenerOnChkEmail() {
+
+
+        reminderByEmail.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                //is chkIos checked?
+                if (((CheckBox) v).isChecked()) {
+
+
+                    if (reminderByEmail.isChecked()) {
+                        user.put("emailReminder", 1);
+                    }
+                    else
+                        user.put("emailReminder", 0);
+
+                }
+
+            }
+        });
+
     }
 }
 

@@ -14,6 +14,8 @@
     <string name="com_parse_ui_name_input_hint">Name</string>
     <string name="com_parse_ui_create_account_button_label">Create account</string>
     <string name="com_parse_ui_no_username_toast">Please enter your email address</string>
+    <string name="com_parse_ui_no_contactnumber_toast">Please enter your contact number</string>
+
     <string name="com_parse_ui_no_password_toast">Please enter your password</string>
     <string name="com_parse_ui_parse_login_invalid_credentials_toast">The username and password you entered don\'t match</string>
     <string name="com_parse_ui_parse_login_failed_unknown_toast">Could not log in, please try again later</string>

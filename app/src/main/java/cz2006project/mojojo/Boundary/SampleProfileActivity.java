@@ -26,10 +26,12 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.facebook.AppEventsLogger;
@@ -169,6 +171,18 @@ public class SampleProfileActivity extends Activity {
                                 public void done(final ParseUser patient, ParseException e) {
                                     if (e == null) {
                                         //Log.d("patient", "Retrieved the USERUSERUSER.");
+
+                                        try {
+                                            SmsManager smsManager = SmsManager.getDefault();
+                                            smsManager.sendTextMessage(patient.getString("contactnumber"), null, "Hello! Please do be punctual for your appointment tomorrow!", null, null);
+                                            Toast.makeText(getApplicationContext(), "SMS sent.",
+                                                    Toast.LENGTH_LONG).show();
+                                        } catch (Exception ex) {
+                                            Toast.makeText(getApplicationContext(),
+                                                    "SMS failed, please try again.",
+                                                    Toast.LENGTH_LONG).show();
+                                            ex.printStackTrace();
+                                        }
 
                                             Map<String, String> params = new HashMap<>();
                                             params.put("text", "Hello! Reminder for your upcoming appointment. Please be punctual for your appointment tomorrow! ");
