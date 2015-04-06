@@ -328,6 +328,8 @@ containing a value of this type.
         public static int date=0x7f020036;
     }
     public static final class id {
+        public static int Email=0x7f0a0044;
+        public static int SMS=0x7f0a0043;
         public static int bottom=0x7f0a0003;
         public static int box_count=0x7f0a0000;
         public static int button=0x7f0a0001;
@@ -358,7 +360,7 @@ containing a value of this type.
         public static int com_facebook_usersettingsfragment_logo_image=0x7f0a0023;
         public static int com_facebook_usersettingsfragment_profile_name=0x7f0a0024;
         public static int create_account=0x7f0a003d;
-        public static int date_picker=0x7f0a0040;
+        public static int date_picker=0x7f0a0041;
         public static int doctor=0x7f0a0035;
         public static int doctor_branch=0x7f0a003c;
         public static int doctor_specialty=0x7f0a003b;
@@ -381,9 +383,11 @@ containing a value of this type.
         public static int patient=0x7f0a0034;
         public static int picker_subtitle=0x7f0a001b;
         public static int qwikdoc=0x7f0a0026;
+        public static int remindertext=0x7f0a0042;
         public static int right=0x7f0a0008;
-        public static int signup_DOB=0x7f0a003f;
+        public static int signup_DOB=0x7f0a0040;
         public static int signup_confirm_password_input=0x7f0a0038;
+        public static int signup_contactnumber_input=0x7f0a003f;
         public static int signup_email_input=0x7f0a0039;
         public static int signup_name_input=0x7f0a003a;
         public static int signup_password_input=0x7f0a0037;
@@ -490,28 +494,29 @@ containing a value of this type.
         public static int com_parse_ui_logo_content_description=0x7f08003d;
         public static int com_parse_ui_mismatch_confirm_password_toast=0x7f08003e;
         public static int com_parse_ui_name_input_hint=0x7f08003f;
-        public static int com_parse_ui_no_email_toast=0x7f080040;
-        public static int com_parse_ui_no_name_toast=0x7f080041;
-        public static int com_parse_ui_no_password_toast=0x7f080042;
-        public static int com_parse_ui_no_username_toast=0x7f080043;
-        public static int com_parse_ui_parse_login_button_label=0x7f080044;
-        public static int com_parse_ui_parse_login_failed_unknown_toast=0x7f080045;
-        public static int com_parse_ui_parse_login_invalid_credentials_toast=0x7f080046;
-        public static int com_parse_ui_parse_signup_button_label=0x7f080047;
-        public static int com_parse_ui_password_input_hint=0x7f080048;
-        public static int com_parse_ui_progress_dialog_text=0x7f080049;
-        public static int com_parse_ui_reenter_password_toast=0x7f08004a;
-        public static int com_parse_ui_signup_branch=0x7f08004b;
-        public static int com_parse_ui_signup_failed_unknown_toast=0x7f08004c;
-        public static int com_parse_ui_signup_specialty=0x7f08004d;
-        public static int com_parse_ui_twitter_login_button_label=0x7f08004e;
-        public static int com_parse_ui_twitter_login_failed_toast=0x7f08004f;
-        public static int com_parse_ui_username_input_hint=0x7f080050;
-        public static int com_parse_ui_username_taken_toast=0x7f080051;
-        public static int enter_name=0x7f080052;
-        public static int enter_password=0x7f080053;
-        public static int reset_password=0x7f080054;
-        public static int select_type=0x7f080055;
+        public static int com_parse_ui_no_contactnumber_toast=0x7f080040;
+        public static int com_parse_ui_no_email_toast=0x7f080041;
+        public static int com_parse_ui_no_name_toast=0x7f080042;
+        public static int com_parse_ui_no_password_toast=0x7f080043;
+        public static int com_parse_ui_no_username_toast=0x7f080044;
+        public static int com_parse_ui_parse_login_button_label=0x7f080045;
+        public static int com_parse_ui_parse_login_failed_unknown_toast=0x7f080046;
+        public static int com_parse_ui_parse_login_invalid_credentials_toast=0x7f080047;
+        public static int com_parse_ui_parse_signup_button_label=0x7f080048;
+        public static int com_parse_ui_password_input_hint=0x7f080049;
+        public static int com_parse_ui_progress_dialog_text=0x7f08004a;
+        public static int com_parse_ui_reenter_password_toast=0x7f08004b;
+        public static int com_parse_ui_signup_branch=0x7f08004c;
+        public static int com_parse_ui_signup_failed_unknown_toast=0x7f08004d;
+        public static int com_parse_ui_signup_specialty=0x7f08004e;
+        public static int com_parse_ui_twitter_login_button_label=0x7f08004f;
+        public static int com_parse_ui_twitter_login_failed_toast=0x7f080050;
+        public static int com_parse_ui_username_input_hint=0x7f080051;
+        public static int com_parse_ui_username_taken_toast=0x7f080052;
+        public static int enter_name=0x7f080053;
+        public static int enter_password=0x7f080054;
+        public static int reset_password=0x7f080055;
+        public static int select_type=0x7f080056;
     }
     public static final class style {
         public static int ParseLoginUI=0x7f090000;
