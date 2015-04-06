@@ -174,6 +174,8 @@ public class SampleProfileActivity extends Activity {
 
                                         try {
                                             SmsManager smsManager = SmsManager.getDefault();
+
+
                                             smsManager.sendTextMessage(patient.getString("contactnumber"), null, "Hello! Please do be punctual for your appointment tomorrow!", null, null);
                                             Toast.makeText(getApplicationContext(), "SMS sent.",
                                                     Toast.LENGTH_LONG).show();
