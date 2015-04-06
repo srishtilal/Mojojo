@@ -313,9 +313,9 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                     name = nameField.getText().toString();
                 }
 
-                String contactnumer = null;
+                String contactnumber = null;
                 if (contactnumberField != null) {
-                    contactnumer = contactnumberField.getText().toString();
+                    contactnumber = contactnumberField.getText().toString();
                 }
                 String type = null;
                 int selectedId = userType.getCheckedRadioButtonId();
@@ -335,7 +335,7 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                     }
                 } else if (password.length() == 0) {
                     showToast(R.string.com_parse_ui_no_password_toast);
-                } else if (contactnumer.length() == 0) {
+                } else if (contactnumber.length() == 0) {
                     showToast(R.string.com_parse_ui_no_contactnumber_toast);
                 }else if (password.length() < minPasswordLength) {
                     showToast(getResources().getQuantityString(
@@ -360,14 +360,22 @@ public class ParseSignupFragment extends ParseLoginFragmentBase implements OnCli
                     user.setPassword(password);
                     user.setEmail(email);
 
+                    if(reminderByEmail.isChecked())
+                        user.put("EmailReminder","Yes");
+                    else
+                        user.put("EmailReminder", "No");
 
+                    if(reminderBySMS.isChecked())
+                        user.put("SMSReminder", "Yes");
+                    else
+                        user.put("SMSReminder", "No");
                     // Set additional custom fields only if the user filled it out
                     if (name.length() != 0) {
                         user.put(USER_OBJECT_NAME_FIELD, name);
                     }
 
-                    if (contactnumer.length() != 0) {
-                        user.put(USER_OBJECT_NAME_FIELD, contactnumer);
+                    if (contactnumber.length() != 0) {
+                        user.put(USER_OBJECT_NAME_FIELD, contactnumber);
                     }
                     if (userType != null) {
                         user.put(USER_OBJECT_TYPE_FIELD, type);
